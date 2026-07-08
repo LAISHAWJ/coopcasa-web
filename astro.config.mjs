@@ -10,8 +10,13 @@ export default defineConfig({
   site: 'https://www.coopcasa.do',
 
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
   },
 
-  integrations: [sitemap()]
+  integrations: [
+    sitemap({
+      // La Oficina Virtual (login/dashboard demo) no debe indexarse.
+      filter: (page) => !page.includes('/oficina-virtual/'),
+    }),
+  ],
 });
