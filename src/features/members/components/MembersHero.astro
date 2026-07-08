@@ -1,0 +1,29 @@
+---
+import Button from '@shared/ui/Button.astro';
+import { membersHero } from '@data/membersPage';
+import { JOIN_PANEL_MODAL_ID } from '../constants';
+---
+
+<section class="relative overflow-hidden bg-[linear-gradient(180deg,#fbfdfb,#fff)] px-5 pt-[100px] pb-14 lg:px-8 lg:pt-[128px] lg:pb-16">
+  <div class="pointer-events-none absolute -top-28 -right-20 h-[360px] w-[360px] rounded-full bg-[radial-gradient(circle,rgba(43,168,44,0.14),transparent_62%)] lg:h-[520px] lg:w-[520px] lg:-top-[120px] lg:-right-[100px]">
+  </div>
+  <div class="pointer-events-none absolute top-10 -left-16 h-[280px] w-[280px] rounded-full bg-[radial-gradient(circle,rgba(243,229,0,0.18),transparent_62%)] lg:h-[420px] lg:w-[420px] lg:top-10 lg:-left-[140px]">
+  </div>
+
+  <div class="relative z-[1] mx-auto grid max-w-[1220px] items-center gap-10 lg:grid-cols-[1fr_0.9fr] lg:gap-[52px]">
+    <div>
+      <Button href="/" variant="link" icon="arrowLeft" iconPosition="left" class="mb-[18px]">Volver al inicio</Button>
+      <h1 class="mb-5 text-[38px] leading-[1.1] font-extrabold tracking-tight text-ink-900 sm:text-[46px] lg:text-[52px] lg:leading-[1.05]">
+        {membersHero.titleLine1}
+        <br />
+        {membersHero.titleLine2Prefix}
+        <span class="bg-[linear-gradient(120deg,#22a024,#5bc93a)] bg-clip-text text-transparent">{membersHero.titleHighlight}</span>
+      </h1>
+      <p class="mb-[30px] max-w-[480px] text-lg leading-relaxed text-body-500">{membersHero.description}</p>
+      <Button data-modal-open={JOIN_PANEL_MODAL_ID} size="lg" icon="arrowRight">{membersHero.ctaLabel}</Button>
+    </div>
+    <div class="h-[280px] overflow-hidden rounded-[26px] shadow-[0_26px_60px_rgba(13,31,20,0.16)] sm:h-[340px] lg:h-[400px]">
+      <img src={membersHero.image.src} alt={membersHero.image.alt} class="h-full w-full object-cover" />
+    </div>
+  </div>
+</section>

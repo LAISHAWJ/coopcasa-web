@@ -1,0 +1,65 @@
+---
+import Modal from '@shared/ui/Modal.astro';
+import Icon from '@shared/ui/Icon.astro';
+import MemberForm from './MemberForm.astro';
+import { JOIN_PANEL_MODAL_ID } from '../constants';
+import { joinPanelContent } from '@data/membersPage';
+---
+
+<Modal id={JOIN_PANEL_MODAL_ID} placement="right">
+  <div data-join-success class="hidden min-h-full flex-col items-center justify-center p-12 text-center">
+    <div class="mb-6 flex h-[84px] w-[84px] items-center justify-center rounded-full bg-brand-600/12">
+      <Icon name="check" size={42} color="#22a024" strokeWidth={2.4} />
+    </div>
+    <h3 class="mb-3 text-2xl font-extrabold tracking-tight text-ink-900">{joinPanelContent.success.title}</h3>
+    <p class="mb-[30px] max-w-[340px] text-[15px] leading-relaxed text-body-400">{joinPanelContent.success.description}</p>
+    <button
+      type="button"
+      data-modal-close={JOIN_PANEL_MODAL_ID}
+      class="rounded-[13px] bg-[linear-gradient(135deg,#22a024,#2fb531)] px-7 py-[13px] font-display text-[15px] font-bold text-white shadow-[0_10px_26px_rgba(43,168,44,0.34)]"
+    >
+      {joinPanelContent.success.dismissLabel}
+    </button>
+  </div>
+
+  <div data-join-form class="px-6 pt-[34px] pb-11 sm:px-10">
+    <div class="mb-6 flex items-start justify-between">
+      <div>
+        <div class="mb-3.5 inline-block rounded-full bg-gold-400/28 px-3 py-[5px] text-xs font-bold text-gold-800">
+          {joinPanelContent.stepBadge}
+        </div>
+        <h3 class="text-2xl font-extrabold tracking-tight text-ink-900 sm:text-[26px]">{joinPanelContent.title}</h3>
+      </div>
+      <button
+        type="button"
+        data-modal-close={JOIN_PANEL_MODAL_ID}
+        aria-label="Cerrar"
+        class="flex h-[38px] w-[38px] flex-none items-center justify-center rounded-[11px] border border-ink-900/10 bg-white text-body-300 transition-colors hover:bg-surface-100"
+      >
+        <Icon name="close" size={18} />
+      </button>
+    </div>
+    <p class="mb-7 text-sm leading-relaxed text-body-400">{joinPanelContent.description}</p>
+
+    <MemberForm />
+  </div>
+</Modal>
+
+<script>
+  const modal = document.querySelector<HTMLElement>('[data-modal="join-panel"]');
+  const formView = modal?.querySelector<HTMLElement>('[data-join-form]');
+  const successView = modal?.querySelector<HTMLElement>('[data-join-success]');
+
+  // Cada vez que se abre el panel (desde cualquier botón del sitio) vuelve a
+  // mostrar el formulario, igual que el prototipo (openJoin reseteaba joinSubmitted).
+  modal?.addEventListener('modal:open', () => {
+    formView?.classList.remove('hidden');
+    successView?.classList.add('hidden');
+  });
+
+  modal?.addEventListener('member-form:submitted', () => {
+    formView?.classList.add('hidden');
+    successView?.classList.remove('hidden');
+    modal.scrollTop = 0;
+  });
+</script>

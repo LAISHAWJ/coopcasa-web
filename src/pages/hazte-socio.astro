@@ -1,0 +1,21 @@
+---
+import MainLayout from '@shared/layouts/MainLayout.astro';
+import MembersHero from '@features/members/components/MembersHero.astro';
+import StepsSection from '@features/members/components/StepsSection.astro';
+import MemberBenefitsGrid from '@features/members/components/MemberBenefitsGrid.astro';
+import WhyCoopSection from '@features/members/components/WhyCoopSection.astro';
+import RequirementsSection from '@features/members/components/RequirementsSection.astro';
+import MembersCta from '@features/members/components/MembersCta.astro';
+---
+
+<MainLayout
+  title="Hazte Socio"
+  description="Únete a COOPCASA en minutos. Ahorra, invierte y accede a préstamos con tasas justas siendo dueño de tu cooperativa."
+>
+  <MembersHero />
+  <StepsSection />
+  <MemberBenefitsGrid />
+  <WhyCoopSection />
+  <RequirementsSection />
+  <MembersCta />
+</MainLayout>

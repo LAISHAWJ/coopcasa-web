@@ -27,7 +27,7 @@ const {
   ...rest
 } = Astro.props;
 
-const describedBy = error ? `${id}-error` : hint ? `${id}-hint` : undefined;
+const describedBy = [hint ? `${id}-hint` : null, `${id}-error`].filter(Boolean).join(' ');
 ---
 
 <div class={className}>
@@ -38,15 +38,16 @@ const describedBy = error ? `${id}-error` : hint ? `${id}-hint` : undefined;
     required={required}
     placeholder={placeholder}
     rows={rows}
-    aria-invalid={error ? 'true' : undefined}
+    aria-invalid={error ? 'true' : 'false'}
     aria-describedby={describedBy}
+    data-field={name}
     class:list={[fieldClasses, 'resize-y', error && fieldErrorClasses]}
     {...rest}
   ></textarea>
-  {hint && !error && (
+  {hint && (
     <p id={`${id}-hint`} class="mt-1.5 text-xs text-body-300">{hint}</p>
   )}
-  {error && (
-    <p id={`${id}-error`} class="mt-1.5 text-xs font-medium text-danger" role="alert">{error}</p>
-  )}
+  <p id={`${id}-error`} class:list={['mt-1.5 text-xs font-medium text-danger', !error && 'hidden']} role="alert">
+    {error}
+  </p>
 </div>

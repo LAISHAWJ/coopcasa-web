@@ -1,6 +1,9 @@
 /** Página "Hazte Socio" → hero. */
 export const membersHero = {
-  title: 'Hazte Socio\nde COOPCASA',
+  titleLine1: 'Hazte Socio',
+  titleLine2Prefix: 'de ',
+  // Resaltado con degradado de marca al final del titular.
+  titleHighlight: 'COOPCASA',
   description:
     'Ser socio es ser dueño. Únete a una comunidad de más de 12,500 personas que ahorran, crecen y se apoyan mutuamente. El proceso es simple y te acompañamos en cada paso.',
   ctaLabel: 'Llenar formulario',

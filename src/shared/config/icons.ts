@@ -12,9 +12,13 @@ export type IconName = keyof typeof ICONS;
 
 export const ICONS = {
   // Navegación / estructura
+  // Nota: el prototipo (desktop-only) no incluía menú hamburguesa; se agrega
+  // para el menú móvil responsive (ver README, sección "Responsive").
+  menu: '<path d="M3 12h18M3 6h18M3 18h18"></path>',
   chevronDown: '<path d="M6 9l6 6 6-6"></path>',
   arrowRight: '<path d="M5 12h14M13 6l6 6-6 6"></path>',
   arrowLeft: '<path d="M19 12H5M11 18l-6-6 6-6"></path>',
+  trendUp: '<path d="M7 17L17 7M17 7H9M17 7v8"></path>',
   close: '<path d="M18 6L6 18M6 6l12 12"></path>',
   plus: '<path d="M12 5v14M5 12h14"></path>',
   loginArrow:

@@ -1,0 +1,84 @@
+---
+import Modal from '@shared/ui/Modal.astro';
+import Icon from '@shared/ui/Icon.astro';
+import Button from '@shared/ui/Button.astro';
+import { services } from '@data/services';
+import { SERVICE_MODAL_ID } from '../constants';
+import { JOIN_PANEL_MODAL_ID } from '@features/members/constants';
+---
+
+<Modal id={SERVICE_MODAL_ID}>
+  {
+    services.map((service, index) => (
+      <div data-service-panel={index} class="hidden">
+        <div class="relative overflow-hidden rounded-t-[26px] bg-[linear-gradient(135deg,#0d1f14,#14361b)] px-6 pt-9 pb-[30px] sm:px-9">
+          <div class="pointer-events-none absolute -top-[60px] -right-[30px] h-[220px] w-[220px] rounded-full bg-[radial-gradient(circle,rgba(43,168,44,0.4),transparent_65%)]" />
+          <button
+            type="button"
+            data-modal-close={SERVICE_MODAL_ID}
+            aria-label="Cerrar"
+            class="absolute top-[22px] right-[22px] flex h-[38px] w-[38px] items-center justify-center rounded-[11px] border border-white/18 bg-white/10 text-white transition-colors hover:bg-white/22"
+          >
+            <Icon name="close" size={18} />
+          </button>
+          <div class="relative z-[1] flex items-center gap-4">
+            <div class="flex h-[58px] w-[58px] flex-none items-center justify-center rounded-2xl bg-white/14">
+              <Icon name={service.icon} size={28} color="#fff" />
+            </div>
+            <div>
+              <h3 class="text-[22px] font-extrabold tracking-tight text-white sm:text-[25px]">{service.title}</h3>
+              <p class="mt-1 text-sm text-white/70">{service.tagline}</p>
+            </div>
+          </div>
+        </div>
+        <div class="px-6 pt-[30px] pb-9 sm:px-9">
+          <p class="mb-[26px] text-[15.5px] leading-relaxed text-body-500">{service.longDescription}</p>
+          <div class="mb-[30px] grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <div>
+              <h4 class="mb-3.5 text-[13px] font-bold tracking-[0.06em] text-brand-800 uppercase">Beneficios</h4>
+              <div class="flex flex-col gap-[11px]">
+                {service.benefits.map((benefit) => (
+                  <div class="flex items-start gap-2.5 text-sm leading-snug text-body-500">
+                    <Icon name="check" size={17} color="#22a024" strokeWidth={2.6} class="mt-0.5 flex-none" />
+                    {benefit}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h4 class="mb-3.5 text-[13px] font-bold tracking-[0.06em] text-gold-800 uppercase">Requisitos</h4>
+              <div class="flex flex-col gap-[11px]">
+                {service.requirements.map((requirement) => (
+                  <div class="flex items-start gap-2.5 text-sm leading-snug text-body-500">
+                    <span class="mt-[7px] h-1.5 w-1.5 flex-none rounded-full bg-gold-600" />
+                    {requirement}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <Button
+            data-modal-close={SERVICE_MODAL_ID}
+            data-modal-open={JOIN_PANEL_MODAL_ID}
+            size="lg"
+            icon="arrowRight"
+            class="w-full justify-center"
+          >
+            Solicitar {service.title}
+          </Button>
+        </div>
+      </div>
+    ))
+  }
+</Modal>
+
+<script define:vars={{ modalId: SERVICE_MODAL_ID }} is:inline>
+  const modal = document.querySelector(`[data-modal="${modalId}"]`);
+
+  modal?.addEventListener('modal:open', (event) => {
+    const activeIndex = event.detail;
+    modal.querySelectorAll('[data-service-panel]').forEach((panel) => {
+      panel.classList.toggle('hidden', panel.dataset.servicePanel !== activeIndex);
+    });
+  });
+</script>

@@ -1,0 +1,28 @@
+---
+import Icon from '@shared/ui/Icon.astro';
+import { membershipRequirements, membershipRequirementsSection } from '@data/benefits';
+---
+
+<section class="px-5 pt-5 pb-16 lg:px-8 lg:pb-[72px]">
+  <div class="relative mx-auto max-w-[1220px] overflow-hidden rounded-[32px] bg-[linear-gradient(135deg,#0d1f14,#14361b)] p-7 sm:p-10 lg:p-14">
+    <div class="pointer-events-none absolute -top-[100px] -right-10 h-[300px] w-[300px] rounded-full bg-[radial-gradient(circle,rgba(43,168,44,0.28),transparent_65%)] lg:h-[360px] lg:w-[360px]">
+    </div>
+    <div class="relative z-[1]">
+      <div class="mb-11 text-center">
+        <div class="mb-3 text-[13px] font-bold tracking-[0.1em] text-brand-200 uppercase">{membershipRequirementsSection.eyebrow}</div>
+        <h2 class="text-[26px] font-extrabold tracking-tight text-white sm:text-[34px]">{membershipRequirementsSection.title}</h2>
+      </div>
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {membershipRequirements.map((requirement) => (
+          <div class="rounded-2xl border border-white/10 bg-white/6 p-6 backdrop-blur-md">
+            <div class:list={['mb-4 flex h-[46px] w-[46px] items-center justify-center rounded-[13px]', requirement.iconBg]}>
+              <Icon name={requirement.icon} size={22} color={requirement.iconColor} />
+            </div>
+            <h4 class="mb-[7px] text-[15.5px] leading-snug font-bold text-white">{requirement.title}</h4>
+            <p class="text-[13px] leading-relaxed text-white/65">{requirement.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

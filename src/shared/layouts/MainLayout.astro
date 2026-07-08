@@ -1,0 +1,74 @@
+---
+import '@/styles/global.css';
+import Navbar from '@shared/components/Navbar.astro';
+import Footer from '@shared/components/Footer.astro';
+import WhatsAppButton from '@shared/components/WhatsAppButton.astro';
+import JoinPanel from '@features/members/components/JoinPanel.astro';
+import { siteConfig } from '@data/siteConfig';
+
+interface Props {
+  /** Título de la página (se combina con el nombre del sitio). Omitir en home. */
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  /** false oculta Navbar/Footer/WhatsApp (usado solo en la página de Login). */
+  showChrome?: boolean;
+}
+
+const {
+  title,
+  description = siteConfig.defaultDescription,
+  ogImage = siteConfig.defaultOgImage,
+  showChrome = true,
+} = Astro.props;
+
+const pageTitle = title ? `${title} | ${siteConfig.name}` : siteConfig.defaultTitle;
+const canonicalUrl = new URL(Astro.url.pathname, siteConfig.url);
+const ogImageUrl = new URL(ogImage, siteConfig.url);
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href={canonicalUrl} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteConfig.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:locale" content={siteConfig.locale} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <slot name="head" />
+  </head>
+  <body class="overflow-x-hidden bg-white">
+    {showChrome && <Navbar />}
+    <main>
+      <slot />
+    </main>
+    {showChrome && <Footer />}
+    {showChrome && <WhatsAppButton />}
+    {showChrome && <JoinPanel />}
+  </body>
+</html>

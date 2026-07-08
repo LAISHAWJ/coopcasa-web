@@ -1,0 +1,24 @@
+---
+import Icon from '@shared/ui/Icon.astro';
+import { memberBenefits, memberBenefitsSection } from '@data/benefits';
+---
+
+<section class="bg-[linear-gradient(180deg,#fbfdfb,#fff)] px-5 py-14 lg:px-8">
+  <div class="mx-auto max-w-[1220px]">
+    <div class="mx-auto mb-12 max-w-[600px] text-center">
+      <div class="mb-3.5 text-[13px] font-bold tracking-[0.1em] text-brand-800 uppercase">{memberBenefitsSection.eyebrow}</div>
+      <h2 class="text-[30px] font-extrabold tracking-tight text-ink-900 sm:text-[38px]">{memberBenefitsSection.title}</h2>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+      {memberBenefits.map((benefit) => (
+        <div class="rounded-[20px] border border-ink-900/8 bg-white px-5 py-[26px] text-center transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-600/30 hover:shadow-[0_18px_40px_rgba(13,31,20,0.1)]">
+          <div class:list={['mx-auto mb-4 flex h-[52px] w-[52px] items-center justify-center rounded-2xl', benefit.iconBg]}>
+            <Icon name={benefit.icon} size={24} color={benefit.iconColor} />
+          </div>
+          <h4 class="text-[15px] leading-snug font-bold text-ink-900">{benefit.title}</h4>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

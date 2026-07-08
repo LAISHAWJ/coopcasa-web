@@ -1,17 +1,22 @@
 ---
-
+import MainLayout from '@shared/layouts/MainLayout.astro';
+import Hero from '@features/home/components/Hero.astro';
+import ServicesGrid from '@features/home/components/ServicesGrid.astro';
+import ServiceModal from '@features/home/components/ServiceModal.astro';
+import StatsSection from '@features/home/components/StatsSection.astro';
+import AboutTeaser from '@features/home/components/AboutTeaser.astro';
+import AppPromo from '@features/home/components/AppPromo.astro';
+import CtaBanner from '@features/home/components/CtaBanner.astro';
+import FaqSection from '@features/home/components/FaqSection.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout>
+  <Hero />
+  <ServicesGrid />
+  <StatsSection />
+  <AboutTeaser />
+  <AppPromo />
+  <CtaBanner />
+  <FaqSection />
+  <ServiceModal />
+</MainLayout>

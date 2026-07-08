@@ -43,24 +43,24 @@ export function registerModalTriggers(): void {
 
   document.addEventListener('click', (event) => {
     const target = event.target as HTMLElement;
+    const actionable = target.closest<HTMLElement>(
+      '[data-modal-open], [data-modal-close], [data-modal-backdrop]'
+    );
+    if (!actionable) return;
 
-    const openTrigger = target.closest<HTMLElement>('[data-modal-open]');
-    if (openTrigger) {
+    // Un mismo elemento puede cerrar un modal y abrir otro a la vez (ej. pasar
+    // del modal de servicio al panel de "Hazte Socio"); ambas acciones corren
+    // en el mismo click en vez de excluirse mutuamente.
+    if (actionable.dataset.modalClose) {
       event.preventDefault();
-      openModal(openTrigger.dataset.modalOpen as string, openTrigger.dataset.modalPayload);
-      return;
+      closeModal(actionable.dataset.modalClose);
     }
-
-    const closeTrigger = target.closest<HTMLElement>('[data-modal-close]');
-    if (closeTrigger) {
+    if (actionable.dataset.modalOpen) {
       event.preventDefault();
-      closeModal(closeTrigger.dataset.modalClose as string);
-      return;
+      openModal(actionable.dataset.modalOpen, actionable.dataset.modalPayload);
     }
-
-    const backdrop = target.closest<HTMLElement>('[data-modal-backdrop]');
-    if (backdrop) {
-      closeModal(backdrop.dataset.modalBackdrop as string);
+    if (actionable.dataset.modalBackdrop) {
+      closeModal(actionable.dataset.modalBackdrop);
     }
   });
 

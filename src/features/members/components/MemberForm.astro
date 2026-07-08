@@ -1,0 +1,133 @@
+---
+import Input from '@shared/ui/Input.astro';
+import Select from '@shared/ui/Select.astro';
+import Checkbox from '@shared/ui/Checkbox.astro';
+import Button from '@shared/ui/Button.astro';
+import { branchOptions, referralSourceOptions } from '@data/members';
+import { joinPanelContent } from '@data/membersPage';
+---
+
+<form data-member-form novalidate class="flex flex-col gap-[18px]">
+  <p data-form-error role="alert" class="hidden rounded-xl border border-danger/25 bg-danger/8 px-4 py-3 text-sm font-medium text-danger"></p>
+
+  <Input id="member-fullName" name="fullName" label="Nombre completo" required placeholder="Por ejemplo, Juan Pérez" />
+  <Input id="member-cedula" name="cedula" label="Cédula" required placeholder="XXX-XXXXXXX-X" />
+  <Input id="member-phone" name="phone" label="Teléfono de casa o celular" required type="tel" placeholder="Por ejemplo, 809-123-4567" />
+  <Input id="member-email" name="email" label="Email" required type="email" placeholder="Por ejemplo, nombre@ejemplo.com" />
+
+  <div>
+    <span class="mb-[7px] block font-display text-[13px] font-semibold text-body-600">
+      Dirección de residencia <span class="text-danger" aria-hidden="true">*</span>
+    </span>
+    <div class="flex flex-col gap-2.5">
+      <Input id="member-addressStreet" name="addressStreet" label="Calle y número" required placeholder="Calle y número" class="[&>label]:sr-only" />
+      <Input
+        id="member-addressReference"
+        name="addressReference"
+        label="Residencial, apartamento y/o referencias"
+        placeholder="Residencial, apartamento y/o referencias"
+        class="[&>label]:sr-only"
+      />
+      <Input id="member-addressCity" name="addressCity" label="Ciudad o municipio" required placeholder="Ciudad o municipio" class="[&>label]:sr-only" />
+    </div>
+  </div>
+
+  <Select
+    id="member-branch"
+    name="branch"
+    label="¿Dónde quieres afiliarte?"
+    required
+    options={branchOptions}
+  />
+  <Select
+    id="member-referralSource"
+    name="referralSource"
+    label="¿Por qué vía supiste de nosotros?"
+    required
+    options={referralSourceOptions}
+  />
+
+  <Checkbox id="member-acceptedTerms" name="acceptedTerms" required align="start">
+    {joinPanelContent.termsPrefix} <a href="#" class="font-semibold text-brand-800">{joinPanelContent.termsLink}</a>
+    {joinPanelContent.termsMiddle} <a href="#" class="font-semibold text-brand-800">{joinPanelContent.privacyLink}</a>.
+  </Checkbox>
+
+  <Button type="submit" size="xl" icon="arrowRight" data-submit-button>
+    <span data-submit-label>{joinPanelContent.submitLabel}</span>
+  </Button>
+</form>
+
+<script>
+  import { validateMemberForm, isMemberFormValid } from '@features/members/validation/memberValidation';
+  import { submitMemberApplication } from '@features/members/services/submitMemberApplication';
+  import { setFieldError, clearFieldErrors, focusFirstInvalidField } from '@shared/utils/formFieldState';
+  import type { MemberRequest } from '@features/members/types/member';
+
+  document.querySelectorAll<HTMLFormElement>('[data-member-form]').forEach((form) => {
+    const submitButton = form.querySelector<HTMLButtonElement>('[data-submit-button]');
+    const submitLabel = form.querySelector('[data-submit-label]');
+    const formError = form.querySelector<HTMLElement>('[data-form-error]');
+    const originalLabel = submitLabel?.textContent ?? 'Enviar formulario';
+
+    const setLoading = (loading: boolean) => {
+      if (submitButton) submitButton.disabled = loading;
+      if (submitLabel) submitLabel.textContent = loading ? 'Enviando...' : originalLabel;
+    };
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      clearFieldErrors(form);
+      formError?.classList.add('hidden');
+
+      const formData = new FormData(form);
+      const values = {
+        fullName: formData.get('fullName'),
+        cedula: formData.get('cedula'),
+        phone: formData.get('phone'),
+        email: formData.get('email'),
+        addressStreet: formData.get('addressStreet'),
+        addressCity: formData.get('addressCity'),
+        branch: formData.get('branch'),
+        referralSource: formData.get('referralSource'),
+        acceptedTerms: formData.get('acceptedTerms') === 'on',
+      };
+
+      const errors = validateMemberForm(values);
+      if (!isMemberFormValid(errors)) {
+        for (const [field, message] of Object.entries(errors)) {
+          if (message) setFieldError(form, field, message);
+        }
+        focusFirstInvalidField(form);
+        return;
+      }
+
+      const payload: MemberRequest = {
+        fullName: String(values.fullName ?? ''),
+        cedula: String(values.cedula ?? ''),
+        phone: String(values.phone ?? ''),
+        email: String(values.email ?? ''),
+        addressStreet: String(values.addressStreet ?? ''),
+        addressReference: String(formData.get('addressReference') ?? '') || undefined,
+        addressCity: String(values.addressCity ?? ''),
+        branch: String(values.branch ?? ''),
+        referralSource: String(values.referralSource ?? ''),
+        acceptedTerms: true,
+      };
+
+      setLoading(true);
+      const result = await submitMemberApplication(payload);
+      setLoading(false);
+
+      if (!result.success) {
+        if (formError) {
+          formError.textContent = result.message ?? 'Ocurrió un error inesperado. Intenta de nuevo.';
+          formError.classList.remove('hidden');
+        }
+        return;
+      }
+
+      form.reset();
+      form.dispatchEvent(new CustomEvent('member-form:submitted', { bubbles: true }));
+    });
+  });
+</script>

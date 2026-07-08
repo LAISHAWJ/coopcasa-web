@@ -1,0 +1,89 @@
+---
+import { Image } from 'astro:assets';
+import logo from '@assets/images/coopcasa-logo.png';
+import Icon from '@shared/ui/Icon.astro';
+import Button from '@shared/ui/Button.astro';
+import { siteConfig } from '@data/siteConfig';
+import { footerNavLinks, footerServiceLinks, legalLinks, copyrightText } from '@data/footer';
+---
+
+<footer id="contacto" class="scroll-mt-20 bg-ink-900 px-5 pt-[72px] pb-8 text-white lg:px-8">
+  <div class="mx-auto max-w-[1220px]">
+    <div class="grid grid-cols-1 gap-10 border-b border-white/10 pb-[52px] sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr] lg:gap-12">
+      <div>
+        <div class="mb-[18px] flex items-center gap-[11px]">
+          <Image src={logo} alt={siteConfig.name} width={42} height={42} class="h-[42px] w-[42px] rounded-full object-cover" />
+          <span class="font-display text-lg font-extrabold text-white">{siteConfig.name}</span>
+        </div>
+        <p class="mb-5 max-w-[280px] text-sm leading-relaxed text-white/60">
+          Cooperativa de ahorro y crédito comprometida con el bienestar financiero de su comunidad desde 2001.
+        </p>
+        <div class="flex gap-2.5">
+          {siteConfig.socials.map((social) => (
+            <a
+              href={social.url}
+              aria-label={social.platform}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex h-[38px] w-[38px] items-center justify-center rounded-[11px] bg-white/8 transition-colors duration-200 hover:bg-brand-600"
+            >
+              <Icon name={social.icon} size={18} color="#fff" />
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <h4 class="mb-[18px] font-display text-sm font-bold text-white">Navegación</h4>
+        <div class="flex flex-col gap-3">
+          {footerNavLinks.map((link) => (
+            <a href={link.href} class="text-sm text-white/60 transition-colors duration-200 hover:text-white">
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <h4 class="mb-[18px] font-display text-sm font-bold text-white">Servicios</h4>
+        <div class="flex flex-col gap-3">
+          {footerServiceLinks.map((label) => (
+            <a href="/#servicios" class="text-sm text-white/60 transition-colors duration-200 hover:text-white">
+              {label}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <h4 class="mb-[18px] font-display text-sm font-bold text-white">Contacto</h4>
+        <div class="flex flex-col gap-3.5 text-sm text-white/60">
+          <div class="flex items-start gap-2.5">
+            <Icon name="mapPin" size={16} color="#7ee05a" class="mt-0.5 flex-none" />
+            {siteConfig.contact.address}
+          </div>
+          <a href={`tel:${siteConfig.contact.phone.replace(/[^\d+]/g, '')}`} class="flex items-center gap-2.5 hover:text-white">
+            <Icon name="phone" size={16} color="#7ee05a" class="flex-none" />
+            {siteConfig.contact.phone}
+          </a>
+          <a href={`mailto:${siteConfig.contact.email}`} class="flex items-center gap-2.5 hover:text-white">
+            <Icon name="envelope" size={16} color="#7ee05a" class="flex-none" />
+            {siteConfig.contact.email}
+          </a>
+          <Button href="/oficina-virtual/login" variant="ghost-light" size="sm" icon="loginArrow" class="mt-1.5 w-fit border-white/15 bg-white/8 px-4 py-2.5 text-[13px] hover:bg-brand-600">
+            Oficina Virtual
+          </Button>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-between gap-4 pt-[26px]">
+      <span class="text-[13px] text-white/45">{copyrightText}</span>
+      <div class="flex gap-[22px] text-[13px] text-white/45">
+        {legalLinks.map((link) => (
+          <a href={link.href} class="transition-colors duration-200 hover:text-white">{link.label}</a>
+        ))}
+      </div>
+    </div>
+  </div>
+</footer>

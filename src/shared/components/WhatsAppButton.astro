@@ -1,0 +1,24 @@
+---
+import Icon from '@shared/ui/Icon.astro';
+import { siteConfig } from '@data/siteConfig';
+import { whatsAppWidget } from '@data/home';
+
+const href = `https://wa.me/${siteConfig.contact.whatsappNumber}`;
+---
+
+<div class="group fixed bottom-[26px] right-[26px] z-[60] flex items-center gap-3">
+  <div
+    class="pointer-events-none translate-x-2.5 rounded-[11px] bg-ink-900 px-3.5 py-2.5 font-display text-[13px] font-semibold whitespace-nowrap text-white opacity-0 shadow-[0_8px_22px_rgba(13,31,20,0.22)] transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100 group-focus-within:translate-x-0 group-focus-within:opacity-100"
+  >
+    {whatsAppWidget.tooltip}
+  </div>
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label={whatsAppWidget.tooltip}
+    class="flex h-[60px] w-[60px] animate-pulsering items-center justify-center rounded-full bg-whatsapp shadow-[0_10px_28px_rgba(37,211,102,0.45)] transition-transform duration-200 hover:scale-[1.08]"
+  >
+    <Icon name="whatsapp" variant="fill" color="#fff" size={32} />
+  </a>
+</div>
