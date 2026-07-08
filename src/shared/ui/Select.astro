@@ -1,0 +1,70 @@
+---
+import Label from './Label.astro';
+import { fieldClasses, fieldErrorClasses } from './fieldStyles';
+
+interface SelectOption {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  id: string;
+  name: string;
+  label: string;
+  options: SelectOption[];
+  placeholder?: string;
+  required?: boolean;
+  error?: string;
+  hint?: string;
+  class?: string;
+}
+
+const {
+  id,
+  name,
+  label,
+  options,
+  placeholder = 'Elegir una opción',
+  required = false,
+  error,
+  hint,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const describedBy = error ? `${id}-error` : hint ? `${id}-hint` : undefined;
+
+// Flecha del select idéntica al prototipo (mismo SVG y posición), aplicada
+// vía estilo inline para no pelear con el escapado de arbitrary values de Tailwind.
+const chevronBackground = {
+  backgroundImage:
+    "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235a6b60' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E\")",
+  backgroundRepeat: 'no-repeat',
+  backgroundPosition: 'right 14px center',
+};
+---
+
+<div class={className}>
+  <Label for={id} required={required}>{label}</Label>
+  <select
+    id={id}
+    name={name}
+    required={required}
+    aria-invalid={error ? 'true' : undefined}
+    aria-describedby={describedBy}
+    class:list={[fieldClasses, 'appearance-none pr-10', error && fieldErrorClasses]}
+    style={chevronBackground}
+    {...rest}
+  >
+    <option value="">{placeholder}</option>
+    {options.map((option) => (
+      <option value={option.value}>{option.label}</option>
+    ))}
+  </select>
+  {hint && !error && (
+    <p id={`${id}-hint`} class="mt-1.5 text-xs text-body-300">{hint}</p>
+  )}
+  {error && (
+    <p id={`${id}-error`} class="mt-1.5 text-xs font-medium text-danger" role="alert">{error}</p>
+  )}
+</div>

@@ -1,0 +1,94 @@
+---
+import Label from './Label.astro';
+import Icon from './Icon.astro';
+import { fieldClasses, fieldErrorClasses } from './fieldStyles';
+
+type InputType = 'text' | 'email' | 'password' | 'tel' | 'number' | 'search' | 'url';
+
+interface Props {
+  id: string;
+  name: string;
+  label: string;
+  type?: InputType;
+  required?: boolean;
+  placeholder?: string;
+  autocomplete?: HTMLInputElement['autocomplete'];
+  error?: string;
+  hint?: string;
+  /** Muestra un botón para alternar entre texto/contraseña (campos de password). */
+  showPasswordToggle?: boolean;
+  class?: string;
+}
+
+const {
+  id,
+  name,
+  label,
+  type = 'text',
+  required = false,
+  placeholder,
+  autocomplete,
+  error,
+  hint,
+  showPasswordToggle = false,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const describedBy = error ? `${id}-error` : hint ? `${id}-hint` : undefined;
+---
+
+<div class={className}>
+  <Label for={id} required={required}>{label}</Label>
+  <div class="relative">
+    <input
+      id={id}
+      name={name}
+      type={type}
+      required={required}
+      placeholder={placeholder}
+      autocomplete={autocomplete}
+      aria-invalid={error ? 'true' : undefined}
+      aria-describedby={describedBy}
+      class:list={[fieldClasses, error && fieldErrorClasses, showPasswordToggle && 'pr-11']}
+      {...rest}
+    />
+    {
+      showPasswordToggle && (
+        <button
+          type="button"
+          data-password-toggle={id}
+          aria-label="Mostrar contraseña"
+          aria-controls={id}
+          class="absolute right-3.5 top-1/2 -translate-y-1/2 text-body-100 transition-colors hover:text-body-400"
+        >
+          <Icon name="eye" size={18} />
+        </button>
+      )
+    }
+  </div>
+  {hint && !error && (
+    <p id={`${id}-hint`} class="mt-1.5 text-xs text-body-300">{hint}</p>
+  )}
+  {error && (
+    <p id={`${id}-error`} class="mt-1.5 text-xs font-medium text-danger" role="alert">{error}</p>
+  )}
+</div>
+
+<script>
+  // Delegación global: alterna type="password"/"text" en cualquier input
+  // marcado con showPasswordToggle. Astro dedupea este script aunque
+  // Input.astro se use muchas veces en la misma página.
+  document.addEventListener('click', (event) => {
+    const trigger = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-password-toggle]');
+    if (!trigger) return;
+
+    const targetId = trigger.getAttribute('data-password-toggle');
+    const input = targetId ? document.getElementById(targetId) : null;
+    if (!(input instanceof HTMLInputElement)) return;
+
+    const nowVisible = input.type === 'password';
+    input.type = nowVisible ? 'text' : 'password';
+    trigger.setAttribute('aria-label', nowVisible ? 'Ocultar contraseña' : 'Mostrar contraseña');
+  });
+</script>

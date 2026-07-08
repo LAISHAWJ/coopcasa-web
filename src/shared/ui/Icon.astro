@@ -1,0 +1,49 @@
+---
+import { ICONS, type IconName } from '@shared/config/icons';
+
+interface Props {
+  name: IconName;
+  size?: number;
+  color?: string;
+  variant?: 'stroke' | 'fill';
+  strokeWidth?: number;
+  class?: string;
+}
+
+const {
+  name,
+  size = 24,
+  color = 'currentColor',
+  variant = 'stroke',
+  strokeWidth = 2,
+  class: className,
+} = Astro.props;
+
+const markup = ICONS[name];
+---
+
+{
+  variant === 'stroke' ? (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color}
+      stroke-width={strokeWidth}
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class={className}
+      set:html={markup}
+    />
+  ) : (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill={color}
+      class={className}
+      set:html={markup}
+    />
+  )
+}

@@ -1,0 +1,42 @@
+---
+/**
+ * Shell genérico de modal (overlay + panel), usado tanto para diálogos
+ * centrados (ver ServiceModal en home) como para paneles laterales tipo
+ * slide-over (ver JoinPanel en members). El contenido del panel lo define
+ * cada consumidor a través del slot por defecto.
+ */
+interface Props {
+  id: string;
+  placement?: 'center' | 'right';
+  panelClass?: string;
+}
+
+const { id, placement = 'center', panelClass } = Astro.props;
+---
+
+<div data-modal={id} data-state="closed" class="fixed inset-0 z-[80] hidden data-[state=open]:block">
+  <div data-modal-backdrop={id} class="absolute inset-0 animate-fadein bg-ink-900/42 backdrop-blur-sm"></div>
+  <div
+    class:list={[
+      'pointer-events-none absolute inset-0 flex',
+      placement === 'center' ? 'items-center justify-center p-8' : 'justify-end',
+    ]}
+  >
+    <div
+      class:list={[
+        'pointer-events-auto',
+        placement === 'center'
+          ? 'max-h-[88vh] w-[560px] max-w-full overflow-y-auto rounded-[26px] bg-white/97 shadow-[0_40px_90px_rgba(13,31,20,0.3)] backdrop-blur-xl animate-popin'
+          : 'h-full w-[520px] max-w-[94vw] overflow-y-auto bg-white/96 shadow-[-24px_0_60px_rgba(13,31,20,0.22)] backdrop-blur-xl animate-slidein',
+        panelClass,
+      ]}
+    >
+      <slot />
+    </div>
+  </div>
+</div>
+
+<script>
+  import { registerModalTriggers } from '@shared/utils/modal';
+  registerModalTriggers();
+</script>

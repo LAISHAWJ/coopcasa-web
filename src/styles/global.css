@@ -1,1 +1,182 @@
 @import "tailwindcss";
+
+/* ============================================================================
+ * Design tokens
+ * ----------------------------------------------------------------------------
+ * Todos los valores fueron extraídos 1:1 del prototipo HTML aprobado por el
+ * cliente. No modificar estos valores sin aprobación de diseño: son el
+ * contrato visual del sitio.
+ * ========================================================================== */
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
+
+  /* Verde institucional (acciones, énfasis, gradientes de marca) */
+  --color-brand-100: #a3d94a;
+  --color-brand-200: #7ee05a;
+  --color-brand-300: #5bc93a;
+  --color-brand-400: #3aab3b;
+  --color-brand-500: #2fb531;
+  --color-brand-600: #2ba82c;
+  --color-brand-700: #22a024;
+  --color-brand-800: #1f8f22;
+  --color-brand-lime: #8fd626;
+
+  /* Verde oscuro / tinta (fondos oscuros, texto principal) */
+  --color-ink-600: #1f5230;
+  --color-ink-700: #14361b;
+  --color-ink-800: #1c2b22;
+  --color-ink-900: #0d1f14;
+  --color-ink-950: #0a1810;
+
+  /* Amarillo institucional (acentos secundarios) */
+  --color-gold-200: #ffe94d;
+  --color-gold-400: #f3e500;
+  --color-gold-500: #c9c400;
+  --color-gold-600: #e0c500;
+  --color-gold-700: #a89a00;
+  --color-gold-800: #8a7f00;
+
+  /* Texto neutro con matiz verdoso */
+  --color-body-600: #334339;
+  --color-body-500: #3a4a40;
+  --color-body-400: #4a5b50;
+  --color-body-300: #5a6b60;
+  --color-body-200: #6b7a70;
+  --color-body-100: #9aa89f;
+
+  /* Superficies */
+  --color-surface-50: #fbfdfb;
+  --color-surface-100: #f2f4f2;
+
+  /* Estados */
+  --color-danger: #e0483d;
+  --color-whatsapp: #25d366;
+
+  /* Animaciones (idénticas al prototipo) */
+  --animate-floaty: floaty 6s ease-in-out infinite;
+  --animate-floaty2: floaty2 7s ease-in-out infinite;
+  --animate-float-phone: floatPhone 5.5s ease-in-out infinite;
+  --animate-fadeup: fadeup 0.7s ease both;
+  --animate-shimmer: shimmer 5s linear infinite;
+  --animate-slidein: slidein 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  --animate-popin: popin 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  --animate-fadein: fadein 0.3s ease;
+  --animate-ddin: ddin 0.22s ease;
+  --animate-pulsering: pulsering 2.6s infinite;
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+@keyframes floaty2 {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(12px);
+  }
+}
+@keyframes floatPhone {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-18px) rotate(-3deg);
+  }
+}
+@keyframes fadeup {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+@keyframes slidein {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes popin {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes ddin {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes pulsering {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+@layer base {
+  html {
+    /* Reemplaza el scroll animado por JS del prototipo (goAnchor) manteniendo
+       el mismo resultado visual: cada sección ancla define scroll-mt-20. */
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-white text-ink-900 antialiased;
+    font-family: var(--font-sans);
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+  }
+  ::selection {
+    background: var(--color-brand-600);
+    color: #fff;
+  }
+}

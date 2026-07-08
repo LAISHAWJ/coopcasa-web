@@ -1,0 +1,87 @@
+---
+import Icon from './Icon.astro';
+import type { IconName } from '@shared/config/icons';
+
+interface Props {
+  variant?: 'primary' | 'outline' | 'inverse' | 'ghost-light' | 'link';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  /** Solo aplica a variant="link": paleta para fondos claros u oscuros. */
+  tone?: 'muted' | 'onDark';
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  icon?: IconName;
+  iconPosition?: 'left' | 'right';
+  disabled?: boolean;
+  class?: string;
+  target?: '_blank' | '_self';
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  tone = 'muted',
+  href,
+  type = 'button',
+  icon,
+  iconPosition = 'right',
+  disabled = false,
+  class: className,
+  target,
+  ...attrs
+} = Astro.props;
+
+const sizes = {
+  sm: 'gap-2 rounded-[12px] px-[22px] py-[11px] text-sm',
+  md: 'gap-2 rounded-[13px] px-6 py-[13px] text-[15px]',
+  lg: 'gap-2.5 rounded-[14px] px-7 py-[15px] text-base',
+  xl: 'w-full justify-center gap-2.5 rounded-[14px] px-7 py-4 text-base',
+};
+
+const variants = {
+  primary:
+    'bg-[linear-gradient(135deg,#22a024,#2fb531)] text-white shadow-[0_10px_28px_rgba(43,168,44,0.34)] hover:-translate-y-0.5 hover:shadow-[0_16px_36px_rgba(43,168,44,0.44)]',
+  outline:
+    'border-[1.5px] border-ink-900/12 bg-white text-ink-900 hover:-translate-y-0.5 hover:border-brand-600',
+  inverse:
+    'bg-white text-brand-800 shadow-[0_12px_28px_rgba(13,31,20,0.2)] hover:-translate-y-0.5',
+  'ghost-light':
+    'border-[1.5px] border-white/50 bg-white/16 text-white backdrop-blur-md hover:bg-white/26',
+  link: 'gap-[7px] rounded-none bg-transparent p-0 text-[14px] font-semibold',
+};
+
+const linkTones = {
+  muted: 'text-body-200 hover:text-brand-800',
+  onDark: 'text-white/60 hover:text-white',
+};
+
+const base =
+  'inline-flex cursor-pointer items-center font-display font-bold transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-60';
+
+const classes = [
+  base,
+  variant === 'link' ? '' : sizes[size],
+  variants[variant],
+  variant === 'link' ? linkTones[tone] : '',
+  className,
+]
+  .filter(Boolean)
+  .join(' ');
+
+const iconSize = variant === 'link' ? 16 : 18;
+---
+
+{
+  href ? (
+    <a href={href} class={classes} target={target} rel={target === '_blank' ? 'noopener noreferrer' : undefined} {...attrs}>
+      {icon && iconPosition === 'left' && <Icon name={icon} size={iconSize} />}
+      <slot />
+      {icon && iconPosition === 'right' && <Icon name={icon} size={iconSize} />}
+    </a>
+  ) : (
+    <button type={type} class={classes} disabled={disabled} {...attrs}>
+      {icon && iconPosition === 'left' && <Icon name={icon} size={iconSize} />}
+      <slot />
+      {icon && iconPosition === 'right' && <Icon name={icon} size={iconSize} />}
+    </button>
+  )
+}
