@@ -1,0 +1,23 @@
+---
+import MainLayout from '@shared/layouts/MainLayout.astro';
+import Button from '@shared/ui/Button.astro';
+import Icon from '@shared/ui/Icon.astro';
+import { dashboardPlaceholder } from '@data/auth';
+---
+
+<!--
+  Página placeholder de destino del flujo DEMO de login (ver
+  features/auth/services/loginService.ts). El equipo de backend debe
+  reemplazar esta pantalla por la Oficina Virtual real una vez integrada
+  la autenticación, e idealmente protegerla con un guard de sesión.
+-->
+<MainLayout title="Oficina Virtual" description="Panel de la Oficina Virtual de COOPCASA." showChrome={false}>
+  <div class="flex min-h-screen flex-col items-center justify-center bg-[linear-gradient(150deg,#0d1f14,#14361b)] px-6 py-16 text-center">
+    <div class="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-brand-600/20">
+      <Icon name="check" size={38} color="#7ee05a" strokeWidth={2.4} />
+    </div>
+    <h1 class="mb-4 max-w-[560px] text-3xl font-extrabold tracking-tight text-white sm:text-4xl">{dashboardPlaceholder.title}</h1>
+    <p class="mb-9 max-w-[520px] text-base leading-relaxed text-white/70">{dashboardPlaceholder.description}</p>
+    <Button href="/" variant="inverse" icon="arrowLeft" iconPosition="left">{dashboardPlaceholder.backToSiteLabel}</Button>
+  </div>
+</MainLayout>

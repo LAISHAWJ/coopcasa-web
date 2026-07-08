@@ -1,0 +1,108 @@
+---
+import Input from '@shared/ui/Input.astro';
+import Checkbox from '@shared/ui/Checkbox.astro';
+import Button from '@shared/ui/Button.astro';
+import { loginForm } from '@data/auth';
+---
+
+<form data-login-form novalidate class="flex flex-col gap-[18px]">
+  <p data-form-error role="alert" class="hidden rounded-xl border border-danger/25 bg-danger/8 px-4 py-3 text-sm font-medium text-danger"></p>
+
+  <Input id="login-username" name="username" label="Usuario o correo" required placeholder="Usuario o correo electrónico" autocomplete="username" />
+  <Input
+    id="login-password"
+    name="password"
+    label="Contraseña"
+    required
+    type="password"
+    placeholder="Tu contraseña"
+    autocomplete="current-password"
+    showPasswordToggle
+  />
+
+  <div class="flex items-center justify-between">
+    <Checkbox id="login-remember" name="rememberMe">Recordarme</Checkbox>
+    <a href={loginForm.forgotPasswordHref} class="text-[13.5px] font-semibold text-brand-800">
+      {loginForm.forgotPasswordLabel}
+    </a>
+  </div>
+
+  <Button type="submit" size="xl" icon="arrowRight" class="mt-1" data-submit-button>
+    <span data-submit-label>{loginForm.submitLabel}</span>
+  </Button>
+</form>
+
+<div data-login-demo-notice class="mt-[18px] hidden items-center gap-2.5 rounded-xl border border-brand-600/25 bg-brand-600/10 px-4 py-3 text-[13.5px] font-semibold text-brand-800">
+  {loginForm.demoNotice}
+</div>
+
+<p class="mt-7 text-center text-sm text-body-400">
+  {loginForm.noAccountText} <a href="/hazte-socio" class="font-bold text-brand-800">{loginForm.noAccountCtaLabel}</a>
+</p>
+
+<script>
+  import { validateLoginForm, isLoginFormValid } from '@features/auth/validation/loginValidation';
+  import { login } from '@features/auth/services/loginService';
+  import { setFieldError, clearFieldErrors, focusFirstInvalidField } from '@shared/utils/formFieldState';
+  import type { LoginRequest } from '@features/auth/types/auth';
+
+  const form = document.querySelector<HTMLFormElement>('[data-login-form]');
+  const demoNotice = document.querySelector<HTMLElement>('[data-login-demo-notice]');
+
+  if (form) {
+    const submitButton = form.querySelector<HTMLButtonElement>('[data-submit-button]');
+    const submitLabel = form.querySelector('[data-submit-label]');
+    const formError = form.querySelector<HTMLElement>('[data-form-error]');
+    const originalLabel = submitLabel?.textContent ?? 'Iniciar Sesión';
+
+    const setLoading = (loading: boolean) => {
+      if (submitButton) submitButton.disabled = loading;
+      if (submitLabel) submitLabel.textContent = loading ? 'Verificando...' : originalLabel;
+    };
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      clearFieldErrors(form);
+      formError?.classList.add('hidden');
+      demoNotice?.classList.add('hidden');
+
+      const formData = new FormData(form);
+      const errors = validateLoginForm({ username: formData.get('username'), password: formData.get('password') });
+
+      if (!isLoginFormValid(errors)) {
+        for (const [field, message] of Object.entries(errors)) {
+          if (message) setFieldError(form, field, message);
+        }
+        focusFirstInvalidField(form);
+        return;
+      }
+
+      const payload: LoginRequest = {
+        username: String(formData.get('username') ?? ''),
+        password: String(formData.get('password') ?? ''),
+        rememberMe: formData.get('rememberMe') === 'on',
+      };
+
+      setLoading(true);
+      const result = await login(payload);
+      setLoading(false);
+
+      if (!result.success) {
+        if (formError) {
+          formError.textContent = result.message ?? 'No pudimos iniciar sesión. Intenta de nuevo.';
+          formError.classList.remove('hidden');
+        }
+        return;
+      }
+
+      // FLUJO DEMO: no hay backend de autenticación real todavía, así que
+      // solo se muestra el aviso y se redirige al placeholder de la Oficina
+      // Virtual para dejar demostrada la navegación (ver loginService.ts).
+      demoNotice?.classList.remove('hidden');
+      demoNotice?.classList.add('flex');
+      window.setTimeout(() => {
+        window.location.href = '/oficina-virtual/dashboard';
+      }, 900);
+    });
+  }
+</script>
