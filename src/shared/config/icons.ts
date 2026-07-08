@@ -45,6 +45,8 @@ export const ICONS = {
   building:
     '<path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"></path>',
   star: '<path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1-6.3-4.6L5.7 21l2.3-7.1-6-4.5h7.6z"></path>',
+  download:
+    '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"></path>',
   graduationCap:
     '<path d="M22 10L12 5 2 10l10 5 10-5z"></path><path d="M6 12v5c0 1 2.7 3 6 3s6-2 6-3v-5"></path>',
   document:

@@ -1,0 +1,14 @@
+---
+import FaqAccordion from '@shared/components/FaqAccordion.astro';
+import { appFaqs, appFaqSection } from '@data/mobileApp';
+---
+
+<section class="px-5 pt-5 pb-24 lg:px-8">
+  <div class="mx-auto max-w-[820px]">
+    <div class="mb-11 text-center">
+      <div class="mb-3.5 text-[13px] font-bold tracking-[0.1em] text-brand-800 uppercase">{appFaqSection.eyebrow}</div>
+      <h2 class="text-[26px] font-extrabold tracking-tight text-ink-900 sm:text-[36px]">{appFaqSection.title}</h2>
+    </div>
+    <FaqAccordion items={appFaqs} idPrefix="app-faq" />
+  </div>
+</section>

@@ -1,0 +1,15 @@
+---
+import MainLayout from '@shared/layouts/MainLayout.astro';
+import HistoryHero from '@features/about/components/HistoryHero.astro';
+import HistoryTimeline from '@features/about/components/HistoryTimeline.astro';
+import StatsBanner from '@features/about/components/StatsBanner.astro';
+---
+
+<MainLayout
+  title="Nuestra Historia"
+  description="Conoce la historia de COOPCASA, desde sus inicios en 2001 hasta convertirse en una de las cooperativas más sólidas de la región."
+>
+  <HistoryHero />
+  <HistoryTimeline />
+  <StatsBanner />
+</MainLayout>

@@ -1,0 +1,29 @@
+---
+import { appScreenshots, appScreenshotsSection } from '@data/mobileApp';
+---
+
+<section class="bg-[linear-gradient(180deg,#fbfdfb,#fff)] px-5 pt-5 pb-20 lg:px-8">
+  <div class="mx-auto max-w-[1220px]">
+    <div class="mx-auto mb-12 max-w-[600px] text-center lg:mb-[52px]">
+      <div class="mb-3.5 text-[13px] font-bold tracking-[0.1em] text-brand-800 uppercase">{appScreenshotsSection.eyebrow}</div>
+      <h2 class="text-[28px] font-extrabold tracking-tight text-ink-900 sm:text-[38px]">{appScreenshotsSection.title}</h2>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-7">
+      {appScreenshots.map((screen) => (
+        <div class="h-[400px] w-[200px] overflow-hidden rounded-[38px] border-[9px] border-ink-800 bg-ink-950 shadow-[0_26px_60px_rgba(13,31,20,0.2)] sm:h-[460px] sm:w-[230px]">
+          <div class="relative h-full px-[18px] py-[26px]" style={{ background: screen.background }}>
+            <div class="font-display text-[15px] font-extrabold" style={{ color: screen.foreground }}>{screen.title}</div>
+            <div class="mt-1 text-[11px]" style={{ color: screen.subtleText }}>{screen.subtitle}</div>
+            <div class="mt-5 flex flex-col gap-[11px]">
+              <div class="h-[70px] rounded-2xl" style={{ background: screen.accentBlock }}></div>
+              <div class="h-11 rounded-xl bg-white/55"></div>
+              <div class="h-11 rounded-xl bg-white/55"></div>
+              <div class="h-11 rounded-xl bg-white/55"></div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,21 @@
+---
+import MainLayout from '@shared/layouts/MainLayout.astro';
+import AppHero from '@features/mobile-app/components/AppHero.astro';
+import AppFeaturesGrid from '@features/mobile-app/components/AppFeaturesGrid.astro';
+import AppScreenshots from '@features/mobile-app/components/AppScreenshots.astro';
+import AppBenefitsGrid from '@features/mobile-app/components/AppBenefitsGrid.astro';
+import AppCta from '@features/mobile-app/components/AppCta.astro';
+import AppFaqSection from '@features/mobile-app/components/AppFaqSection.astro';
+---
+
+<MainLayout
+  title="App Móvil"
+  description="Gestiona tus ahorros, transferencias y préstamos desde la App Móvil de COOPCASA, disponible 24/7 para iOS y Android."
+>
+  <AppHero />
+  <AppFeaturesGrid />
+  <AppScreenshots />
+  <AppBenefitsGrid />
+  <AppCta />
+  <AppFaqSection />
+</MainLayout>

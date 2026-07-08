@@ -1,0 +1,52 @@
+---
+import { Image } from 'astro:assets';
+import logo from '@assets/images/coopcasa-logo.png';
+import Icon from '@shared/ui/Icon.astro';
+import type { Memory } from '@data/memories';
+
+interface Props {
+  memory: Memory;
+}
+
+const { memory } = Astro.props;
+---
+
+<div class="flex flex-col items-center">
+  <div
+    class="relative h-[280px] w-[210px] overflow-hidden rounded-l-[6px] rounded-r-[14px] shadow-[0_26px_50px_rgba(13,31,20,0.22)] transition-transform duration-300 hover:-translate-y-2 hover:rotate-[0.5deg] sm:h-[310px] sm:w-[230px]"
+  >
+    <div class="absolute inset-y-0 left-0 z-[2] w-4 bg-black/22"></div>
+    <div class="absolute inset-y-0 left-4 z-[2] w-[3px] bg-white/25"></div>
+    <div class="absolute inset-0 flex flex-col justify-between p-6 pl-[34px]" style={{ background: memory.coverGradient }}>
+      <div class="flex items-center gap-2">
+        <Image src={logo} alt="" width={30} height={30} class="h-[30px] w-[30px] rounded-full" />
+        <span class="font-display text-[15px] font-extrabold text-white">COOPCASA</span>
+      </div>
+      <div>
+        <div class="text-xs font-medium tracking-wide text-white/80">Memoria de gestión</div>
+        <div class="font-display text-[44px] leading-none font-extrabold tracking-tight text-white sm:text-[56px]">{memory.year}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-[26px] max-w-[260px] text-center">
+    <h3 class="mb-2 text-lg font-extrabold text-ink-900 sm:text-[19px]">Memoria {memory.year}</h3>
+    <p class="mb-[18px] text-sm leading-relaxed text-body-400">{memory.description}</p>
+    <div class="flex justify-center gap-2.5">
+      <a
+        href={memory.pdfUrl}
+        class="flex items-center gap-[7px] rounded-[11px] border-[1.5px] border-ink-900/12 bg-white px-4 py-2.5 font-display text-[13px] font-bold text-ink-900 transition-colors duration-200 hover:border-brand-600"
+      >
+        <Icon name="eye" size={15} strokeWidth={2.2} />
+        Ver
+      </a>
+      <a
+        href={memory.pdfUrl}
+        class="flex items-center gap-[7px] rounded-[11px] bg-[linear-gradient(135deg,#22a024,#2fb531)] px-4 py-2.5 font-display text-[13px] font-bold text-white transition-transform duration-200 hover:-translate-y-0.5"
+      >
+        <Icon name="download" size={15} strokeWidth={2.2} />
+        Descargar PDF
+      </a>
+    </div>
+  </div>
+</div>

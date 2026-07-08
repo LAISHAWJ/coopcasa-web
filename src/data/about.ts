@@ -90,6 +90,8 @@ export interface MvvBlock {
   icon: IconName;
   iconBg: string;
   iconColor: string;
+  background: string;
+  blobPosition: 'top-right' | 'bottom-left';
 }
 
 // Reemplazar con la declaración de misión y visión aprobada oficialmente.
@@ -101,6 +103,8 @@ export const mvvBlocks: MvvBlock[] = [
     icon: 'layers',
     iconBg: 'bg-[linear-gradient(135deg,#22a024,#2fb531)]',
     iconColor: '#fff',
+    background: 'linear-gradient(135deg,#fbfdfb,#fff)',
+    blobPosition: 'top-right',
   },
   {
     tag: 'Nuestra visión',
@@ -109,6 +113,8 @@ export const mvvBlocks: MvvBlock[] = [
     icon: 'visionBig',
     iconBg: 'bg-[linear-gradient(135deg,#f3e500,#ffe94d)]',
     iconColor: '#8a7f00',
+    background: 'linear-gradient(135deg,#fffef2,#fff)',
+    blobPosition: 'bottom-left',
   },
 ];
 

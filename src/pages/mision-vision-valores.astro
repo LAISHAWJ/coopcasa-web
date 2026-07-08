@@ -1,0 +1,15 @@
+---
+import MainLayout from '@shared/layouts/MainLayout.astro';
+import MvvHero from '@features/about/components/MvvHero.astro';
+import MvvBlocks from '@features/about/components/MvvBlocks.astro';
+import ValuesGrid from '@features/about/components/ValuesGrid.astro';
+---
+
+<MainLayout
+  title="Misión, Visión y Valores"
+  description="El propósito que mueve a COOPCASA y los principios institucionales que guían cada decisión de la cooperativa."
+>
+  <MvvHero />
+  <MvvBlocks />
+  <ValuesGrid />
+</MainLayout>

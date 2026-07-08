@@ -1,0 +1,64 @@
+---
+import { Image } from 'astro:assets';
+import logo from '@assets/images/coopcasa-logo.png';
+import Button from '@shared/ui/Button.astro';
+import StoreBadgeLink from './StoreBadgeLink.astro';
+import { mobileAppHero } from '@data/mobileApp';
+---
+
+<section class="relative overflow-hidden bg-[linear-gradient(160deg,#0d1f14,#14361b)] px-5 pt-[92px] pb-14 lg:px-8 lg:pt-[120px] lg:pb-[72px]">
+  <div class="pointer-events-none absolute -top-24 -left-10 h-[300px] w-[300px] rounded-full bg-[radial-gradient(circle,rgba(43,168,44,0.32),transparent_65%)] lg:h-[460px] lg:w-[460px] lg:-top-[120px] lg:-left-[60px]">
+  </div>
+  <div class="pointer-events-none absolute -bottom-24 right-10 h-[260px] w-[260px] rounded-full bg-[radial-gradient(circle,rgba(243,229,0,0.14),transparent_65%)] lg:-bottom-[160px] lg:h-[400px] lg:w-[400px] lg:right-20">
+  </div>
+
+  <div class="relative z-[1] mx-auto grid max-w-[1220px] items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
+    <div>
+      <Button href="/" variant="link" tone="onDark" icon="arrowLeft" iconPosition="left" class="mb-[18px]">
+        Volver al inicio
+      </Button>
+      <div class="mb-5 inline-block rounded-full bg-gold-400/22 px-3.5 py-[6px] text-xs font-bold tracking-[0.08em] text-gold-400 uppercase">
+        {mobileAppHero.eyebrow}
+      </div>
+      <h1 class="mb-[18px] text-[36px] leading-[1.1] font-extrabold tracking-tight text-white sm:text-[44px] lg:text-[52px] lg:leading-[1.05]">
+        {mobileAppHero.title.split('\n').map((line, i) => <>{i > 0 && <br />}{line}</>)}
+      </h1>
+      <p class="mb-[30px] max-w-[460px] text-lg leading-relaxed text-white/72">{mobileAppHero.description}</p>
+      <div class="flex flex-wrap gap-3.5">
+        <StoreBadgeLink href={mobileAppHero.appStoreUrl} icon="appleLogo" iconColor="#0d1f14" storeLabel="Descárgala en" storeName="App Store" />
+        <StoreBadgeLink href={mobileAppHero.googlePlayUrl} icon="googlePlay" iconColor="#0d1f14" storeLabel="Disponible en" storeName="Google Play" />
+      </div>
+    </div>
+
+    <div class="flex justify-center">
+      <div class="animate-floaty relative w-[240px] overflow-hidden rounded-[44px] border-[11px] border-ink-800 bg-ink-950 shadow-[0_40px_90px_rgba(0,0,0,0.5)] sm:w-[280px]">
+        <div class="absolute top-0 left-1/2 z-[3] h-[26px] w-[120px] -translate-x-1/2 rounded-b-2xl bg-ink-800"></div>
+        <div class="bg-[linear-gradient(180deg,#f4fbf5,#fff)] px-5 pt-[46px] pb-0">
+          <div class="mb-[22px] flex items-center gap-2.5">
+            <Image src={logo} alt="" width={32} height={32} class="h-8 w-8 rounded-full" />
+            <div>
+              <div class="text-[11px] text-body-200">{mobileAppHero.preview.greeting}</div>
+              <div class="font-display text-[15px] font-extrabold text-ink-900">{mobileAppHero.preview.userName}</div>
+            </div>
+          </div>
+          <div class="rounded-[18px] bg-[linear-gradient(135deg,#22a024,#2fb531)] p-[18px] text-white shadow-[0_12px_26px_rgba(43,168,44,0.3)]">
+            <div class="text-[11px] opacity-85">{mobileAppHero.preview.balanceLabel}</div>
+            <div class="mt-1 font-display text-[26px] font-extrabold">{mobileAppHero.preview.balanceAmount}</div>
+          </div>
+          <div class="mt-[18px] flex flex-col gap-2.5 pb-6">
+            {mobileAppHero.preview.items.map((item) => (
+              <div class="flex items-center gap-[11px] rounded-2xl border border-ink-900/7 bg-white px-[13px] py-[11px]">
+                <div class="h-8 w-8 flex-none rounded-[9px] bg-brand-600/12"></div>
+                <div class="flex-1">
+                  <div class="text-xs font-bold text-ink-900">{item.title}</div>
+                  <div class="text-[10px] text-body-200">{item.subtitle}</div>
+                </div>
+                <div class="text-xs font-bold text-brand-800">{item.trailing}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
