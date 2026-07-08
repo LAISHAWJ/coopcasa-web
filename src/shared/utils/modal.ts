@@ -44,7 +44,7 @@ export function registerModalTriggers(): void {
   document.addEventListener('click', (event) => {
     const target = event.target as HTMLElement;
     const actionable = target.closest<HTMLElement>(
-      '[data-modal-open], [data-modal-close], [data-modal-backdrop]'
+      '[data-modal-open], [data-modal-close], [data-modal-backdrop]',
     );
     if (!actionable) return;
 

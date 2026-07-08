@@ -6,29 +6,54 @@ import { siteConfig } from '@data/siteConfig';
 import { loginPanel } from '@data/auth';
 ---
 
-<div class="relative flex flex-col justify-between overflow-hidden bg-[linear-gradient(150deg,#0d1f14,#14361b)] p-8 sm:p-14 lg:p-[56px]">
-  <div class="pointer-events-none absolute -top-28 -right-14 h-[300px] w-[300px] rounded-full bg-[radial-gradient(circle,rgba(43,168,44,0.35),transparent_65%)] lg:h-[420px] lg:w-[420px]">
+<div
+  class="relative flex flex-col justify-between overflow-hidden bg-[linear-gradient(150deg,#0d1f14,#14361b)] p-8 sm:p-14 lg:p-[56px]"
+>
+  <div
+    class="pointer-events-none absolute -top-28 -right-14 h-[300px] w-[300px] rounded-full bg-[radial-gradient(circle,rgba(43,168,44,0.35),transparent_65%)] lg:h-[420px] lg:w-[420px]"
+  >
   </div>
-  <div class="pointer-events-none absolute -bottom-32 -left-10 h-[260px] w-[260px] rounded-full bg-[radial-gradient(circle,rgba(243,229,0,0.14),transparent_65%)] lg:h-[360px] lg:w-[360px]">
+  <div
+    class="pointer-events-none absolute -bottom-32 -left-10 h-[260px] w-[260px] rounded-full bg-[radial-gradient(circle,rgba(243,229,0,0.14),transparent_65%)] lg:h-[360px] lg:w-[360px]"
+  >
   </div>
 
   <a href="/" class="relative z-[1] flex items-center gap-[11px]">
-    <Image src={logo} alt={siteConfig.name} width={44} height={44} class="h-11 w-11 rounded-full object-cover" />
+    <Image
+      src={logo}
+      alt={siteConfig.name}
+      width={44}
+      height={44}
+      class="h-11 w-11 rounded-full object-cover"
+    />
     <span class="font-display text-xl font-extrabold text-white">{siteConfig.name}</span>
   </a>
 
   <div class="relative z-[1] py-12 lg:py-0">
-    <h2 class="mb-[18px] text-[32px] leading-[1.1] font-extrabold tracking-tight text-white sm:text-[40px]">
-      {loginPanel.title.split('\n').map((line, i) => <>{i > 0 && <br />}{line}</>)}
+    <h2
+      class="mb-[18px] text-[32px] leading-[1.1] font-extrabold tracking-tight text-white sm:text-[40px]"
+    >
+      {
+        loginPanel.title.split('\n').map((line, i) => (
+          <>
+            {i > 0 && <br />}
+            {line}
+          </>
+        ))
+      }
     </h2>
-    <p class="mb-8 max-w-[400px] text-base leading-relaxed text-white/72">{loginPanel.description}</p>
+    <p class="mb-8 max-w-[400px] text-base leading-relaxed text-white/72">
+      {loginPanel.description}
+    </p>
     <div class="flex flex-col gap-3.5">
-      {loginPanel.points.map((point) => (
-        <div class="flex items-center gap-[11px] text-[14.5px] text-white/90">
-          <Icon name="check" size={18} color="#7ee05a" strokeWidth={2.6} class="flex-none" />
-          {point}
-        </div>
-      ))}
+      {
+        loginPanel.points.map((point) => (
+          <div class="flex items-center gap-[11px] text-[14.5px] text-white/90">
+            <Icon name="check" size={18} color="#7ee05a" strokeWidth={2.6} class="flex-none" />
+            {point}
+          </div>
+        ))
+      }
     </div>
   </div>
 

@@ -6,9 +6,21 @@ import { loginForm } from '@data/auth';
 ---
 
 <form data-login-form novalidate class="flex flex-col gap-[18px]">
-  <p data-form-error role="alert" class="hidden rounded-xl border border-danger/25 bg-danger/8 px-4 py-3 text-sm font-medium text-danger"></p>
+  <p
+    data-form-error
+    role="alert"
+    class="hidden rounded-xl border border-danger/25 bg-danger/8 px-4 py-3 text-sm font-medium text-danger"
+  >
+  </p>
 
-  <Input id="login-username" name="username" label="Usuario o correo" required placeholder="Usuario o correo electrónico" autocomplete="username" />
+  <Input
+    id="login-username"
+    name="username"
+    label="Usuario o correo"
+    required
+    placeholder="Usuario o correo electrónico"
+    autocomplete="username"
+  />
   <Input
     id="login-password"
     name="password"
@@ -32,18 +44,26 @@ import { loginForm } from '@data/auth';
   </Button>
 </form>
 
-<div data-login-demo-notice class="mt-[18px] hidden items-center gap-2.5 rounded-xl border border-brand-600/25 bg-brand-600/10 px-4 py-3 text-[13.5px] font-semibold text-brand-800">
+<div
+  data-login-demo-notice
+  class="mt-[18px] hidden items-center gap-2.5 rounded-xl border border-brand-600/25 bg-brand-600/10 px-4 py-3 text-[13.5px] font-semibold text-brand-800"
+>
   {loginForm.demoNotice}
 </div>
 
 <p class="mt-7 text-center text-sm text-body-400">
-  {loginForm.noAccountText} <a href="/hazte-socio" class="font-bold text-brand-800">{loginForm.noAccountCtaLabel}</a>
+  {loginForm.noAccountText}
+  <a href="/hazte-socio" class="font-bold text-brand-800">{loginForm.noAccountCtaLabel}</a>
 </p>
 
 <script>
   import { validateLoginForm, isLoginFormValid } from '@features/auth/validation/loginValidation';
   import { login } from '@features/auth/services/loginService';
-  import { setFieldError, clearFieldErrors, focusFirstInvalidField } from '@shared/utils/formFieldState';
+  import {
+    setFieldError,
+    clearFieldErrors,
+    focusFirstInvalidField,
+  } from '@shared/utils/formFieldState';
   import type { LoginRequest } from '@features/auth/types/auth';
 
   const form = document.querySelector<HTMLFormElement>('[data-login-form]');
@@ -67,7 +87,10 @@ import { loginForm } from '@data/auth';
       demoNotice?.classList.add('hidden');
 
       const formData = new FormData(form);
-      const errors = validateLoginForm({ username: formData.get('username'), password: formData.get('password') });
+      const errors = validateLoginForm({
+        username: formData.get('username'),
+        password: formData.get('password'),
+      });
 
       if (!isLoginFormValid(errors)) {
         for (const [field, message] of Object.entries(errors)) {

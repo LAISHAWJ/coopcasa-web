@@ -12,10 +12,12 @@ export interface MemberApplicationResult {
 // sin tocar este componente ni MemberForm.astro.
 const MEMBERS_API_URL = import.meta.env.PUBLIC_API_MEMBERS_URL;
 
-export async function submitMemberApplication(payload: MemberRequest): Promise<MemberApplicationResult> {
+export async function submitMemberApplication(
+  payload: MemberRequest,
+): Promise<MemberApplicationResult> {
   if (!MEMBERS_API_URL) {
     console.warn(
-      '[members] PUBLIC_API_MEMBERS_URL no está configurada; simulando envío exitoso (solo frontend, sin backend).'
+      '[members] PUBLIC_API_MEMBERS_URL no está configurada; simulando envío exitoso (solo frontend, sin backend).',
     );
     return { success: true };
   }
@@ -28,11 +30,17 @@ export async function submitMemberApplication(payload: MemberRequest): Promise<M
     });
 
     if (!response.ok) {
-      return { success: false, message: 'No pudimos enviar tu solicitud. Intenta de nuevo en unos minutos.' };
+      return {
+        success: false,
+        message: 'No pudimos enviar tu solicitud. Intenta de nuevo en unos minutos.',
+      };
     }
 
     return { success: true };
   } catch {
-    return { success: false, message: 'No pudimos conectar con el servidor. Verifica tu conexión e intenta de nuevo.' };
+    return {
+      success: false,
+      message: 'No pudimos conectar con el servidor. Verifica tu conexión e intenta de nuevo.',
+    };
   }
 }

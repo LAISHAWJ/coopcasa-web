@@ -13,5 +13,12 @@ const { for: htmlFor, required = false, class: className } = Astro.props;
   class:list={['mb-[7px] block font-display text-[13px] font-semibold text-body-600', className]}
 >
   <slot />
-  {required && <span class="text-danger" aria-hidden="true"> *</span>}
+  {
+    required && (
+      <span class="text-danger" aria-hidden="true">
+        {' '}
+        *
+      </span>
+    )
+  }
 </label>

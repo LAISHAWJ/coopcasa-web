@@ -3,13 +3,23 @@ import Button from '@shared/ui/Button.astro';
 import { mvvHero } from '@data/about';
 ---
 
-<section class="relative overflow-hidden bg-[linear-gradient(180deg,#fbfdfb,#fff)] px-5 pt-[100px] pb-12 lg:px-8 lg:pt-[120px] lg:pb-14">
-  <div class="pointer-events-none absolute -top-28 -right-20 h-[360px] w-[360px] rounded-full bg-[radial-gradient(circle,rgba(43,168,44,0.13),transparent_62%)] lg:h-[480px] lg:w-[480px] lg:-top-[120px] lg:-right-[100px]">
+<section
+  class="relative overflow-hidden bg-[linear-gradient(180deg,#fbfdfb,#fff)] px-5 pt-[100px] pb-12 lg:px-8 lg:pt-[120px] lg:pb-14"
+>
+  <div
+    class="pointer-events-none absolute -top-28 -right-20 h-[360px] w-[360px] rounded-full bg-[radial-gradient(circle,rgba(43,168,44,0.13),transparent_62%)] lg:h-[480px] lg:w-[480px] lg:-top-[120px] lg:-right-[100px]"
+  >
   </div>
   <div class="relative z-[1] mx-auto max-w-[820px] text-center">
-    <Button href="/" variant="link" icon="arrowLeft" iconPosition="left" class="mb-[18px]">Volver al inicio</Button>
-    <div class="mb-3.5 text-[13px] font-bold tracking-[0.1em] text-brand-800 uppercase">{mvvHero.eyebrow}</div>
-    <h1 class="mb-4 text-[38px] font-extrabold tracking-tight text-ink-900 sm:text-[52px]">{mvvHero.title}</h1>
+    <Button href="/" variant="link" icon="arrowLeft" iconPosition="left" class="mb-[18px]"
+      >Volver al inicio</Button
+    >
+    <div class="mb-3.5 text-[13px] font-bold tracking-[0.1em] text-brand-800 uppercase">
+      {mvvHero.eyebrow}
+    </div>
+    <h1 class="mb-4 text-[38px] font-extrabold tracking-tight text-ink-900 sm:text-[52px]">
+      {mvvHero.title}
+    </h1>
     <p class="text-lg leading-relaxed text-body-500">{mvvHero.description}</p>
   </div>
 </section>

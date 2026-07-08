@@ -25,6 +25,21 @@ const {
 const pageTitle = title ? `${title} | ${siteConfig.name}` : siteConfig.defaultTitle;
 const canonicalUrl = new URL(Astro.url.pathname, siteConfig.url);
 const ogImageUrl = new URL(ogImage, siteConfig.url);
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FinancialService',
+  name: siteConfig.legalName,
+  url: siteConfig.url,
+  logo: new URL('/apple-touch-icon.png', siteConfig.url).toString(),
+  telephone: siteConfig.contact.phone,
+  email: siteConfig.contact.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: siteConfig.contact.address,
+  },
+  sameAs: siteConfig.socials.map((social) => social.url),
+};
 ---
 
 <!doctype html>
@@ -50,8 +65,9 @@ const ogImageUrl = new URL(ogImage, siteConfig.url);
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -59,6 +75,8 @@ const ogImageUrl = new URL(ogImage, siteConfig.url);
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
+
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} is:inline />
 
     <slot name="head" />
   </head>

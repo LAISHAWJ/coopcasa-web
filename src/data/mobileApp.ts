@@ -24,7 +24,8 @@ export const mobileAppHero = {
 export const appFeaturesSection = {
   eyebrow: 'Características',
   title: 'Una app diseñada para ti',
-  description: 'Todo lo que puedes hacer sin ir a una sucursal, de forma rápida, segura e intuitiva.',
+  description:
+    'Todo lo que puedes hacer sin ir a una sucursal, de forma rápida, segura e intuitiva.',
 };
 
 export const appScreenshotsSection = {
@@ -129,10 +130,25 @@ export const appScreenshots: AppScreenshot[] = [
 ];
 
 export const appBenefits: IconCard[] = [
-  { title: 'Disponible 24/7, sin filas', icon: 'clock', iconBg: 'bg-white/6', iconColor: '#7ee05a' },
+  {
+    title: 'Disponible 24/7, sin filas',
+    icon: 'clock',
+    iconBg: 'bg-white/6',
+    iconColor: '#7ee05a',
+  },
   { title: 'Ahorra tiempo y traslados', icon: 'bolt', iconBg: 'bg-white/6', iconColor: '#7ee05a' },
-  { title: 'Máxima seguridad y cifrado', icon: 'shield', iconBg: 'bg-white/6', iconColor: '#7ee05a' },
-  { title: 'Control total de tus finanzas', icon: 'chartGrowth', iconBg: 'bg-white/6', iconColor: '#7ee05a' },
+  {
+    title: 'Máxima seguridad y cifrado',
+    icon: 'shield',
+    iconBg: 'bg-white/6',
+    iconColor: '#7ee05a',
+  },
+  {
+    title: 'Control total de tus finanzas',
+    icon: 'chartGrowth',
+    iconBg: 'bg-white/6',
+    iconColor: '#7ee05a',
+  },
 ];
 
 export const appFaqs: FaqItem[] = [
@@ -158,7 +174,8 @@ export const appFaqs: FaqItem[] = [
   },
   {
     question: '¿Cómo pago mis préstamos?',
-    answer: 'En la sección "Pagos" selecciona tu préstamo, revisa la cuota o el monto a abonar y confirma el pago desde la cuenta que prefieras.',
+    answer:
+      'En la sección "Pagos" selecciona tu préstamo, revisa la cuota o el monto a abonar y confirma el pago desde la cuenta que prefieras.',
   },
   {
     question: '¿Cómo pago préstamos de terceros?',

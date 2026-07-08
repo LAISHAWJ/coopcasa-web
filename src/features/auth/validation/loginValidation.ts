@@ -2,7 +2,9 @@ export type LoginFormErrors = Partial<Record<'username' | 'password', string>>;
 
 const MIN_PASSWORD_LENGTH = 6;
 
-export function validateLoginForm(data: Record<string, FormDataEntryValue | null>): LoginFormErrors {
+export function validateLoginForm(
+  data: Record<string, FormDataEntryValue | null>,
+): LoginFormErrors {
   const errors: LoginFormErrors = {};
 
   const username = String(data.username ?? '').trim();

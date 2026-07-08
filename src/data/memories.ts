@@ -25,13 +25,15 @@ export const memories: Memory[] = [
   },
   {
     year: '2023',
-    description: 'Consolidación de la Oficina Virtual y expansión de nuestra red de sucursales a nivel nacional.',
+    description:
+      'Consolidación de la Oficina Virtual y expansión de nuestra red de sucursales a nivel nacional.',
     coverGradient: 'linear-gradient(150deg,#14361b,#2ba82c)',
     pdfUrl: '#',
   },
   {
     year: '2022',
-    description: 'Recuperación y solidez financiera, con excedentes distribuidos entre nuestros socios copropietarios.',
+    description:
+      'Recuperación y solidez financiera, con excedentes distribuidos entre nuestros socios copropietarios.',
     coverGradient: 'linear-gradient(150deg,#1f5230,#5bc93a)',
     pdfUrl: '#',
   },

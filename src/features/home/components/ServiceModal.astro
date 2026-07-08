@@ -26,27 +26,41 @@ import { JOIN_PANEL_MODAL_ID } from '@features/members/constants';
               <Icon name={service.icon} size={28} color="#fff" />
             </div>
             <div>
-              <h3 class="text-[22px] font-extrabold tracking-tight text-white sm:text-[25px]">{service.title}</h3>
+              <h3 class="text-[22px] font-extrabold tracking-tight text-white sm:text-[25px]">
+                {service.title}
+              </h3>
               <p class="mt-1 text-sm text-white/70">{service.tagline}</p>
             </div>
           </div>
         </div>
         <div class="px-6 pt-[30px] pb-9 sm:px-9">
-          <p class="mb-[26px] text-[15.5px] leading-relaxed text-body-500">{service.longDescription}</p>
+          <p class="mb-[26px] text-[15.5px] leading-relaxed text-body-500">
+            {service.longDescription}
+          </p>
           <div class="mb-[30px] grid grid-cols-1 gap-6 sm:grid-cols-2">
             <div>
-              <h4 class="mb-3.5 text-[13px] font-bold tracking-[0.06em] text-brand-800 uppercase">Beneficios</h4>
+              <h4 class="mb-3.5 text-[13px] font-bold tracking-[0.06em] text-brand-800 uppercase">
+                Beneficios
+              </h4>
               <div class="flex flex-col gap-[11px]">
                 {service.benefits.map((benefit) => (
                   <div class="flex items-start gap-2.5 text-sm leading-snug text-body-500">
-                    <Icon name="check" size={17} color="#22a024" strokeWidth={2.6} class="mt-0.5 flex-none" />
+                    <Icon
+                      name="check"
+                      size={17}
+                      color="#22a024"
+                      strokeWidth={2.6}
+                      class="mt-0.5 flex-none"
+                    />
                     {benefit}
                   </div>
                 ))}
               </div>
             </div>
             <div>
-              <h4 class="mb-3.5 text-[13px] font-bold tracking-[0.06em] text-gold-800 uppercase">Requisitos</h4>
+              <h4 class="mb-3.5 text-[13px] font-bold tracking-[0.06em] text-gold-800 uppercase">
+                Requisitos
+              </h4>
               <div class="flex flex-col gap-[11px]">
                 {service.requirements.map((requirement) => (
                   <div class="flex items-start gap-2.5 text-sm leading-snug text-body-500">

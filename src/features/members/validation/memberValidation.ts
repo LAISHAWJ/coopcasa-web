@@ -19,7 +19,9 @@ const CEDULA_REGEX = /^\d{3}-?\d{7}-?\d{1}$/;
 const PHONE_REGEX = /^\d{3}-?\d{3}-?\d{4}$/;
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export function validateMemberForm(data: Record<string, FormDataEntryValue | boolean | null>): MemberFormErrors {
+export function validateMemberForm(
+  data: Record<string, FormDataEntryValue | boolean | null>,
+): MemberFormErrors {
   const errors: MemberFormErrors = {};
   const asText = (key: string) => String(data[key] ?? '').trim();
 

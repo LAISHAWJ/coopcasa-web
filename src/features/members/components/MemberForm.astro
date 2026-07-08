@@ -8,19 +8,51 @@ import { joinPanelContent } from '@data/membersPage';
 ---
 
 <form data-member-form novalidate class="flex flex-col gap-[18px]">
-  <p data-form-error role="alert" class="hidden rounded-xl border border-danger/25 bg-danger/8 px-4 py-3 text-sm font-medium text-danger"></p>
+  <p
+    data-form-error
+    role="alert"
+    class="hidden rounded-xl border border-danger/25 bg-danger/8 px-4 py-3 text-sm font-medium text-danger"
+  >
+  </p>
 
-  <Input id="member-fullName" name="fullName" label="Nombre completo" required placeholder="Por ejemplo, Juan Pérez" />
+  <Input
+    id="member-fullName"
+    name="fullName"
+    label="Nombre completo"
+    required
+    placeholder="Por ejemplo, Juan Pérez"
+  />
   <Input id="member-cedula" name="cedula" label="Cédula" required placeholder="XXX-XXXXXXX-X" />
-  <Input id="member-phone" name="phone" label="Teléfono de casa o celular" required type="tel" placeholder="Por ejemplo, 809-123-4567" />
-  <Input id="member-email" name="email" label="Email" required type="email" placeholder="Por ejemplo, nombre@ejemplo.com" />
+  <Input
+    id="member-phone"
+    name="phone"
+    label="Teléfono de casa o celular"
+    required
+    type="tel"
+    placeholder="Por ejemplo, 809-123-4567"
+  />
+  <Input
+    id="member-email"
+    name="email"
+    label="Email"
+    required
+    type="email"
+    placeholder="Por ejemplo, nombre@ejemplo.com"
+  />
 
   <div>
     <span class="mb-[7px] block font-display text-[13px] font-semibold text-body-600">
       Dirección de residencia <span class="text-danger" aria-hidden="true">*</span>
     </span>
     <div class="flex flex-col gap-2.5">
-      <Input id="member-addressStreet" name="addressStreet" label="Calle y número" required placeholder="Calle y número" class="[&>label]:sr-only" />
+      <Input
+        id="member-addressStreet"
+        name="addressStreet"
+        label="Calle y número"
+        required
+        placeholder="Calle y número"
+        class="[&>label]:sr-only"
+      />
       <Input
         id="member-addressReference"
         name="addressReference"
@@ -28,7 +60,14 @@ import { joinPanelContent } from '@data/membersPage';
         placeholder="Residencial, apartamento y/o referencias"
         class="[&>label]:sr-only"
       />
-      <Input id="member-addressCity" name="addressCity" label="Ciudad o municipio" required placeholder="Ciudad o municipio" class="[&>label]:sr-only" />
+      <Input
+        id="member-addressCity"
+        name="addressCity"
+        label="Ciudad o municipio"
+        required
+        placeholder="Ciudad o municipio"
+        class="[&>label]:sr-only"
+      />
     </div>
   </div>
 
@@ -48,8 +87,10 @@ import { joinPanelContent } from '@data/membersPage';
   />
 
   <Checkbox id="member-acceptedTerms" name="acceptedTerms" required align="start">
-    {joinPanelContent.termsPrefix} <a href="#" class="font-semibold text-brand-800">{joinPanelContent.termsLink}</a>
-    {joinPanelContent.termsMiddle} <a href="#" class="font-semibold text-brand-800">{joinPanelContent.privacyLink}</a>.
+    {joinPanelContent.termsPrefix}
+    <a href="#" class="font-semibold text-brand-800">{joinPanelContent.termsLink}</a>
+    {joinPanelContent.termsMiddle}
+    <a href="#" class="font-semibold text-brand-800">{joinPanelContent.privacyLink}</a>.
   </Checkbox>
 
   <Button type="submit" size="xl" icon="arrowRight" data-submit-button>
@@ -58,9 +99,16 @@ import { joinPanelContent } from '@data/membersPage';
 </form>
 
 <script>
-  import { validateMemberForm, isMemberFormValid } from '@features/members/validation/memberValidation';
+  import {
+    validateMemberForm,
+    isMemberFormValid,
+  } from '@features/members/validation/memberValidation';
   import { submitMemberApplication } from '@features/members/services/submitMemberApplication';
-  import { setFieldError, clearFieldErrors, focusFirstInvalidField } from '@shared/utils/formFieldState';
+  import {
+    setFieldError,
+    clearFieldErrors,
+    focusFirstInvalidField,
+  } from '@shared/utils/formFieldState';
   import type { MemberRequest } from '@features/members/types/member';
 
   document.querySelectorAll<HTMLFormElement>('[data-member-form]').forEach((form) => {
@@ -120,7 +168,8 @@ import { joinPanelContent } from '@data/membersPage';
 
       if (!result.success) {
         if (formError) {
-          formError.textContent = result.message ?? 'Ocurrió un error inesperado. Intenta de nuevo.';
+          formError.textContent =
+            result.message ?? 'Ocurrió un error inesperado. Intenta de nuevo.';
           formError.classList.remove('hidden');
         }
         return;

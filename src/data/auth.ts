@@ -21,7 +21,8 @@ export const loginForm = {
   noAccountText: '¿Aún no eres socio?',
   noAccountCtaLabel: 'Hazte socio',
   // Aviso visible mientras la Oficina Virtual real no está integrada (ver README, sección "Flujo demo").
-  demoNotice: 'Demo: la Oficina Virtual completa no está incluida en este sitio. Este acceso solo demuestra el flujo de navegación.',
+  demoNotice:
+    'Demo: la Oficina Virtual completa no está incluida en este sitio. Este acceso solo demuestra el flujo de navegación.',
 };
 
 /** Página placeholder /oficina-virtual/dashboard (destino del login demo). */

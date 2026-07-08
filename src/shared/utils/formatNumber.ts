@@ -14,9 +14,12 @@ export function formatInteger(value: number): string {
  */
 export function formatStatValue(
   value: number,
-  { prefix = '', suffix = '', decimals = 0 }: { prefix?: string; suffix?: string; decimals?: number }
+  {
+    prefix = '',
+    suffix = '',
+    decimals = 0,
+  }: { prefix?: string; suffix?: string; decimals?: number },
 ): string {
-  const formatted =
-    decimals > 0 ? value.toFixed(decimals) : formatInteger(value);
+  const formatted = decimals > 0 ? value.toFixed(decimals) : formatInteger(value);
   return `${prefix}${formatted}${suffix}`;
 }

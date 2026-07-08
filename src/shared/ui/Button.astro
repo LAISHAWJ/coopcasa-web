@@ -42,8 +42,7 @@ const variants = {
     'bg-[linear-gradient(135deg,#22a024,#2fb531)] text-white shadow-[0_10px_28px_rgba(43,168,44,0.34)] hover:-translate-y-0.5 hover:shadow-[0_16px_36px_rgba(43,168,44,0.44)]',
   outline:
     'border-[1.5px] border-ink-900/12 bg-white text-ink-900 hover:-translate-y-0.5 hover:border-brand-600',
-  inverse:
-    'bg-white text-brand-800 shadow-[0_12px_28px_rgba(13,31,20,0.2)] hover:-translate-y-0.5',
+  inverse: 'bg-white text-brand-800 shadow-[0_12px_28px_rgba(13,31,20,0.2)] hover:-translate-y-0.5',
   'ghost-light':
     'border-[1.5px] border-white/50 bg-white/16 text-white backdrop-blur-md hover:bg-white/26',
   link: 'gap-[7px] rounded-none bg-transparent p-0 text-[14px] font-semibold',
@@ -72,7 +71,13 @@ const iconSize = variant === 'link' ? 16 : 18;
 
 {
   href ? (
-    <a href={href} class={classes} target={target} rel={target === '_blank' ? 'noopener noreferrer' : undefined} {...attrs}>
+    <a
+      href={href}
+      class={classes}
+      target={target}
+      rel={target === '_blank' ? 'noopener noreferrer' : undefined}
+      {...attrs}
+    >
       {icon && iconPosition === 'left' && <Icon name={icon} size={iconSize} />}
       <slot />
       {icon && iconPosition === 'right' && <Icon name={icon} size={iconSize} />}

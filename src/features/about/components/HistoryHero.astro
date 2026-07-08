@@ -3,20 +3,38 @@ import Button from '@shared/ui/Button.astro';
 import { historyHero } from '@data/about';
 ---
 
-<section class="relative overflow-hidden bg-[linear-gradient(180deg,#fbfdfb,#fff)] px-5 pt-[100px] pb-14 lg:px-8 lg:pt-[120px] lg:pb-16">
-  <div class="pointer-events-none absolute -top-28 -left-16 h-[340px] w-[340px] rounded-full bg-[radial-gradient(circle,rgba(43,168,44,0.13),transparent_62%)] lg:h-[460px] lg:w-[460px] lg:-top-[120px] lg:-left-20">
+<section
+  class="relative overflow-hidden bg-[linear-gradient(180deg,#fbfdfb,#fff)] px-5 pt-[100px] pb-14 lg:px-8 lg:pt-[120px] lg:pb-16"
+>
+  <div
+    class="pointer-events-none absolute -top-28 -left-16 h-[340px] w-[340px] rounded-full bg-[radial-gradient(circle,rgba(43,168,44,0.13),transparent_62%)] lg:h-[460px] lg:w-[460px] lg:-top-[120px] lg:-left-20"
+  >
   </div>
-  <div class="relative z-[1] mx-auto grid max-w-[1220px] items-center gap-10 lg:grid-cols-[1fr_0.9fr] lg:gap-[52px]">
+  <div
+    class="relative z-[1] mx-auto grid max-w-[1220px] items-center gap-10 lg:grid-cols-[1fr_0.9fr] lg:gap-[52px]"
+  >
     <div>
-      <Button href="/" variant="link" icon="arrowLeft" iconPosition="left" class="mb-[18px]">Volver al inicio</Button>
-      <div class="mb-3.5 text-[13px] font-bold tracking-[0.1em] text-brand-800 uppercase">{historyHero.eyebrow}</div>
-      <h1 class="mb-5 text-[38px] leading-[1.1] font-extrabold tracking-tight text-ink-900 sm:text-[46px] lg:text-[52px] lg:leading-[1.05]">
+      <Button href="/" variant="link" icon="arrowLeft" iconPosition="left" class="mb-[18px]"
+        >Volver al inicio</Button
+      >
+      <div class="mb-3.5 text-[13px] font-bold tracking-[0.1em] text-brand-800 uppercase">
+        {historyHero.eyebrow}
+      </div>
+      <h1
+        class="mb-5 text-[38px] leading-[1.1] font-extrabold tracking-tight text-ink-900 sm:text-[46px] lg:text-[52px] lg:leading-[1.05]"
+      >
         {historyHero.title}
       </h1>
       <p class="text-lg leading-[1.7] text-body-500">{historyHero.description}</p>
     </div>
-    <div class="h-[280px] overflow-hidden rounded-[26px] shadow-[0_26px_60px_rgba(13,31,20,0.16)] sm:h-[340px] lg:h-[400px]">
-      <img src={historyHero.image.src} alt={historyHero.image.alt} class="h-full w-full object-cover" />
+    <div
+      class="h-[280px] overflow-hidden rounded-[26px] shadow-[0_26px_60px_rgba(13,31,20,0.16)] sm:h-[340px] lg:h-[400px]"
+    >
+      <img
+        src={historyHero.image.src}
+        alt={historyHero.image.alt}
+        class="h-full w-full object-cover"
+      />
     </div>
   </div>
 </section>

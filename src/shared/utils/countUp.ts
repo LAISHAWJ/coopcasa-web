@@ -44,7 +44,7 @@ export function initCountUp(root: HTMLElement, duration = 1700): void {
         if (entry.isIntersecting) run();
       }
     },
-    { threshold: 0.35 }
+    { threshold: 0.35 },
   );
 
   observer.observe(root);

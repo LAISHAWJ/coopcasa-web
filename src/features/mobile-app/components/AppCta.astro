@@ -4,16 +4,42 @@ import { appCta, mobileAppHero } from '@data/mobileApp';
 ---
 
 <section class="px-5 pt-5 pb-20 lg:px-8">
-  <div class="relative mx-auto max-w-[1220px] overflow-hidden rounded-[32px] bg-[linear-gradient(120deg,#22a024,#2fb531_55%,#8fd626)] px-6 py-14 text-center sm:px-10 lg:px-14">
-    <div class="pointer-events-none absolute -top-20 -left-10 h-[320px] w-[320px] rounded-full bg-white/14"></div>
-    <div class="pointer-events-none absolute -right-10 -bottom-[120px] h-[380px] w-[380px] rounded-full bg-gold-400/28"></div>
+  <div
+    class="relative mx-auto max-w-[1220px] overflow-hidden rounded-[32px] bg-[linear-gradient(120deg,#22a024,#2fb531_55%,#8fd626)] px-6 py-14 text-center sm:px-10 lg:px-14"
+  >
+    <div
+      class="pointer-events-none absolute -top-20 -left-10 h-[320px] w-[320px] rounded-full bg-white/14"
+    >
+    </div>
+    <div
+      class="pointer-events-none absolute -right-10 -bottom-[120px] h-[380px] w-[380px] rounded-full bg-gold-400/28"
+    >
+    </div>
 
     <div class="relative z-[1] mx-auto max-w-[600px]">
-      <h2 class="mb-4 text-[28px] leading-[1.1] font-extrabold tracking-tight text-white sm:text-[40px]">{appCta.title}</h2>
+      <h2
+        class="mb-4 text-[28px] leading-[1.1] font-extrabold tracking-tight text-white sm:text-[40px]"
+      >
+        {appCta.title}
+      </h2>
       <p class="mb-[30px] text-lg leading-relaxed text-white/92">{appCta.description}</p>
       <div class="flex flex-wrap justify-center gap-3.5">
-        <StoreBadgeLink href={mobileAppHero.appStoreUrl} icon="appleLogo" iconColor="#fff" storeLabel="Descárgala en" storeName="App Store" tone="dark" />
-        <StoreBadgeLink href={mobileAppHero.googlePlayUrl} icon="googlePlay" iconColor="#fff" storeLabel="Disponible en" storeName="Google Play" tone="dark" />
+        <StoreBadgeLink
+          href={mobileAppHero.appStoreUrl}
+          icon="appleLogo"
+          iconColor="#fff"
+          storeLabel="Descárgala en"
+          storeName="App Store"
+          tone="dark"
+        />
+        <StoreBadgeLink
+          href={mobileAppHero.googlePlayUrl}
+          icon="googlePlay"
+          iconColor="#fff"
+          storeLabel="Disponible en"
+          storeName="Google Play"
+          tone="dark"
+        />
       </div>
     </div>
   </div>

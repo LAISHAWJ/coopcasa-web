@@ -48,27 +48,32 @@ export const timeline: TimelineEntry[] = [
   {
     year: '2001',
     title: 'Nace COOPCASA',
-    description: 'Un grupo de 30 familias funda la cooperativa con el sueño de ahorrar juntas y apoyarse mutuamente.',
+    description:
+      'Un grupo de 30 familias funda la cooperativa con el sueño de ahorrar juntas y apoyarse mutuamente.',
   },
   {
     year: '2008',
     title: 'Primera sucursal propia',
-    description: 'Abrimos nuestra primera oficina y superamos los 1,000 socios, consolidando la confianza de la comunidad.',
+    description:
+      'Abrimos nuestra primera oficina y superamos los 1,000 socios, consolidando la confianza de la comunidad.',
   },
   {
     year: '2015',
     title: 'Expansión regional',
-    description: 'Llegamos a nuevas provincias y lanzamos nuestros programas de educación financiera gratuita.',
+    description:
+      'Llegamos a nuevas provincias y lanzamos nuestros programas de educación financiera gratuita.',
   },
   {
     year: '2021',
     title: 'Transformación digital',
-    description: 'Estrenamos la Oficina Virtual y la App móvil, acercando la cooperativa a cada socio 24/7.',
+    description:
+      'Estrenamos la Oficina Virtual y la App móvil, acercando la cooperativa a cada socio 24/7.',
   },
   {
     year: '2026',
     title: 'Más de 12,500 socios',
-    description: 'Hoy gestionamos más de RD$1.8B en activos y seguimos creciendo con el mismo espíritu del primer día.',
+    description:
+      'Hoy gestionamos más de RD$1.8B en activos y seguimos creciendo con el mismo espíritu del primer día.',
   },
 ];
 

@@ -34,11 +34,7 @@ export const services: Service[] = [
       'Retiros sin penalidad en cuenta a la vista',
       'App y Oficina Virtual 24/7',
     ],
-    requirements: [
-      'Ser socio de COOPCASA',
-      'Cédula de identidad vigente',
-      'Apertura desde RD$500',
-    ],
+    requirements: ['Ser socio de COOPCASA', 'Cédula de identidad vigente', 'Apertura desde RD$500'],
     icon: 'coinDetailed',
     iconBg: 'bg-brand-600/10',
     iconColor: '#1f8f22',
@@ -47,7 +43,8 @@ export const services: Service[] = [
     slug: 'prestamos',
     title: 'Préstamos',
     tagline: 'Crédito ágil y a tu medida',
-    description: 'Créditos personales, hipotecarios y de consumo con tasas justas y aprobación ágil.',
+    description:
+      'Créditos personales, hipotecarios y de consumo con tasas justas y aprobación ágil.',
     longDescription:
       'Financia tus proyectos con las tasas más competitivas del sector cooperativo. Ofrecemos préstamos personales, de consumo, vehículos e hipotecarios, con plazos flexibles y aprobación en tiempo récord.',
     benefits: [
@@ -92,7 +89,8 @@ export const services: Service[] = [
     slug: 'aportaciones',
     title: 'Aportaciones',
     tagline: 'Tu capital como socio',
-    description: 'El certificado de aportaciones de capital que te convierte en dueño y te da derecho a excedentes.',
+    description:
+      'El certificado de aportaciones de capital que te convierte en dueño y te da derecho a excedentes.',
     longDescription:
       'Las aportaciones son tu capital como copropietario de la cooperativa. Además de fortalecer a COOPCASA, te dan derecho a participar en los excedentes anuales y a voz y voto en las asambleas.',
     benefits: [
@@ -114,7 +112,8 @@ export const services: Service[] = [
     slug: 'seguros',
     title: 'Seguros',
     tagline: 'Protección para ti y tu familia',
-    description: 'Planes de seguro de vida, salud y de tus bienes con condiciones preferenciales para socios.',
+    description:
+      'Planes de seguro de vida, salud y de tus bienes con condiciones preferenciales para socios.',
     longDescription:
       'Protege lo que más importa con nuestros planes de seguro diseñados para socios. Coberturas de vida, salud y patrimonio con primas accesibles y respaldo de aliados de primer nivel.',
     benefits: [
@@ -132,7 +131,8 @@ export const services: Service[] = [
     slug: 'cooperativismo',
     title: 'Cooperativismo',
     tagline: 'Más que un banco, una comunidad',
-    description: 'Formación, dividendos y programas sociales que reinvierten en el bienestar de tu comunidad.',
+    description:
+      'Formación, dividendos y programas sociales que reinvierten en el bienestar de tu comunidad.',
     longDescription:
       'Como socio eres copropietario de la cooperativa. Participa en asambleas, recibe dividendos anuales y accede a programas de educación financiera y proyectos sociales que fortalecen a toda la comunidad.',
     benefits: [

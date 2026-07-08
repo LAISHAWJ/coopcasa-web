@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /* ============================================================================
  * Design tokens
@@ -8,8 +8,8 @@
  * contrato visual del sitio.
  * ========================================================================== */
 @theme {
-  --font-sans: "Inter", system-ui, sans-serif;
-  --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
 
   /* Verde institucional (acciones, énfasis, gradientes de marca) */
   --color-brand-100: #a3d94a;

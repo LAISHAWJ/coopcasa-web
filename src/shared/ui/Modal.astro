@@ -14,8 +14,16 @@ interface Props {
 const { id, placement = 'center', panelClass } = Astro.props;
 ---
 
-<div data-modal={id} data-state="closed" class="fixed inset-0 z-[80] hidden data-[state=open]:block">
-  <div data-modal-backdrop={id} class="absolute inset-0 animate-fadein bg-ink-900/42 backdrop-blur-sm"></div>
+<div
+  data-modal={id}
+  data-state="closed"
+  class="fixed inset-0 z-[80] hidden data-[state=open]:block"
+>
+  <div
+    data-modal-backdrop={id}
+    class="absolute inset-0 animate-fadein bg-ink-900/42 backdrop-blur-sm"
+  >
+  </div>
   <div
     class:list={[
       'pointer-events-none absolute inset-0 flex',

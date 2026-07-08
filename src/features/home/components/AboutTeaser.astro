@@ -8,17 +8,36 @@ import { aboutTeaser, aboutTeaserPoints } from '@data/about';
   <div class="mx-auto grid max-w-[1220px] items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
     <div class="relative">
       <div class="overflow-hidden rounded-[26px] shadow-[0_26px_60px_rgba(13,31,20,0.16)]">
-        <img src={aboutTeaser.image.src} alt={aboutTeaser.image.alt} class="h-[320px] w-full object-cover sm:h-[420px] lg:h-[520px]" />
+        <img
+          src={aboutTeaser.image.src}
+          alt={aboutTeaser.image.alt}
+          class="h-[320px] w-full object-cover sm:h-[420px] lg:h-[520px]"
+        />
       </div>
-      <div class="absolute right-4 -bottom-6 max-w-[220px] rounded-2xl bg-white p-[22px] shadow-[0_18px_44px_rgba(13,31,20,0.16)] sm:right-0 sm:-right-6">
-        <div class="font-display text-[34px] leading-none font-extrabold text-brand-800">{aboutTeaser.yearsBadge.value}</div>
+      <div
+        class="absolute right-4 -bottom-6 max-w-[220px] rounded-2xl bg-white p-[22px] shadow-[0_18px_44px_rgba(13,31,20,0.16)] sm:right-0 sm:-right-6"
+      >
+        <div class="font-display text-[34px] leading-none font-extrabold text-brand-800">
+          {aboutTeaser.yearsBadge.value}
+        </div>
         <div class="mt-1 text-[13px] text-body-400">{aboutTeaser.yearsBadge.caption}</div>
       </div>
     </div>
     <div>
-      <div class="mb-3.5 text-[13px] font-bold tracking-[0.1em] text-brand-800 uppercase">{aboutTeaser.eyebrow}</div>
-      <h2 class="mb-5 text-[32px] leading-[1.1] font-extrabold tracking-tight text-ink-900 lg:text-[40px]">
-        {aboutTeaser.title.split('\n').map((line, i) => <>{i > 0 && <br />}{line}</>)}
+      <div class="mb-3.5 text-[13px] font-bold tracking-[0.1em] text-brand-800 uppercase">
+        {aboutTeaser.eyebrow}
+      </div>
+      <h2
+        class="mb-5 text-[32px] leading-[1.1] font-extrabold tracking-tight text-ink-900 lg:text-[40px]"
+      >
+        {
+          aboutTeaser.title.split('\n').map((line, i) => (
+            <>
+              {i > 0 && <br />}
+              {line}
+            </>
+          ))
+        }
       </h2>
       <p class="mb-[30px] text-base leading-[1.7] text-body-500">{aboutTeaser.description}</p>
       <div class="mb-[30px] flex flex-wrap gap-3.5">
@@ -26,14 +45,16 @@ import { aboutTeaser, aboutTeaserPoints } from '@data/about';
         <Button href="/mision-vision-valores" variant="outline">Misión, Visión y Valores</Button>
       </div>
       <div class="grid grid-cols-2 gap-3.5">
-        {aboutTeaserPoints.map((point) => (
-          <div class="flex items-center gap-3 rounded-2xl border border-ink-900/8 bg-white px-4 py-3.5">
-            <div class="flex h-[38px] w-[38px] flex-none items-center justify-center rounded-[11px] bg-brand-600/10">
-              <Icon name={point.icon} size={18} color="#1f8f22" />
+        {
+          aboutTeaserPoints.map((point) => (
+            <div class="flex items-center gap-3 rounded-2xl border border-ink-900/8 bg-white px-4 py-3.5">
+              <div class="flex h-[38px] w-[38px] flex-none items-center justify-center rounded-[11px] bg-brand-600/10">
+                <Icon name={point.icon} size={18} color="#1f8f22" />
+              </div>
+              <span class="font-display text-sm font-bold text-ink-900">{point.title}</span>
             </div>
-            <span class="font-display text-sm font-bold text-ink-900">{point.title}</span>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </div>
   </div>

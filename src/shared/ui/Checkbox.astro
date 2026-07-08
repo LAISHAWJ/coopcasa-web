@@ -28,11 +28,18 @@ const { id, name, required = false, align = 'center', error, class: className } 
       aria-invalid={error ? 'true' : 'false'}
       aria-describedby={`${id}-error`}
       data-field={name}
-      class:list={['h-[18px] w-[18px] flex-none cursor-pointer accent-brand-700', align === 'start' && 'mt-0.5']}
+      class:list={[
+        'h-[18px] w-[18px] flex-none cursor-pointer accent-brand-700',
+        align === 'start' && 'mt-0.5',
+      ]}
     />
     <span><slot /></span>
   </label>
-  <p id={`${id}-error`} role="alert" class:list={['mt-1.5 text-xs font-medium text-danger', !error && 'hidden']}>
+  <p
+    id={`${id}-error`}
+    role="alert"
+    class:list={['mt-1.5 text-xs font-medium text-danger', !error && 'hidden']}
+  >
     {error}
   </p>
 </div>

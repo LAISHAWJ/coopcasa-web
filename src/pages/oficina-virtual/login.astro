@@ -6,13 +6,21 @@ import LoginForm from '@features/auth/components/LoginForm.astro';
 import { loginForm } from '@data/auth';
 ---
 
-<MainLayout title="Iniciar Sesión" description="Accede a tu Oficina Virtual de COOPCASA." showChrome={false}>
+<MainLayout
+  title="Iniciar Sesión"
+  description="Accede a tu Oficina Virtual de COOPCASA."
+  showChrome={false}
+>
   <div class="grid min-h-screen lg:grid-cols-2">
     <LoginInfoPanel />
     <div class="flex items-center justify-center bg-white p-8 sm:p-14">
       <div class="w-full max-w-[400px]">
-        <Button href="/" variant="link" icon="arrowLeft" iconPosition="left" class="mb-7">Volver al sitio</Button>
-        <h1 class="mb-2 text-[28px] font-extrabold tracking-tight text-ink-900 sm:text-[30px]">{loginForm.title}</h1>
+        <Button href="/" variant="link" icon="arrowLeft" iconPosition="left" class="mb-7"
+          >Volver al sitio</Button
+        >
+        <h1 class="mb-2 text-[28px] font-extrabold tracking-tight text-ink-900 sm:text-[30px]">
+          {loginForm.title}
+        </h1>
         <p class="mb-8 text-[15px] text-body-300">{loginForm.description}</p>
         <LoginForm />
       </div>

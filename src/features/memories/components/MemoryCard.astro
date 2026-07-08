@@ -17,14 +17,21 @@ const { memory } = Astro.props;
   >
     <div class="absolute inset-y-0 left-0 z-[2] w-4 bg-black/22"></div>
     <div class="absolute inset-y-0 left-4 z-[2] w-[3px] bg-white/25"></div>
-    <div class="absolute inset-0 flex flex-col justify-between p-6 pl-[34px]" style={{ background: memory.coverGradient }}>
+    <div
+      class="absolute inset-0 flex flex-col justify-between p-6 pl-[34px]"
+      style={{ background: memory.coverGradient }}
+    >
       <div class="flex items-center gap-2">
         <Image src={logo} alt="" width={30} height={30} class="h-[30px] w-[30px] rounded-full" />
         <span class="font-display text-[15px] font-extrabold text-white">COOPCASA</span>
       </div>
       <div>
         <div class="text-xs font-medium tracking-wide text-white/80">Memoria de gestión</div>
-        <div class="font-display text-[44px] leading-none font-extrabold tracking-tight text-white sm:text-[56px]">{memory.year}</div>
+        <div
+          class="font-display text-[44px] leading-none font-extrabold tracking-tight text-white sm:text-[56px]"
+        >
+          {memory.year}
+        </div>
       </div>
     </div>
   </div>

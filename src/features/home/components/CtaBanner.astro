@@ -5,17 +5,36 @@ import { JOIN_PANEL_MODAL_ID } from '@features/members/constants';
 ---
 
 <section class="px-5 pt-5 pb-20 lg:px-8">
-  <div class="relative mx-auto max-w-[1220px] overflow-hidden rounded-[32px] bg-[linear-gradient(120deg,#22a024,#2fb531_55%,#8fd626)] px-6 py-16 text-center sm:px-10 lg:px-14">
-    <div class="pointer-events-none absolute -top-20 -left-10 h-[320px] w-[320px] rounded-full bg-white/14"></div>
-    <div class="pointer-events-none absolute -right-10 -bottom-[120px] h-[380px] w-[380px] rounded-full bg-gold-400/28"></div>
+  <div
+    class="relative mx-auto max-w-[1220px] overflow-hidden rounded-[32px] bg-[linear-gradient(120deg,#22a024,#2fb531_55%,#8fd626)] px-6 py-16 text-center sm:px-10 lg:px-14"
+  >
+    <div
+      class="pointer-events-none absolute -top-20 -left-10 h-[320px] w-[320px] rounded-full bg-white/14"
+    >
+    </div>
+    <div
+      class="pointer-events-none absolute -right-10 -bottom-[120px] h-[380px] w-[380px] rounded-full bg-gold-400/28"
+    >
+    </div>
 
     <div class="relative z-[1] mx-auto max-w-[640px]">
-      <h2 class="mb-[18px] text-[32px] leading-[1.1] font-extrabold tracking-tight text-white sm:text-[44px]">
-        {ctaBanner.title.split('\n').map((line, i) => <>{i > 0 && <br />}{line}</>)}
+      <h2
+        class="mb-[18px] text-[32px] leading-[1.1] font-extrabold tracking-tight text-white sm:text-[44px]"
+      >
+        {
+          ctaBanner.title.split('\n').map((line, i) => (
+            <>
+              {i > 0 && <br />}
+              {line}
+            </>
+          ))
+        }
       </h2>
       <p class="mb-[34px] text-lg leading-relaxed text-white/92">{ctaBanner.description}</p>
       <div class="flex flex-wrap justify-center gap-3.5">
-        <Button data-modal-open={JOIN_PANEL_MODAL_ID} variant="inverse" size="lg">{ctaBanner.primaryCtaLabel}</Button>
+        <Button data-modal-open={JOIN_PANEL_MODAL_ID} variant="inverse" size="lg"
+          >{ctaBanner.primaryCtaLabel}</Button
+        >
         <Button href="/oficina-virtual/login" variant="ghost-light" size="lg" icon="loginArrow">
           {ctaBanner.secondaryCtaLabel}
         </Button>

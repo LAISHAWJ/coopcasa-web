@@ -13,7 +13,8 @@ export const memberBenefitsSection = {
 export const whyCoopSection = {
   eyebrow: 'Cooperativismo',
   title: '¿Por qué ahorrar en COOPCASA?',
-  description: 'No somos un banco. Somos una cooperativa: aquí los excedentes vuelven a ti y a tu comunidad.',
+  description:
+    'No somos un banco. Somos una cooperativa: aquí los excedentes vuelven a ti y a tu comunidad.',
 };
 
 export const membershipRequirementsSection = {
@@ -39,7 +40,8 @@ export const joinSteps: JoinStep[] = [
   {
     number: '1',
     title: 'Llena el formulario de inscripción',
-    description: 'Completa tus datos en línea. Nuestro personal de bienvenida te contactará para continuar.',
+    description:
+      'Completa tus datos en línea. Nuestro personal de bienvenida te contactará para continuar.',
     icon: 'editPencil',
     iconBg: 'bg-brand-600/10',
     iconColor: '#1f8f22',
@@ -58,7 +60,8 @@ export const joinSteps: JoinStep[] = [
   {
     number: '3',
     title: 'Abre un certificado de aportaciones',
-    description: 'Con tu certificado de aportaciones de capital te conviertes oficialmente en socio dueño.',
+    description:
+      'Con tu certificado de aportaciones de capital te conviertes oficialmente en socio dueño.',
     icon: 'user',
     iconBg: 'bg-brand-600/10',
     iconColor: '#1f8f22',
@@ -69,9 +72,24 @@ export const joinSteps: JoinStep[] = [
 /** Página "Hazte Socio" → "Lo que ganas al ser socio". */
 export const memberBenefits: IconCard[] = [
   { title: 'Tasas competitivas', icon: 'dollar', iconBg: 'bg-brand-600/10', iconColor: '#1f8f22' },
-  { title: 'Alto rendimiento', icon: 'chartGrowth', iconBg: 'bg-gold-400/22', iconColor: '#a89a00' },
-  { title: 'Participación en excedentes', icon: 'user', iconBg: 'bg-brand-600/10', iconColor: '#1f8f22' },
-  { title: 'Financiamiento', icon: 'briefcaseLoan', iconBg: 'bg-gold-400/22', iconColor: '#a89a00' },
+  {
+    title: 'Alto rendimiento',
+    icon: 'chartGrowth',
+    iconBg: 'bg-gold-400/22',
+    iconColor: '#a89a00',
+  },
+  {
+    title: 'Participación en excedentes',
+    icon: 'user',
+    iconBg: 'bg-brand-600/10',
+    iconColor: '#1f8f22',
+  },
+  {
+    title: 'Financiamiento',
+    icon: 'briefcaseLoan',
+    iconBg: 'bg-gold-400/22',
+    iconColor: '#a89a00',
+  },
   {
     title: 'Educación financiera gratuita',
     icon: 'graduationCap',
