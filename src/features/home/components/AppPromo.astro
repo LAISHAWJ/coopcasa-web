@@ -18,7 +18,7 @@ import { appPromo } from '@data/home';
     >
     </div>
 
-    <div class="relative z-[1]">
+    <div data-reveal="left" class="relative z-[1]">
       <div
         class="mb-[18px] inline-block rounded-full bg-gold-400/22 px-3.5 py-1.5 text-xs font-bold tracking-[0.08em] text-gold-400 uppercase"
       >
@@ -35,9 +35,16 @@ import { appPromo } from '@data/home';
       <Button href="/app-movil" variant="inverse" icon="arrowRight">{appPromo.ctaLabel}</Button>
     </div>
 
-    <div class="relative z-[1] flex justify-center">
+    <div
+      data-reveal="right"
+      class="[transition-delay:80ms] relative z-[1] flex justify-center"
+    >
       <!-- Chasis del teléfono: misma proporción realista ~9:19.5 y mismo
-           lenguaje visual del marco usado en features/mobile-app/AppHero.astro. -->
+           lenguaje visual del marco usado en features/mobile-app/AppHero.astro.
+           El data-reveal va en este wrapper (no en el chasis) porque el chasis
+           ya tiene su propia animación continua (animate-float-phone) sobre
+           transform; combinarlas en el mismo elemento haría que la animación
+           anule la transición de entrada. -->
       <div
         class="animate-float-phone relative aspect-[18/39] w-[220px] rotate-[-3deg] overflow-hidden rounded-[38px] border-[9px] border-ink-800 bg-ink-950 shadow-[0_30px_70px_rgba(0,0,0,0.45)] sm:w-[250px] sm:rounded-[44px] sm:border-[10px] lg:w-[270px]"
       >

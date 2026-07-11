@@ -17,37 +17,41 @@ const { items, idPrefix = 'faq' } = Astro.props;
       const panelId = `${idPrefix}-panel-${index}`;
       const buttonId = `${idPrefix}-button-${index}`;
       return (
-        <div
-          data-faq-item
-          data-open="false"
-          class="overflow-hidden rounded-[18px] border border-ink-900/8 bg-white transition-all duration-300 data-[open=true]:border-brand-600/30 data-[open=true]:bg-surface-50 data-[open=true]:shadow-[0_8px_26px_rgba(13,31,20,0.06)]"
-        >
-          <button
-            type="button"
-            data-faq-toggle
-            id={buttonId}
-            aria-expanded="false"
-            aria-controls={panelId}
-            class="flex w-full items-center justify-between gap-4 px-5 py-[22px] text-left font-display sm:px-[26px]"
-          >
-            <span class="text-[16px] font-bold text-ink-900 sm:text-[17px]">{item.question}</span>
-            <span
-              data-faq-icon
-              class="flex h-8 w-8 flex-none items-center justify-center rounded-[9px] bg-brand-600/10 text-brand-800 transition-all duration-300"
-            >
-              <Icon name="plus" size={16} strokeWidth={2.6} />
-            </span>
-          </button>
+        <div data-reveal="up" style={{ transitionDelay: `${index * 70}ms` }}>
           <div
-            id={panelId}
-            role="region"
-            aria-labelledby={buttonId}
-            data-faq-panel
-            class="max-h-0 overflow-hidden opacity-0 transition-all duration-300 ease-in-out"
+            data-faq-item
+            data-open="false"
+            class="overflow-hidden rounded-[18px] border border-ink-900/8 bg-white transition-all duration-300 data-[open=true]:border-brand-600/30 data-[open=true]:bg-surface-50 data-[open=true]:shadow-[0_8px_26px_rgba(13,31,20,0.06)]"
           >
-            <p class="px-5 pb-6 text-[15px] leading-relaxed text-body-400 sm:px-[26px]">
-              {item.answer}
-            </p>
+            <button
+              type="button"
+              data-faq-toggle
+              id={buttonId}
+              aria-expanded="false"
+              aria-controls={panelId}
+              class="flex w-full items-center justify-between gap-4 px-5 py-[22px] text-left font-display sm:px-[26px]"
+            >
+              <span class="text-[16px] font-bold text-ink-900 sm:text-[17px]">
+                {item.question}
+              </span>
+              <span
+                data-faq-icon
+                class="flex h-8 w-8 flex-none items-center justify-center rounded-[9px] bg-brand-600/10 text-brand-800 transition-all duration-300"
+              >
+                <Icon name="plus" size={16} strokeWidth={2.6} />
+              </span>
+            </button>
+            <div
+              id={panelId}
+              role="region"
+              aria-labelledby={buttonId}
+              data-faq-panel
+              class="max-h-0 overflow-hidden opacity-0 transition-all duration-300 ease-in-out"
+            >
+              <p class="px-5 pb-6 text-[15px] leading-relaxed text-body-400 sm:px-[26px]">
+                {item.answer}
+              </p>
+            </div>
           </div>
         </div>
       );

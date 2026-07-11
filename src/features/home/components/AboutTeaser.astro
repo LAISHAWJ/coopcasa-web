@@ -7,7 +7,7 @@ import { aboutTeaser, aboutTeaserPoints } from '@data/about';
 
 <section id="nosotros" class="scroll-mt-20 px-5 pt-8 pb-20 lg:px-8">
   <div class="mx-auto grid max-w-[1220px] items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-    <div class="relative">
+    <div data-reveal="left" class="relative">
       <div class="overflow-hidden rounded-[26px] shadow-[0_26px_60px_rgba(13,31,20,0.16)]">
         <Image
           src={aboutTeaser.image.src}
@@ -27,7 +27,7 @@ import { aboutTeaser, aboutTeaserPoints } from '@data/about';
         <div class="mt-1 text-[13px] text-body-400">{aboutTeaser.yearsBadge.caption}</div>
       </div>
     </div>
-    <div>
+    <div data-reveal="right" class="[transition-delay:80ms]">
       <div class="mb-3.5 text-[13px] font-bold tracking-[0.1em] text-brand-800 uppercase">
         {aboutTeaser.eyebrow}
       </div>
