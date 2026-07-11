@@ -2,7 +2,8 @@
 import { Image } from 'astro:assets';
 import logo from '@assets/images/coopcasa-logo.png';
 import Icon from '@shared/ui/Icon.astro';
-import type { Memory } from '@data/memories';
+import { memoryCardLabels, type Memory } from '@data/memories';
+import { siteConfig } from '@data/siteConfig';
 
 interface Props {
   memory: Memory;
@@ -30,10 +31,10 @@ const { memory } = Astro.props;
           densities={[1, 2, 3]}
           class="h-[30px] w-[30px] rounded-full"
         />
-        <span class="font-display text-[15px] font-extrabold text-white">COOPCASA</span>
+        <span class="font-display text-[15px] font-extrabold text-white">{siteConfig.name}</span>
       </div>
       <div>
-        <div class="text-xs font-medium tracking-wide text-white/80">Memoria de gestión</div>
+        <div class="text-xs font-medium tracking-wide text-white/80">{memoryCardLabels.coverTag}</div>
         <div
           class="font-display text-[44px] leading-none font-extrabold tracking-tight text-white sm:text-[56px]"
         >
@@ -44,7 +45,9 @@ const { memory } = Astro.props;
   </div>
 
   <div class="mt-[26px] max-w-[260px] text-center">
-    <h2 class="mb-2 text-lg font-extrabold text-ink-900 sm:text-[19px]">Memoria {memory.year}</h2>
+    <h2 class="mb-2 text-lg font-extrabold text-ink-900 sm:text-[19px]">
+      {memoryCardLabels.titlePrefix} {memory.year}
+    </h2>
     <p class="mb-[18px] text-sm leading-relaxed text-body-400">{memory.description}</p>
     <div class="flex justify-center gap-2.5">
       <a
@@ -52,14 +55,14 @@ const { memory } = Astro.props;
         class="flex items-center gap-[7px] rounded-[11px] border-[1.5px] border-ink-900/12 bg-white px-4 py-2.5 font-display text-[13px] font-bold text-ink-900 transition-colors duration-200 hover:border-brand-600"
       >
         <Icon name="eye" size={15} strokeWidth={2.2} />
-        Ver
+        {memoryCardLabels.viewLabel}
       </a>
       <a
         href={memory.pdfUrl}
         class="flex items-center gap-[7px] rounded-[11px] bg-[linear-gradient(135deg,#22a024,#2fb531)] px-4 py-2.5 font-display text-[13px] font-bold text-white transition-transform duration-200 hover:-translate-y-0.5"
       >
         <Icon name="download" size={15} strokeWidth={2.2} />
-        Descargar PDF
+        {memoryCardLabels.downloadLabel}
       </a>
     </div>
   </div>

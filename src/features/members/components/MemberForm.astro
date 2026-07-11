@@ -4,7 +4,7 @@ import Select from '@shared/ui/Select.astro';
 import Checkbox from '@shared/ui/Checkbox.astro';
 import Button from '@shared/ui/Button.astro';
 import { branchOptions, referralSourceOptions } from '@data/members';
-import { joinPanelContent } from '@data/membersPage';
+import { joinPanelContent, memberFormFields } from '@data/membersPage';
 ---
 
 <form data-member-form novalidate class="flex flex-col gap-[18px]">
@@ -18,54 +18,60 @@ import { joinPanelContent } from '@data/membersPage';
   <Input
     id="member-fullName"
     name="fullName"
-    label="Nombre completo"
+    label={memberFormFields.fullName.label}
     required
-    placeholder="Por ejemplo, Juan Pérez"
+    placeholder={memberFormFields.fullName.placeholder}
   />
-  <Input id="member-cedula" name="cedula" label="Cédula" required placeholder="XXX-XXXXXXX-X" />
+  <Input
+    id="member-cedula"
+    name="cedula"
+    label={memberFormFields.cedula.label}
+    required
+    placeholder={memberFormFields.cedula.placeholder}
+  />
   <Input
     id="member-phone"
     name="phone"
-    label="Teléfono de casa o celular"
+    label={memberFormFields.phone.label}
     required
     type="tel"
-    placeholder="Por ejemplo, 809-123-4567"
+    placeholder={memberFormFields.phone.placeholder}
   />
   <Input
     id="member-email"
     name="email"
-    label="Email"
+    label={memberFormFields.email.label}
     required
     type="email"
-    placeholder="Por ejemplo, nombre@ejemplo.com"
+    placeholder={memberFormFields.email.placeholder}
   />
 
   <div>
     <span class="mb-[7px] block font-display text-[13px] font-semibold text-body-600">
-      Dirección de residencia <span class="text-danger" aria-hidden="true">*</span>
+      {memberFormFields.addressGroupLabel} <span class="text-danger" aria-hidden="true">*</span>
     </span>
     <div class="flex flex-col gap-2.5">
       <Input
         id="member-addressStreet"
         name="addressStreet"
-        label="Calle y número"
+        label={memberFormFields.addressStreet.label}
         required
-        placeholder="Calle y número"
+        placeholder={memberFormFields.addressStreet.placeholder}
         class="[&>label]:sr-only"
       />
       <Input
         id="member-addressReference"
         name="addressReference"
-        label="Residencial, apartamento y/o referencias"
-        placeholder="Residencial, apartamento y/o referencias"
+        label={memberFormFields.addressReference.label}
+        placeholder={memberFormFields.addressReference.placeholder}
         class="[&>label]:sr-only"
       />
       <Input
         id="member-addressCity"
         name="addressCity"
-        label="Ciudad o municipio"
+        label={memberFormFields.addressCity.label}
         required
-        placeholder="Ciudad o municipio"
+        placeholder={memberFormFields.addressCity.placeholder}
         class="[&>label]:sr-only"
       />
     </div>
@@ -74,14 +80,14 @@ import { joinPanelContent } from '@data/membersPage';
   <Select
     id="member-branch"
     name="branch"
-    label="¿Dónde quieres afiliarte?"
+    label={memberFormFields.branch.label}
     required
     options={branchOptions}
   />
   <Select
     id="member-referralSource"
     name="referralSource"
-    label="¿Por qué vía supiste de nosotros?"
+    label={memberFormFields.referralSource.label}
     required
     options={referralSourceOptions}
   />
@@ -110,16 +116,17 @@ import { joinPanelContent } from '@data/membersPage';
     focusFirstInvalidField,
   } from '@shared/utils/formFieldState';
   import type { MemberRequest } from '@features/members/types/member';
+  import { joinPanelContent } from '@data/membersPage';
 
   document.querySelectorAll<HTMLFormElement>('[data-member-form]').forEach((form) => {
     const submitButton = form.querySelector<HTMLButtonElement>('[data-submit-button]');
     const submitLabel = form.querySelector('[data-submit-label]');
     const formError = form.querySelector<HTMLElement>('[data-form-error]');
-    const originalLabel = submitLabel?.textContent ?? 'Enviar formulario';
+    const originalLabel = submitLabel?.textContent ?? joinPanelContent.submitLabel;
 
     const setLoading = (loading: boolean) => {
       if (submitButton) submitButton.disabled = loading;
-      if (submitLabel) submitLabel.textContent = loading ? 'Enviando...' : originalLabel;
+      if (submitLabel) submitLabel.textContent = loading ? joinPanelContent.loadingLabel : originalLabel;
     };
 
     form.addEventListener('submit', async (event) => {
@@ -168,8 +175,7 @@ import { joinPanelContent } from '@data/membersPage';
 
       if (!result.success) {
         if (formError) {
-          formError.textContent =
-            result.message ?? 'Ocurrió un error inesperado. Intenta de nuevo.';
+          formError.textContent = result.message ?? joinPanelContent.genericErrorMessage;
           formError.classList.remove('hidden');
         }
         return;

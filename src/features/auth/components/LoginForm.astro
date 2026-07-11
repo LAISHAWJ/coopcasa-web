@@ -16,24 +16,24 @@ import { loginForm } from '@data/auth';
   <Input
     id="login-username"
     name="username"
-    label="Usuario o correo"
+    label={loginForm.fields.username.label}
     required
-    placeholder="Usuario o correo electrónico"
+    placeholder={loginForm.fields.username.placeholder}
     autocomplete="username"
   />
   <Input
     id="login-password"
     name="password"
-    label="Contraseña"
+    label={loginForm.fields.password.label}
     required
     type="password"
-    placeholder="Tu contraseña"
+    placeholder={loginForm.fields.password.placeholder}
     autocomplete="current-password"
     showPasswordToggle
   />
 
   <div class="flex items-center justify-between">
-    <Checkbox id="login-remember" name="rememberMe">Recordarme</Checkbox>
+    <Checkbox id="login-remember" name="rememberMe">{loginForm.fields.rememberMe.label}</Checkbox>
     <a href={loginForm.forgotPasswordHref} class="text-[13.5px] font-semibold text-brand-800">
       {loginForm.forgotPasswordLabel}
     </a>
@@ -65,6 +65,7 @@ import { loginForm } from '@data/auth';
     focusFirstInvalidField,
   } from '@shared/utils/formFieldState';
   import type { LoginRequest } from '@features/auth/types/auth';
+  import { loginForm } from '@data/auth';
 
   const form = document.querySelector<HTMLFormElement>('[data-login-form]');
   const demoNotice = document.querySelector<HTMLElement>('[data-login-demo-notice]');
@@ -73,11 +74,11 @@ import { loginForm } from '@data/auth';
     const submitButton = form.querySelector<HTMLButtonElement>('[data-submit-button]');
     const submitLabel = form.querySelector('[data-submit-label]');
     const formError = form.querySelector<HTMLElement>('[data-form-error]');
-    const originalLabel = submitLabel?.textContent ?? 'Iniciar Sesión';
+    const originalLabel = submitLabel?.textContent ?? loginForm.submitLabel;
 
     const setLoading = (loading: boolean) => {
       if (submitButton) submitButton.disabled = loading;
-      if (submitLabel) submitLabel.textContent = loading ? 'Verificando...' : originalLabel;
+      if (submitLabel) submitLabel.textContent = loading ? loginForm.loadingLabel : originalLabel;
     };
 
     form.addEventListener('submit', async (event) => {
@@ -112,7 +113,7 @@ import { loginForm } from '@data/auth';
       if (!result.success) {
         setLoading(false);
         if (formError) {
-          formError.textContent = result.message ?? 'No pudimos iniciar sesión. Intenta de nuevo.';
+          formError.textContent = result.message ?? loginForm.genericErrorMessage;
           formError.classList.remove('hidden');
         }
         return;

@@ -14,7 +14,15 @@ export const loginPanel = {
 export const loginForm = {
   title: 'Iniciar Sesión',
   description: 'Accede con tus credenciales de socio.',
+  backToSiteLabel: 'Volver al sitio',
+  fields: {
+    username: { label: 'Usuario o correo', placeholder: 'Usuario o correo electrónico' },
+    password: { label: 'Contraseña', placeholder: 'Tu contraseña' },
+    rememberMe: { label: 'Recordarme' },
+  },
   submitLabel: 'Iniciar Sesión',
+  loadingLabel: 'Verificando...',
+  genericErrorMessage: 'No pudimos iniciar sesión. Intenta de nuevo.',
   forgotPasswordLabel: '¿Olvidaste tu contraseña?',
   // Reemplazar por la ruta real de recuperación de contraseña cuando exista.
   forgotPasswordHref: '#',

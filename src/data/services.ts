@@ -13,6 +13,14 @@ export interface Service {
   iconColor: string;
 }
 
+/** Modal de detalle de servicio (features/home/components/ServiceModal.astro). */
+export const serviceModalLabels = {
+  benefitsHeading: 'Beneficios',
+  requirementsHeading: 'Requisitos',
+  /** Prefijo del botón de acción; se concatena con el título del servicio. */
+  requestButtonPrefix: 'Solicitar',
+};
+
 /**
  * Productos y servicios ofrecidos. Cada tarjeta abre el modal de detalle
  * (features/home/components/ServiceModal.astro) con la información completa.

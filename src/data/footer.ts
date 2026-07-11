@@ -1,5 +1,19 @@
 import type { NavLink } from '@shared/types/nav';
 
+/** Footer → texto descriptivo bajo el logo. */
+export const footerBrandDescription =
+  'Cooperativa de ahorro y crédito comprometida con el bienestar financiero de su comunidad desde 2001.';
+
+/** Footer → títulos de las columnas de enlaces. */
+export const footerColumnLabels = {
+  navigation: 'Navegación',
+  services: 'Servicios',
+  contact: 'Contacto',
+};
+
+/** Footer → botón de acceso a la Oficina Virtual. */
+export const footerVirtualOfficeLabel = 'Oficina Virtual';
+
 /** Footer → columna "Navegación". */
 export const footerNavLinks: NavLink[] = [
   { label: 'Inicio', href: '/' },

@@ -4,7 +4,15 @@ import logo from '@assets/images/coopcasa-logo.png';
 import Icon from '@shared/ui/Icon.astro';
 import Button from '@shared/ui/Button.astro';
 import { siteConfig } from '@data/siteConfig';
-import { footerNavLinks, footerServiceLinks, legalLinks, copyrightText } from '@data/footer';
+import {
+  footerNavLinks,
+  footerServiceLinks,
+  legalLinks,
+  copyrightText,
+  footerBrandDescription,
+  footerColumnLabels,
+  footerVirtualOfficeLabel,
+} from '@data/footer';
 ---
 
 <footer id="contacto" class="scroll-mt-20 bg-ink-900 px-5 pt-[72px] pb-8 text-white lg:px-8">
@@ -25,8 +33,7 @@ import { footerNavLinks, footerServiceLinks, legalLinks, copyrightText } from '@
           <span class="font-display text-lg font-extrabold text-white">{siteConfig.name}</span>
         </div>
         <p class="mb-5 max-w-[280px] text-sm leading-relaxed text-white/60">
-          Cooperativa de ahorro y crédito comprometida con el bienestar financiero de su comunidad
-          desde 2001.
+          {footerBrandDescription}
         </p>
         <div class="flex gap-2.5">
           {
@@ -46,7 +53,7 @@ import { footerNavLinks, footerServiceLinks, legalLinks, copyrightText } from '@
       </div>
 
       <div>
-        <h4 class="mb-[18px] font-display text-sm font-bold text-white">Navegación</h4>
+        <p class="mb-[18px] font-display text-sm font-bold text-white">{footerColumnLabels.navigation}</p>
         <div class="flex flex-col gap-3">
           {
             footerNavLinks.map((link) => (
@@ -62,7 +69,7 @@ import { footerNavLinks, footerServiceLinks, legalLinks, copyrightText } from '@
       </div>
 
       <div>
-        <h4 class="mb-[18px] font-display text-sm font-bold text-white">Servicios</h4>
+        <p class="mb-[18px] font-display text-sm font-bold text-white">{footerColumnLabels.services}</p>
         <div class="flex flex-col gap-3">
           {
             footerServiceLinks.map((label) => (
@@ -78,7 +85,7 @@ import { footerNavLinks, footerServiceLinks, legalLinks, copyrightText } from '@
       </div>
 
       <div>
-        <h4 class="mb-[18px] font-display text-sm font-bold text-white">Contacto</h4>
+        <p class="mb-[18px] font-display text-sm font-bold text-white">{footerColumnLabels.contact}</p>
         <div class="flex flex-col gap-3.5 text-sm text-white/60">
           <div class="flex items-start gap-2.5">
             <Icon name="mapPin" size={16} color="#7ee05a" class="mt-0.5 flex-none" />
@@ -105,7 +112,7 @@ import { footerNavLinks, footerServiceLinks, legalLinks, copyrightText } from '@
             icon="loginArrow"
             class="mt-1.5 w-fit border-white/15 bg-white/8 px-4 py-2.5 text-[13px] hover:bg-brand-600"
           >
-            Oficina Virtual
+            {footerVirtualOfficeLabel}
           </Button>
         </div>
       </div>

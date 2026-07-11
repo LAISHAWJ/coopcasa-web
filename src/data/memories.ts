@@ -5,6 +5,15 @@ export const memoriesHero = {
     'Nuestra biblioteca institucional. Consulta o descarga el informe de gestión de cada año y conoce a fondo nuestros resultados.',
 };
 
+/** Tarjeta de memoria (features/memories/components/MemoryCard.astro). */
+export const memoryCardLabels = {
+  coverTag: 'Memoria de gestión',
+  /** Prefijo del título bajo la portada; se concatena con el año. */
+  titlePrefix: 'Memoria',
+  viewLabel: 'Ver',
+  downloadLabel: 'Descargar PDF',
+};
+
 export interface Memory {
   year: string;
   description: string;

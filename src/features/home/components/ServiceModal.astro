@@ -2,7 +2,7 @@
 import Modal from '@shared/ui/Modal.astro';
 import Icon from '@shared/ui/Icon.astro';
 import Button from '@shared/ui/Button.astro';
-import { services } from '@data/services';
+import { services, serviceModalLabels } from '@data/services';
 import { SERVICE_MODAL_ID } from '../constants';
 import { JOIN_PANEL_MODAL_ID } from '@features/members/constants';
 ---
@@ -40,7 +40,7 @@ import { JOIN_PANEL_MODAL_ID } from '@features/members/constants';
           <div class="mb-[30px] grid grid-cols-1 gap-6 sm:grid-cols-2">
             <div>
               <h4 class="mb-3.5 text-[13px] font-bold tracking-[0.06em] text-brand-800 uppercase">
-                Beneficios
+                {serviceModalLabels.benefitsHeading}
               </h4>
               <div class="flex flex-col gap-[11px]">
                 {service.benefits.map((benefit) => (
@@ -59,7 +59,7 @@ import { JOIN_PANEL_MODAL_ID } from '@features/members/constants';
             </div>
             <div>
               <h4 class="mb-3.5 text-[13px] font-bold tracking-[0.06em] text-gold-800 uppercase">
-                Requisitos
+                {serviceModalLabels.requirementsHeading}
               </h4>
               <div class="flex flex-col gap-[11px]">
                 {service.requirements.map((requirement) => (
@@ -78,7 +78,7 @@ import { JOIN_PANEL_MODAL_ID } from '@features/members/constants';
             icon="arrowRight"
             class="w-full justify-center"
           >
-            Solicitar {service.title}
+            {serviceModalLabels.requestButtonPrefix} {service.title}
           </Button>
         </div>
       </div>

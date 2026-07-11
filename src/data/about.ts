@@ -23,6 +23,8 @@ export const aboutTeaser = {
   },
   // Reemplazar con los años reales de operación.
   yearsBadge: { value: '25', caption: 'años impulsando el cooperativismo' },
+  historyCtaLabel: 'Nuestra historia',
+  mvvCtaLabel: 'Misión, Visión y Valores',
 };
 
 /** Página "Historia" → hero + timeline. */

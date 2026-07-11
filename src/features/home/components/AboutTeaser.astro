@@ -41,8 +41,8 @@ import { aboutTeaser, aboutTeaserPoints } from '@data/about';
       </h2>
       <p class="mb-[30px] text-base leading-[1.7] text-body-500">{aboutTeaser.description}</p>
       <div class="mb-[30px] flex flex-wrap gap-3.5">
-        <Button href="/historia" icon="arrowRight">Nuestra historia</Button>
-        <Button href="/mision-vision-valores" variant="outline">Misión, Visión y Valores</Button>
+        <Button href="/historia" icon="arrowRight">{aboutTeaser.historyCtaLabel}</Button>
+        <Button href="/mision-vision-valores" variant="outline">{aboutTeaser.mvvCtaLabel}</Button>
       </div>
       <div class="grid grid-cols-2 gap-3.5">
         {
