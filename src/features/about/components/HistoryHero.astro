@@ -31,6 +31,8 @@ import { historyHero } from '@data/about';
       <img
         src={historyHero.image.src}
         alt={historyHero.image.alt}
+        loading="eager"
+        fetchpriority="high"
         class="h-full w-full object-cover"
       />
     </div>

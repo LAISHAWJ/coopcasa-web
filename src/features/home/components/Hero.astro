@@ -90,7 +90,13 @@ const HERO_BENEFIT_DELAYS = [
       <div
         class="animate-fadeup absolute inset-0 overflow-hidden rounded-[28px] shadow-[0_30px_70px_rgba(13,31,20,0.18)]"
       >
-        <img src={hero.image.src} alt={hero.image.alt} class="h-full w-full object-cover" />
+        <img
+          src={hero.image.src}
+          alt={hero.image.alt}
+          loading="eager"
+          fetchpriority="high"
+          class="h-full w-full object-cover"
+        />
         <div
           class="absolute inset-0 bg-[linear-gradient(180deg,rgba(34,160,36,0.05),rgba(13,31,20,0.28))]"
         >

@@ -45,6 +45,8 @@ import { JOIN_PANEL_MODAL_ID } from '../constants';
       <img
         src={membersHero.image.src}
         alt={membersHero.image.alt}
+        loading="eager"
+        fetchpriority="high"
         class="h-full w-full object-cover"
       />
     </div>

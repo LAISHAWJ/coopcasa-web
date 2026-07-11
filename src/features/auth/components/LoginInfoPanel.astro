@@ -25,7 +25,9 @@ import { loginPanel } from '@data/auth';
       width={44}
       height={44}
       densities={[1, 2, 3]}
-      class="h-11 w-11 rounded-full object-cover"
+      loading="eager"
+      fetchpriority="high"
+      class="h-11 w-11"
     />
     <span class="font-display text-xl font-extrabold text-white">{siteConfig.name}</span>
   </a>
