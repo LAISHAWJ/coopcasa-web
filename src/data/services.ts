@@ -35,7 +35,7 @@ export const services: Service[] = [
       'App y Oficina Virtual 24/7',
     ],
     requirements: ['Ser socio de COOPCASA', 'Cédula de identidad vigente', 'Apertura desde RD$500'],
-    icon: 'coinDetailed',
+    icon: 'dollar',
     iconBg: 'bg-brand-600/10',
     iconColor: '#1f8f22',
   },
