@@ -86,13 +86,16 @@ import { JOIN_PANEL_MODAL_ID } from '@features/members/constants';
   }
 </Modal>
 
-<script define:vars={{ modalId: SERVICE_MODAL_ID }} is:inline>
-  const modal = document.querySelector(`[data-modal="${modalId}"]`);
+<script>
+  // Encuentra el modal a partir de uno de sus propios paneles: evita tener
+  // que pasar SERVICE_MODAL_ID al cliente (sin define:vars).
+  const anyPanel = document.querySelector<HTMLElement>('[data-service-panel]');
+  const modal = anyPanel?.closest<HTMLElement>('[data-modal]');
 
-  modal?.addEventListener('modal:open', (event) => {
+  modal?.addEventListener('modal:open', ((event: CustomEvent<string | undefined>) => {
     const activeIndex = event.detail;
-    modal.querySelectorAll('[data-service-panel]').forEach((panel) => {
+    modal.querySelectorAll<HTMLElement>('[data-service-panel]').forEach((panel) => {
       panel.classList.toggle('hidden', panel.dataset.servicePanel !== activeIndex);
     });
-  });
+  }) as EventListener);
 </script>
