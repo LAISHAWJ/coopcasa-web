@@ -50,7 +50,11 @@
   --color-surface-100: #f2f4f2;
 
   /* Estados */
-  --color-danger: #e0483d;
+  /* #e0483d (rojo original) da 4.07:1 sobre blanco, por debajo del mínimo
+     4.5:1 de WCAG AA para texto normal. Este tono no es color de marca (no
+     existía en el prototipo aprobado), así que se ajusta ligeramente más
+     oscuro a 4.71:1 manteniendo el mismo matiz. */
+  --color-danger: #d33c30;
   --color-whatsapp: #25d366;
 
   /* Animaciones (idénticas al prototipo) */
