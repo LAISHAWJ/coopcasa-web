@@ -3,6 +3,14 @@ import Button from '@shared/ui/Button.astro';
 import Icon from '@shared/ui/Icon.astro';
 import { JOIN_PANEL_MODAL_ID } from '@features/members/constants';
 import { hero, quickBenefits } from '@data/hero';
+
+// Entrada escalonada de la tira de beneficios rápidos (un ligero delay por tarjeta).
+const HERO_BENEFIT_DELAYS = [
+  '[animation-delay:280ms]',
+  '[animation-delay:340ms]',
+  '[animation-delay:400ms]',
+  '[animation-delay:460ms]',
+];
 ---
 
 <section
@@ -21,9 +29,9 @@ import { hero, quickBenefits } from '@data/hero';
   <div
     class="relative z-[1] mx-auto grid max-w-[1220px] items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14"
   >
-    <div class="animate-fadeup">
+    <div>
       <div
-        class="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-600/20 bg-brand-600/9 px-3.5 py-[7px] text-[13px] font-semibold text-brand-800"
+        class="animate-fadeup mb-6 inline-flex items-center gap-2 rounded-full border border-brand-600/20 bg-brand-600/9 px-3.5 py-[7px] text-[13px] font-semibold text-brand-800"
       >
         <span
           class="h-[7px] w-[7px] rounded-full bg-brand-600 shadow-[0_0_0_4px_rgba(43,168,44,0.18)]"
@@ -31,7 +39,7 @@ import { hero, quickBenefits } from '@data/hero';
         {hero.eyebrow}
       </div>
       <h1
-        class="mb-[22px] text-[38px] leading-[1.1] font-extrabold tracking-tight text-ink-900 sm:text-[46px] lg:text-[56px] lg:leading-[1.05]"
+        class="animate-fadeup mb-[22px] text-[38px] leading-[1.1] font-extrabold tracking-tight text-ink-900 [animation-delay:90ms] sm:text-[46px] lg:text-[56px] lg:leading-[1.05]"
       >
         {
           hero.titleLines.map((line) => (
@@ -47,21 +55,23 @@ import { hero, quickBenefits } from '@data/hero';
           {hero.titleHighlight}
         </span>
       </h1>
-      <p class="mb-[34px] max-w-[480px] text-lg leading-relaxed text-body-500">
+      <p
+        class="animate-fadeup mb-[34px] max-w-[480px] text-lg leading-relaxed text-body-500 [animation-delay:160ms]"
+      >
         {hero.description}
       </p>
-      <div class="mb-[38px] flex flex-wrap gap-3.5">
+      <div class="animate-fadeup mb-[38px] flex flex-wrap gap-3.5 [animation-delay:230ms]">
         <Button data-modal-open={JOIN_PANEL_MODAL_ID} size="lg" icon="arrowRight">
           {hero.primaryCtaLabel}
         </Button>
         <Button href="/#servicios" variant="outline" size="lg">{hero.secondaryCtaLabel}</Button>
       </div>
-      <div class="flex items-center gap-[26px]">
+      <div class="animate-fadeup flex items-center gap-[26px] [animation-delay:300ms]">
         <div class="flex">
           {
             hero.avatarColors.map((color) => (
               <div
-                class="-ml-2.5 h-[38px] w-[38px] rounded-full border-[2.5px] border-white"
+                class="-ml-2.5 h-[38px] w-[38px] rounded-full border-[2.5px] border-white transition-transform duration-200 hover:z-[1] hover:-translate-y-1"
                 style={{ background: color }}
               />
             ))
@@ -76,9 +86,9 @@ import { hero, quickBenefits } from '@data/hero';
       </div>
     </div>
 
-    <div class="relative hidden h-[520px] animate-fadeup lg:block">
+    <div class="relative hidden h-[520px] lg:block">
       <div
-        class="absolute inset-0 overflow-hidden rounded-[28px] shadow-[0_30px_70px_rgba(13,31,20,0.18)]"
+        class="animate-fadeup absolute inset-0 overflow-hidden rounded-[28px] shadow-[0_30px_70px_rgba(13,31,20,0.18)]"
       >
         <img src={hero.image.src} alt={hero.image.alt} class="h-full w-full object-cover" />
         <div
@@ -88,7 +98,7 @@ import { hero, quickBenefits } from '@data/hero';
       </div>
 
       <div
-        class="animate-floaty absolute top-[26px] -left-[34px] min-w-[210px] rounded-[20px] border border-white/70 bg-white/72 p-5 shadow-[0_18px_44px_rgba(13,31,20,0.16)] backdrop-blur-lg"
+        class="animate-[fadeup_0.7s_ease_both_120ms,floaty_6s_ease-in-out_0.9s_infinite] absolute top-[26px] -left-[34px] min-w-[210px] rounded-[20px] border border-white/70 bg-white/72 p-5 shadow-[0_18px_44px_rgba(13,31,20,0.16)] backdrop-blur-lg"
       >
         <div class="mb-1.5 text-xs font-medium text-body-200">{hero.savingsCard.label}</div>
         <div class="font-display text-[26px] font-extrabold tracking-tight text-ink-900">
@@ -101,7 +111,7 @@ import { hero, quickBenefits } from '@data/hero';
       </div>
 
       <div
-        class="animate-floaty2 absolute right-[-30px] bottom-[30px] rounded-[20px] border border-white/70 bg-white/72 p-5 shadow-[0_18px_44px_rgba(13,31,20,0.16)] backdrop-blur-lg"
+        class="animate-[fadeup_0.7s_ease_both_220ms,floaty2_7s_ease-in-out_1s_infinite] absolute right-[-30px] bottom-[30px] rounded-[20px] border border-white/70 bg-white/72 p-5 shadow-[0_18px_44px_rgba(13,31,20,0.16)] backdrop-blur-lg"
       >
         <div class="mb-3 text-xs font-medium text-body-200">{hero.performanceCard.label}</div>
         <div class="flex h-[60px] items-end gap-2">
@@ -117,7 +127,7 @@ import { hero, quickBenefits } from '@data/hero';
       </div>
 
       <div
-        class="animate-floaty absolute bottom-[-18px] left-9 flex items-center gap-[11px] rounded-2xl bg-white p-3 shadow-[0_14px_34px_rgba(13,31,20,0.14)]"
+        class="animate-[fadeup_0.7s_ease_both_320ms,floaty_5.5s_ease-in-out_1.1s_infinite] absolute bottom-[-18px] left-9 flex items-center gap-[11px] rounded-2xl bg-white p-3 shadow-[0_14px_34px_rgba(13,31,20,0.14)]"
       >
         <div
           class="flex h-10 w-10 items-center justify-center rounded-xl bg-[linear-gradient(135deg,#f3e500,#ffe94d)]"
@@ -138,8 +148,13 @@ import { hero, quickBenefits } from '@data/hero';
     class="relative z-[1] mx-auto mt-10 grid max-w-[1220px] grid-cols-2 gap-4 lg:mt-16 lg:grid-cols-4 lg:gap-[18px]"
   >
     {
-      quickBenefits.map((benefit) => (
-        <div class="flex items-center gap-3.5 rounded-2xl border border-ink-900/7 bg-surface-50 px-4 py-[18px] sm:px-5">
+      quickBenefits.map((benefit, index) => (
+        <div
+          class:list={[
+            'animate-fadeup flex items-center gap-3.5 rounded-2xl border border-ink-900/7 bg-surface-50 px-4 py-[18px] transition-all duration-300 hover:-translate-y-1 hover:border-brand-600/25 hover:shadow-[0_14px_32px_rgba(13,31,20,0.08)] sm:px-5',
+            HERO_BENEFIT_DELAYS[index],
+          ]}
+        >
           <div
             class:list={[
               'flex h-11 w-11 flex-none items-center justify-center rounded-xl',
