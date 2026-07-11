@@ -1,4 +1,5 @@
 import type { IconCard } from '@shared/types/content';
+import heroImage from '@assets/images/hero-family-savings.webp';
 
 export const hero = {
   // Reemplazar con el texto de posicionamiento y el año real de fundación.
@@ -15,9 +16,8 @@ export const hero = {
   membersCountCaption: 'confían su futuro financiero',
   avatarColors: ['#7ee05a', '#f3e500', '#22a024', '#a3d94a'],
   image: {
-    // Reemplazar por una fotografía real de socios/familia de la cooperativa.
-    src: 'https://images.unsplash.com/photo-1511895426328-dc8714191300?w=900&q=80',
-    alt: 'Familia sonriente representando a los socios de COOPCASA',
+    src: heroImage,
+    alt: 'Familia sonriente en su hogar, representando a los socios de COOPCASA',
   },
   // Tarjetas flotantes decorativas sobre la imagen del hero.
   savingsCard: {
