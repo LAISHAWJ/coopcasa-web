@@ -24,7 +24,7 @@ export const aboutDropdown: NavDropdownItem[] = [
 
 /** Ítems del desplegable "Productos y Servicios" (todos apuntan a la sección de servicios en home). */
 export const productsDropdown: NavDropdownItem[] = [
-  { label: 'Cuentas de ahorro', href: '/#servicios', icon: 'coin' },
+  { label: 'Cuentas de ahorro', href: '/#servicios', icon: 'dollar' },
   { label: 'Préstamos', href: '/#servicios', icon: 'briefcaseLoan' },
   { label: 'Certificados financieros', href: '/#servicios', icon: 'chartGrowth' },
   { label: 'Aportaciones', href: '/#servicios', icon: 'user' },
