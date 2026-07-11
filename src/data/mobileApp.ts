@@ -43,11 +43,6 @@ export const appFeaturesSection = {
     'Todo lo que puedes hacer sin ir a una sucursal, de forma rápida, segura e intuitiva.',
 };
 
-export const appScreenshotsSection = {
-  eyebrow: 'Capturas de pantalla',
-  title: 'Así se ve por dentro',
-};
-
 export const appBenefitsSection = {
   eyebrow: 'Beneficios',
   title: 'Por qué usar la App',
@@ -63,11 +58,30 @@ export const appFaqSection = {
   title: 'Preguntas frecuentes de la App',
 };
 
+// NOTA PARA EL CLIENTE: esta lista describe las funcionalidades que un socio
+// puede realizar desde la app. Son las funcionalidades típicas de una app de
+// cooperativa financiera; confirmar/ajustar cuáles están realmente
+// disponibles (o en qué fase de desarrollo) antes de publicar.
 export const appFeatures: IconCard[] = [
+  {
+    title: 'Consulta de saldo y movimientos',
+    description:
+      'Revisa el balance y el detalle de cada transacción de tus cuentas en tiempo real.',
+    icon: 'document',
+    iconBg: 'bg-brand-600/10',
+    iconColor: '#1f8f22',
+  },
   {
     title: 'Transferencias inmediatas',
     description: 'Envía dinero entre tus cuentas o a terceros al instante, sin filas ni papeleo.',
     icon: 'transfer',
+    iconBg: 'bg-gold-400/22',
+    iconColor: '#a89a00',
+  },
+  {
+    title: 'Solicitud de préstamos en línea',
+    description: 'Solicita tu crédito desde la app y da seguimiento al estatus de tu solicitud.',
+    icon: 'editPencil',
     iconBg: 'bg-brand-600/10',
     iconColor: '#1f8f22',
   },
@@ -106,41 +120,12 @@ export const appFeatures: IconCard[] = [
     iconBg: 'bg-gold-400/22',
     iconColor: '#a89a00',
   },
-];
-
-export interface AppScreenshot {
-  title: string;
-  subtitle: string;
-  background: string;
-  foreground: string;
-  subtleText: string;
-  accentBlock: string;
-}
-
-export const appScreenshots: AppScreenshot[] = [
   {
-    title: 'Inicio',
-    subtitle: 'Tu resumen financiero',
-    background: 'linear-gradient(180deg,#eaf7ec,#fff)',
-    foreground: '#0d1f14',
-    subtleText: '#5a6b60',
-    accentBlock: 'linear-gradient(135deg,#22a024,#2fb531)',
-  },
-  {
-    title: 'Transferencias',
-    subtitle: 'Envía en segundos',
-    background: 'linear-gradient(180deg,#0d1f14,#14361b)',
-    foreground: '#fff',
-    subtleText: 'rgba(255,255,255,.6)',
-    accentBlock: 'linear-gradient(135deg,#5bc93a,#22a024)',
-  },
-  {
-    title: 'Mis productos',
-    subtitle: 'Ahorros y certificados',
-    background: 'linear-gradient(180deg,#fffbe6,#fff)',
-    foreground: '#0d1f14',
-    subtleText: '#8a7f00',
-    accentBlock: 'linear-gradient(135deg,#f3e500,#ffe94d)',
+    title: 'Soporte dentro de la app',
+    description: 'Contacta a un representante o consulta ayuda sin salir de la aplicación.',
+    icon: 'chat',
+    iconBg: 'bg-brand-600/10',
+    iconColor: '#1f8f22',
   },
 ];
 
