@@ -1,5 +1,6 @@
 import type { IconCard } from '@shared/types/content';
 import type { IconName } from '@shared/config/icons';
+import { siteConfig } from './siteConfig';
 
 /** Home → sección "Sobre nosotros" (teaser), mini íconos Misión/Visión/Valores/Comunidad. */
 export const aboutTeaserPoints: { title: string; icon: IconName }[] = [
@@ -37,10 +38,43 @@ export const historyHero = {
   },
 };
 
+/** Página "Historia" → bloque de datos institucionales/legales (justo debajo del hero). */
+export const institutionalFactsSection = {
+  eyebrow: 'Información institucional',
+  title: 'Quiénes somos, en cifras legales',
+};
+
+export interface InstitutionalFact {
+  label: string;
+  value: string;
+  icon: IconName;
+}
+
+// Datos legales reales de la cooperativa. Actualizar solo si cambian los datos
+// de registro/incorporación o la sede principal.
+export const institutionalFacts: InstitutionalFact[] = [
+  {
+    label: 'Razón social',
+    value: siteConfig.legalName,
+    icon: 'buildingSimple',
+  },
+  {
+    label: 'Regulación',
+    value: 'Entidad incorporada en la República Dominicana bajo el registro de IDECOOP.',
+    icon: 'shield',
+  },
+  {
+    label: 'Sede principal',
+    value: siteConfig.contact.address,
+    icon: 'mapPin',
+  },
+];
+
 export interface TimelineEntry {
   year: string;
   title: string;
   description: string;
+  icon: IconName;
 }
 
 // Reemplazar con los hitos reales de la cooperativa.
@@ -50,30 +84,35 @@ export const timeline: TimelineEntry[] = [
     title: 'Nace COOPCASA',
     description:
       'Un grupo de 30 familias funda la cooperativa con el sueño de ahorrar juntas y apoyarse mutuamente.',
+    icon: 'heart',
   },
   {
     year: '2008',
     title: 'Primera sucursal propia',
     description:
       'Abrimos nuestra primera oficina y superamos los 1,000 socios, consolidando la confianza de la comunidad.',
+    icon: 'building',
   },
   {
     year: '2015',
     title: 'Expansión regional',
     description:
       'Llegamos a nuevas provincias y lanzamos nuestros programas de educación financiera gratuita.',
+    icon: 'mapPin',
   },
   {
     year: '2021',
     title: 'Transformación digital',
     description:
       'Estrenamos la Oficina Virtual y la App móvil, acercando la cooperativa a cada socio 24/7.',
+    icon: 'deviceMobile',
   },
   {
     year: '2026',
     title: 'Más de 12,500 socios',
     description:
       'Hoy gestionamos más de RD$1.8B en activos y seguimos creciendo con el mismo espíritu del primer día.',
+    icon: 'users',
   },
 ];
 

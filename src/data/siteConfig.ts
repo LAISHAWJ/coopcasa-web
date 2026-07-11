@@ -5,9 +5,8 @@
  */
 
 export const siteConfig = {
-  // Reemplazar con el nombre legal/comercial definitivo de la cooperativa.
   name: 'COOPCASA',
-  legalName: 'Cooperativa de Ahorro y Crédito COOPCASA',
+  legalName: 'Cooperativa de Ahorro, Crédito y Servicios Múltiples Inmuebles La Casa',
 
   // Reemplazar con el dominio real de producción (debe coincidir con `site` en astro.config.mjs).
   url: 'https://www.coopcasa.do',
@@ -20,9 +19,9 @@ export const siteConfig = {
   defaultOgImage: '/og-image.jpg',
   locale: 'es_DO',
 
-  // Reemplazar con los datos reales de contacto de la cooperativa.
+  // Reemplazar teléfono/email/WhatsApp con los datos reales de contacto vigentes.
   contact: {
-    address: 'Av. Central 145, Santo Domingo',
+    address: 'Calle Duarte No. 3, Higuamo, San Pedro de Macorís, República Dominicana',
     phone: '(809) 555-0100',
     // Número en formato internacional sin espacios, usado para el enlace de WhatsApp.
     whatsappNumber: '18095550100',

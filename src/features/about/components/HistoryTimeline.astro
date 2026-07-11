@@ -1,23 +1,26 @@
 ---
+import Icon from '@shared/ui/Icon.astro';
 import { timeline } from '@data/about';
 ---
 
 <section class="px-5 pt-16 pb-10 lg:px-8">
   <div class="relative mx-auto max-w-[900px]">
     <div
-      class="pointer-events-none absolute top-2 bottom-2 left-[130px] hidden w-0.5 bg-[linear-gradient(180deg,#22a024,rgba(43,168,44,0.15))] sm:block"
+      class="pointer-events-none absolute top-2 bottom-2 left-[128px] hidden w-0.5 bg-[linear-gradient(180deg,#22a024,rgba(43,168,44,0.15))] sm:block"
     >
     </div>
-    <div class="flex flex-col gap-8 sm:gap-[38px]">
+    <div class="flex flex-col gap-8 sm:gap-10">
       {
         timeline.map((entry) => (
-          <div class="relative flex flex-col gap-2 sm:grid sm:grid-cols-[110px_1fr] sm:items-start sm:gap-9">
-            <div class="font-display text-xl font-extrabold tracking-tight text-brand-800 sm:pt-0.5 sm:text-right sm:text-[26px]">
+          <div class="relative flex flex-col gap-3 sm:grid sm:grid-cols-[110px_1fr] sm:items-start sm:gap-9">
+            <div class="font-display text-xl font-extrabold tracking-tight text-brand-800 sm:pt-2 sm:text-right sm:text-[26px]">
               {entry.year}
             </div>
             <div class="relative">
-              <span class="absolute top-1.5 -left-[42px] hidden h-3.5 w-3.5 rounded-full border-[3px] border-white bg-brand-700 shadow-[0_0_0_3px_rgba(43,168,44,0.2)] sm:block" />
-              <div class="rounded-[18px] border border-ink-900/8 bg-white p-6 shadow-[0_4px_16px_rgba(13,31,20,0.05)]">
+              <span class="absolute top-0 z-10 -left-9 hidden h-9 w-9 items-center justify-center rounded-full border-[3px] border-white bg-[linear-gradient(135deg,#22a024,#2fb531)] shadow-[0_0_0_3px_rgba(43,168,44,0.2)] sm:flex">
+                <Icon name={entry.icon} size={16} color="#fff" strokeWidth={2.2} />
+              </span>
+              <div class="rounded-[18px] border border-ink-900/8 bg-white p-6 shadow-[0_4px_16px_rgba(13,31,20,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-brand-600/25 hover:shadow-[0_14px_34px_rgba(13,31,20,0.1)]">
                 <h3 class="mb-2 text-lg font-bold text-ink-900 sm:text-[19px]">{entry.title}</h3>
                 <p class="text-[14.5px] leading-relaxed text-body-400">{entry.description}</p>
               </div>
