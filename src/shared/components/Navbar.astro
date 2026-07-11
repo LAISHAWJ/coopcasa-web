@@ -80,14 +80,11 @@ const MOBILE_NAV_MODAL_ID = 'mobile-nav';
     </nav>
 
     <div class="flex items-center gap-2">
-      <Button
-        href="/oficina-virtual/login"
-        size="sm"
-        icon="loginArrow"
-        class="hidden lg:inline-flex"
-      >
-        Iniciar Sesión
-      </Button>
+      <div class="hidden lg:block">
+        <Button href="/oficina-virtual/login" size="sm" icon="loginArrow">
+          Iniciar Sesión
+        </Button>
+      </div>
       <button
         type="button"
         data-modal-open={MOBILE_NAV_MODAL_ID}
