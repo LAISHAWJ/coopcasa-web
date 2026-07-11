@@ -22,7 +22,14 @@ const { memory } = Astro.props;
       style={{ background: memory.coverGradient }}
     >
       <div class="flex items-center gap-2">
-        <Image src={logo} alt="" width={30} height={30} class="h-[30px] w-[30px] rounded-full" />
+        <Image
+          src={logo}
+          alt=""
+          width={30}
+          height={30}
+          densities={[1, 2, 3]}
+          class="h-[30px] w-[30px] rounded-full"
+        />
         <span class="font-display text-[15px] font-extrabold text-white">COOPCASA</span>
       </div>
       <div>
