@@ -18,7 +18,8 @@ export const loginForm = {
   forgotPasswordLabel: '¿Olvidaste tu contraseña?',
   // Reemplazar por la ruta real de recuperación de contraseña cuando exista.
   forgotPasswordHref: '#',
-  noAccountText: '¿Aún no eres socio?',
+  // Espacio final intencional: el componente lo concatena justo antes del link "Hazte socio".
+  noAccountText: '¿Aún no eres socio? ',
   noAccountCtaLabel: 'Hazte socio',
   // Aviso visible mientras la Oficina Virtual real no está integrada (ver README, sección "Flujo demo").
   demoNotice:

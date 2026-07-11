@@ -28,9 +28,11 @@ export const joinPanelContent = {
   description:
     'Llenar este formulario es el primer paso para acceder a todos los beneficios de ser socio. Luego de que lo envíes, nuestro personal de bienvenida te contactará e indicará el proceso a seguir.',
   submitLabel: 'Enviar formulario',
-  termsPrefix: 'Estoy de acuerdo con los',
+  // Espacios finales/iniciales intencionales: el componente concatena estos
+  // textos directamente junto a los links de Términos y Privacidad.
+  termsPrefix: 'Estoy de acuerdo con los ',
   termsLink: 'Términos y Condiciones',
-  termsMiddle: 'y la',
+  termsMiddle: ' y la ',
   privacyLink: 'Política de Privacidad',
   success: {
     title: '¡Formulario enviado!',
