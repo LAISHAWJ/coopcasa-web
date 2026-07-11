@@ -63,7 +63,12 @@ const describedBy = [hint ? `${id}-hint` : null, `${id}-error`].filter(Boolean).
           aria-controls={id}
           class="absolute right-3.5 top-1/2 -translate-y-1/2 text-body-100 transition-colors hover:text-body-400"
         >
-          <Icon name="eye" size={18} />
+          <span data-password-icon="eye">
+            <Icon name="eye" size={18} />
+          </span>
+          <span data-password-icon="eye-off" class="hidden">
+            <Icon name="eyeOff" size={18} />
+          </span>
         </button>
       )
     }
@@ -101,5 +106,12 @@ const describedBy = [hint ? `${id}-hint` : null, `${id}-error`].filter(Boolean).
     const nowVisible = input.type === 'password';
     input.type = nowVisible ? 'text' : 'password';
     trigger.setAttribute('aria-label', nowVisible ? 'Ocultar contraseña' : 'Mostrar contraseña');
+
+    // Alterna qué ícono se muestra: ojo normal cuando está oculta, ojo
+    // tachado cuando el texto de la contraseña está a la vista.
+    trigger.querySelector('[data-password-icon="eye"]')?.classList.toggle('hidden', nowVisible);
+    trigger
+      .querySelector('[data-password-icon="eye-off"]')
+      ?.classList.toggle('hidden', !nowVisible);
   });
 </script>
