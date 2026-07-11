@@ -36,36 +36,38 @@ import { appPromo } from '@data/home';
     </div>
 
     <div class="relative z-[1] flex justify-center">
+      <!-- Chasis del teléfono: misma proporción realista ~9:19.5 y mismo
+           lenguaje visual del marco usado en features/mobile-app/AppHero.astro. -->
       <div
-        class="animate-float-phone relative w-[180px] rotate-[-3deg] overflow-hidden rounded-[34px] border-8 border-ink-800 bg-ink-950 shadow-[0_30px_70px_rgba(0,0,0,0.45)]"
+        class="animate-float-phone relative aspect-[18/39] w-[220px] rotate-[-3deg] overflow-hidden rounded-[38px] border-[9px] border-ink-800 bg-ink-950 shadow-[0_30px_70px_rgba(0,0,0,0.45)] sm:w-[250px] sm:rounded-[44px] sm:border-[10px] lg:w-[270px]"
       >
         <div
-          class="absolute top-0 left-1/2 z-[3] h-[18px] w-20 -translate-x-1/2 rounded-b-xl bg-ink-800"
+          class="absolute top-[7px] left-1/2 z-[3] h-5 w-20 -translate-x-1/2 rounded-full bg-ink-950 sm:top-2"
         >
         </div>
-        <div class="bg-[linear-gradient(180deg,#f4fbf5,#fff)] px-3.5 pt-[30px] pb-0">
-          <div class="mb-4 flex items-center gap-[7px]">
+        <div class="flex h-full w-full flex-col bg-[linear-gradient(180deg,#f4fbf5,#fff)] px-4 pt-9 pb-5">
+          <div class="mb-5 flex items-center gap-2">
             <Image
               src={logo}
               alt=""
-              width={24}
-              height={24}
+              width={28}
+              height={28}
               densities={[1, 2, 3]}
-              class="h-6 w-6 rounded-full"
+              class="h-7 w-7 rounded-full"
             />
-            <div class="font-display text-xs font-extrabold text-ink-900">
+            <div class="font-display text-[13px] font-extrabold text-ink-900">
               {appPromo.preview.userName}
             </div>
           </div>
-          <div class="rounded-2xl bg-[linear-gradient(135deg,#22a024,#2fb531)] p-3.5 text-white">
-            <div class="text-[9px] opacity-85">{appPromo.preview.balanceLabel}</div>
-            <div class="mt-[3px] font-display text-lg font-extrabold">
+          <div class="rounded-2xl bg-[linear-gradient(135deg,#22a024,#2fb531)] p-4 text-white">
+            <div class="text-[10px] opacity-85">{appPromo.preview.balanceLabel}</div>
+            <div class="mt-1 font-display text-xl font-extrabold">
               {appPromo.preview.balanceAmount}
             </div>
           </div>
-          <div class="mt-3 flex flex-col gap-2 pb-4">
-            <div class="h-[34px] rounded-[10px] border border-ink-900/7 bg-white"></div>
-            <div class="h-[34px] rounded-[10px] border border-ink-900/7 bg-white"></div>
+          <div class="mt-4 flex flex-1 flex-col gap-2.5">
+            <div class="h-10 rounded-xl border border-ink-900/7 bg-white"></div>
+            <div class="h-10 rounded-xl border border-ink-900/7 bg-white"></div>
           </div>
         </div>
       </div>
