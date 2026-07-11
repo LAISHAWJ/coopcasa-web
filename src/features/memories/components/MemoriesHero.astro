@@ -1,5 +1,5 @@
 ---
-import Button from '@shared/ui/Button.astro';
+import BackLink from '@shared/components/BackLink.astro';
 import { memoriesHero } from '@data/memories';
 ---
 
@@ -11,9 +11,7 @@ import { memoriesHero } from '@data/memories';
   >
   </div>
   <div class="relative z-[1] mx-auto max-w-[1220px] text-center">
-    <Button href="/" variant="link" icon="arrowLeft" iconPosition="left" class="mb-[18px]"
-      >Volver al inicio</Button
-    >
+    <BackLink class="mb-[18px]" />
     <div class="mb-3.5 text-[13px] font-bold tracking-[0.1em] text-brand-800 uppercase">
       {memoriesHero.eyebrow}
     </div>

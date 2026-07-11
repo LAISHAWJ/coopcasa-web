@@ -1,6 +1,6 @@
 ---
 import MainLayout from '@shared/layouts/MainLayout.astro';
-import Button from '@shared/ui/Button.astro';
+import BackLink from '@shared/components/BackLink.astro';
 import LoginInfoPanel from '@features/auth/components/LoginInfoPanel.astro';
 import LoginForm from '@features/auth/components/LoginForm.astro';
 import { loginForm } from '@data/auth';
@@ -16,9 +16,7 @@ import { loginForm } from '@data/auth';
     <LoginInfoPanel />
     <div class="flex items-center justify-center bg-white p-8 sm:p-14">
       <div class="w-full max-w-[400px]">
-        <Button href="/" variant="link" icon="arrowLeft" iconPosition="left" class="mb-7"
-          >Volver al sitio</Button
-        >
+        <BackLink label={loginForm.backToSiteLabel} class="mb-7" />
         <h1 class="mb-2 text-[28px] font-extrabold tracking-tight text-ink-900 sm:text-[30px]">
           {loginForm.title}
         </h1>

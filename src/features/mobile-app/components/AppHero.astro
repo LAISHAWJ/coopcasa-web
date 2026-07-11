@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import logo from '@assets/images/coopcasa-logo.png';
-import Button from '@shared/ui/Button.astro';
+import BackLink from '@shared/components/BackLink.astro';
 import Icon from '@shared/ui/Icon.astro';
 import StoreBadgeLink from './StoreBadgeLink.astro';
 import { mobileAppHero } from '@data/mobileApp';
@@ -25,11 +25,7 @@ const { preview } = mobileAppHero;
     class="relative z-[1] mx-auto grid max-w-[1220px] items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12"
   >
     <div>
-      <div class="mb-[18px]">
-        <Button href="/" variant="link" tone="onDark" icon="arrowLeft" iconPosition="left">
-          Volver al inicio
-        </Button>
-      </div>
+      <BackLink tone="onDark" class="mb-[18px]" />
       <div
         class="mb-5 inline-block rounded-full bg-gold-400/22 px-3.5 py-[6px] text-xs font-bold tracking-[0.08em] text-gold-400 uppercase"
       >

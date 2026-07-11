@@ -1,0 +1,26 @@
+---
+import Button from '@shared/ui/Button.astro';
+import { backToHomeLabel } from '@data/common';
+
+/**
+ * Link "← Volver al inicio" usado al tope de todas las páginas internas
+ * (Historia, MVV, Hazte Socio, Memorias, App Móvil). Envuelto en un <div>
+ * de bloque propio para que "hidden"/utilidades de layout del consumidor no
+ * compitan nunca con el `inline-flex` propio de Button.astro (ver el fix de
+ * Navbar/AppHero para más contexto de por qué esto importa).
+ */
+interface Props {
+  href?: string;
+  label?: string;
+  tone?: 'muted' | 'onDark';
+  class?: string;
+}
+
+const { href = '/', label = backToHomeLabel, tone = 'muted', class: className } = Astro.props;
+---
+
+<div class={className}>
+  <Button href={href} variant="link" tone={tone} icon="arrowLeft" iconPosition="left">
+    {label}
+  </Button>
+</div>

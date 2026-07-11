@@ -1,5 +1,6 @@
 ---
 import Button from '@shared/ui/Button.astro';
+import BackLink from '@shared/components/BackLink.astro';
 import { membersHero } from '@data/membersPage';
 import { JOIN_PANEL_MODAL_ID } from '../constants';
 ---
@@ -20,9 +21,7 @@ import { JOIN_PANEL_MODAL_ID } from '../constants';
     class="relative z-[1] mx-auto grid max-w-[1220px] items-center gap-10 lg:grid-cols-[1fr_0.9fr] lg:gap-[52px]"
   >
     <div>
-      <Button href="/" variant="link" icon="arrowLeft" iconPosition="left" class="mb-[18px]"
-        >Volver al inicio</Button
-      >
+      <BackLink class="mb-[18px]" />
       <h1
         class="mb-5 text-[38px] leading-[1.1] font-extrabold tracking-tight text-ink-900 sm:text-[46px] lg:text-[52px] lg:leading-[1.05]"
       >

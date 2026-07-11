@@ -1,5 +1,5 @@
 ---
-import Button from '@shared/ui/Button.astro';
+import BackLink from '@shared/components/BackLink.astro';
 import { historyHero } from '@data/about';
 ---
 
@@ -14,9 +14,7 @@ import { historyHero } from '@data/about';
     class="relative z-[1] mx-auto grid max-w-[1220px] items-center gap-10 lg:grid-cols-[1fr_0.9fr] lg:gap-[52px]"
   >
     <div>
-      <Button href="/" variant="link" icon="arrowLeft" iconPosition="left" class="mb-[18px]"
-        >Volver al inicio</Button
-      >
+      <BackLink class="mb-[18px]" />
       <div class="mb-3.5 text-[13px] font-bold tracking-[0.1em] text-brand-800 uppercase">
         {historyHero.eyebrow}
       </div>
