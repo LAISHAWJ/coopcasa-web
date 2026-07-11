@@ -108,9 +108,9 @@ import { loginForm } from '@data/auth';
 
       setLoading(true);
       const result = await login(payload);
-      setLoading(false);
 
       if (!result.success) {
+        setLoading(false);
         if (formError) {
           formError.textContent = result.message ?? 'No pudimos iniciar sesión. Intenta de nuevo.';
           formError.classList.remove('hidden');
@@ -121,6 +121,9 @@ import { loginForm } from '@data/auth';
       // FLUJO DEMO: no hay backend de autenticación real todavía, así que
       // solo se muestra el aviso y se redirige al placeholder de la Oficina
       // Virtual para dejar demostrada la navegación (ver loginService.ts).
+      // El botón se deja deshabilitado (no se llama setLoading(false)) hasta
+      // que la navegación ocurre, para que no pueda reenviarse el formulario
+      // durante la espera.
       demoNotice?.classList.remove('hidden');
       demoNotice?.classList.add('flex');
       window.setTimeout(() => {
