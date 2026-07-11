@@ -2,8 +2,11 @@
 import { Image } from 'astro:assets';
 import logo from '@assets/images/coopcasa-logo.png';
 import Button from '@shared/ui/Button.astro';
+import Icon from '@shared/ui/Icon.astro';
 import StoreBadgeLink from './StoreBadgeLink.astro';
 import { mobileAppHero } from '@data/mobileApp';
+
+const { preview } = mobileAppHero;
 ---
 
 <section
@@ -70,42 +73,106 @@ import { mobileAppHero } from '@data/mobileApp';
       </div>
     </div>
 
-    <div class="flex justify-center">
+    <div class="flex justify-center py-4 lg:py-0">
+      <!-- Chasis del teléfono: proporción realista ~9:19.5, con animación de
+           entrada (fadeup) que continúa en un flotado suave infinito. -->
       <div
-        class="animate-floaty relative w-[240px] overflow-hidden rounded-[44px] border-[11px] border-ink-800 bg-ink-950 shadow-[0_40px_90px_rgba(0,0,0,0.5)] sm:w-[280px]"
+        class="relative aspect-[18/39] w-[250px] animate-[fadeup_0.8s_ease_both,floaty_6s_ease-in-out_0.8s_infinite] overflow-hidden rounded-[44px] border-[10px] border-ink-800 bg-ink-950 shadow-[0_40px_90px_rgba(0,0,0,0.5)] transition-shadow duration-300 hover:shadow-[0_52px_110px_rgba(0,0,0,0.6)] sm:w-[290px] sm:rounded-[52px] sm:border-[12px] lg:w-[310px]"
       >
         <div
-          class="absolute top-0 left-1/2 z-[3] h-[26px] w-[120px] -translate-x-1/2 rounded-b-2xl bg-ink-800"
+          class="absolute top-[9px] left-1/2 z-[3] h-[22px] w-[86px] -translate-x-1/2 rounded-full bg-ink-950 sm:top-[11px]"
         >
         </div>
-        <div class="bg-[linear-gradient(180deg,#f4fbf5,#fff)] px-5 pt-[46px] pb-0">
-          <div class="mb-[22px] flex items-center gap-2.5">
-            <Image src={logo} alt="" width={32} height={32} class="h-8 w-8 rounded-full" />
-            <div>
-              <div class="text-[11px] text-body-200">{mobileAppHero.preview.greeting}</div>
-              <div class="font-display text-[15px] font-extrabold text-ink-900">
-                {mobileAppHero.preview.userName}
+
+        <div class="flex h-full w-full flex-col bg-[linear-gradient(180deg,#f4fbf5,#fff)]">
+          <div
+            class="flex items-center justify-between px-6 pt-3.5 text-[11px] font-semibold text-ink-900 sm:pt-[16px]"
+          >
+            <span>{preview.time}</span>
+            <div class="flex items-center gap-2.5">
+              <div class="flex items-end gap-[2px]">
+                <span class="h-[3px] w-[3px] rounded-[1px] bg-ink-900/70"></span>
+                <span class="h-[5px] w-[3px] rounded-[1px] bg-ink-900/70"></span>
+                <span class="h-[7px] w-[3px] rounded-[1px] bg-ink-900"></span>
+              </div>
+              <div class="flex items-center gap-[3px]">
+                <div class="h-[10px] w-[18px] rounded-[3px] border border-ink-900/70 p-[1.5px]">
+                  <div class="h-full w-full rounded-[1px] bg-ink-900"></div>
+                </div>
+                <div class="h-[4px] w-[1.5px] rounded-r-[1px] bg-ink-900/70"></div>
               </div>
             </div>
           </div>
-          <div
-            class="rounded-[18px] bg-[linear-gradient(135deg,#22a024,#2fb531)] p-[18px] text-white shadow-[0_12px_26px_rgba(43,168,44,0.3)]"
-          >
-            <div class="text-[11px] opacity-85">{mobileAppHero.preview.balanceLabel}</div>
-            <div class="mt-1 font-display text-[26px] font-extrabold">
-              {mobileAppHero.preview.balanceAmount}
+
+          <div class="flex flex-1 flex-col gap-3.5 overflow-hidden px-5 pt-4">
+            <div class="flex items-center gap-2.5">
+              <Image
+                src={logo}
+                alt=""
+                width={32}
+                height={32}
+                densities={[1, 2, 3]}
+                class="h-8 w-8 rounded-full"
+              />
+              <div>
+                <div class="text-[11px] text-body-200">{preview.greeting}</div>
+                <div class="font-display text-[15px] font-extrabold text-ink-900">
+                  {preview.userName}
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="rounded-[18px] bg-[linear-gradient(135deg,#22a024,#2fb531)] p-[16px] text-white shadow-[0_12px_26px_rgba(43,168,44,0.3)]"
+            >
+              <div class="text-[11px] opacity-85">{preview.balanceLabel}</div>
+              <div class="mt-1 font-display text-2xl font-extrabold">{preview.balanceAmount}</div>
+            </div>
+
+            <div class="grid grid-cols-4 gap-1.5">
+              {
+                preview.quickActions.map((action) => (
+                  <div class="flex flex-col items-center gap-1.5">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-brand-600/10">
+                      <Icon name={action.icon} size={17} color="#1f8f22" />
+                    </div>
+                    <span class="text-center text-[8.5px] leading-tight font-semibold text-body-400">
+                      {action.label}
+                    </span>
+                  </div>
+                ))
+              }
+            </div>
+
+            <div class="flex flex-1 flex-col gap-2 overflow-hidden">
+              {
+                preview.items.map((item) => (
+                  <div class="flex items-center gap-2.5 rounded-2xl border border-ink-900/7 bg-white px-3 py-2.5">
+                    <div class="h-8 w-8 flex-none rounded-[9px] bg-brand-600/12" />
+                    <div class="min-w-0 flex-1">
+                      <div class="truncate text-xs font-bold text-ink-900">{item.title}</div>
+                      <div class="truncate text-[10px] text-body-200">{item.subtitle}</div>
+                    </div>
+                    <div class="flex-none text-xs font-bold text-brand-800">{item.trailing}</div>
+                  </div>
+                ))
+              }
             </div>
           </div>
-          <div class="mt-[18px] flex flex-col gap-2.5 pb-6">
+
+          <div
+            class="flex items-center justify-around border-t border-ink-900/6 bg-white/70 py-2.5 backdrop-blur-md"
+          >
             {
-              mobileAppHero.preview.items.map((item) => (
-                <div class="flex items-center gap-[11px] rounded-2xl border border-ink-900/7 bg-white px-[13px] py-[11px]">
-                  <div class="h-8 w-8 flex-none rounded-[9px] bg-brand-600/12" />
-                  <div class="flex-1">
-                    <div class="text-xs font-bold text-ink-900">{item.title}</div>
-                    <div class="text-[10px] text-body-200">{item.subtitle}</div>
-                  </div>
-                  <div class="text-xs font-bold text-brand-800">{item.trailing}</div>
+              preview.navTabs.map((tab, index) => (
+                <div
+                  class:list={[
+                    'flex flex-col items-center gap-1',
+                    index === 0 ? 'text-brand-800' : 'text-body-200',
+                  ]}
+                >
+                  <Icon name={tab.icon} size={16} color={index === 0 ? '#1f8f22' : '#9aa89f'} />
+                  <span class="text-[8px] font-semibold">{tab.label}</span>
                 </div>
               ))
             }

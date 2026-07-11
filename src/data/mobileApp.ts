@@ -8,16 +8,31 @@ export const mobileAppHero = {
   // Reemplazar por los enlaces reales de las tiendas cuando la app esté publicada.
   appStoreUrl: '#',
   googlePlayUrl: '#',
-  // Contenido decorativo del mockup de teléfono en el hero.
+  // Contenido decorativo del mockup de teléfono en el hero (pantalla de inicio ilustrativa).
   preview: {
+    // Hora decorativa mostrada en la barra de estado del mockup.
+    time: '9:41',
     greeting: 'Buenos días,',
     userName: 'María R.',
     balanceLabel: 'Balance total',
     balanceAmount: 'RD$ 248,750',
+    quickActions: [
+      { label: 'Transferir', icon: 'transfer' },
+      { label: 'Pagar', icon: 'briefcaseLoan' },
+      { label: 'Depositar', icon: 'coin' },
+      { label: 'Más', icon: 'grid' },
+    ] as const,
     items: [
       { title: 'Ahorro programado', subtitle: 'Meta: RD$300,000', trailing: '83%' },
       { title: 'Certificado 90d', subtitle: 'Vence 12 sep', trailing: '+7.5%' },
     ],
+    // Barra de navegación inferior del mockup.
+    navTabs: [
+      { label: 'Inicio', icon: 'buildingSimple' },
+      { label: 'Movimientos', icon: 'chartGrowth' },
+      { label: 'Tarjetas', icon: 'document' },
+      { label: 'Perfil', icon: 'user' },
+    ] as const,
   },
 };
 
