@@ -1,6 +1,12 @@
+import type { ImageMetadata } from 'astro';
 import type { IconCard } from '@shared/types/content';
 import type { IconName } from '@shared/config/icons';
 import { siteConfig } from './siteConfig';
+import aboutTeaserImage from '@assets/images/about-team-collaboration.webp';
+import historyHeroImage from '@assets/images/history-founding-handshake.webp';
+import historyMilestonePlanning from '@assets/images/history-milestone-planning.webp';
+import historyMilestoneGrowth from '@assets/images/history-milestone-growth.webp';
+import missionImage from '@assets/images/mission-advisory-consultation.webp';
 
 /** Home → sección "Sobre nosotros" (teaser), mini íconos Misión/Visión/Valores/Comunidad. */
 export const aboutTeaserPoints: { title: string; icon: IconName }[] = [
@@ -17,9 +23,8 @@ export const aboutTeaser = {
   description:
     'Nacimos en 2001 con un grupo de familias que decidieron ahorrar juntas. Hoy somos una de las cooperativas de ahorro y crédito más sólidas de la región, pero seguimos rigiéndonos por el mismo principio: las personas antes que las ganancias.',
   image: {
-    // Reemplazar por una fotografía real del equipo/oficinas.
-    src: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80',
-    alt: 'Equipo de colaboradores de COOPCASA',
+    src: aboutTeaserImage,
+    alt: 'Equipo de colaboradores de COOPCASA conversando en una reunión de trabajo',
   },
   // Reemplazar con los años reales de operación.
   yearsBadge: { value: '25', caption: 'años impulsando el cooperativismo' },
@@ -34,9 +39,8 @@ export const historyHero = {
   description:
     'Lo que comenzó como el sueño de un grupo de familias es hoy una de las cooperativas más queridas de la región. Este es el camino que hemos recorrido juntos.',
   image: {
-    // Reemplazar por una fotografía real de la comunidad/socios.
-    src: 'https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800&q=80',
-    alt: 'Comunidad de socios de COOPCASA',
+    src: historyHeroImage,
+    alt: 'Apretón de manos que simboliza la confianza fundacional de COOPCASA',
   },
 };
 
@@ -77,6 +81,8 @@ export interface TimelineEntry {
   title: string;
   description: string;
   icon: IconName;
+  /** Fotografía opcional; solo algunos hitos la llevan para variar el ritmo visual del timeline. */
+  image?: { src: ImageMetadata; alt: string };
 }
 
 // Reemplazar con los hitos reales de la cooperativa.
@@ -94,6 +100,10 @@ export const timeline: TimelineEntry[] = [
     description:
       'Abrimos nuestra primera oficina y superamos los 1,000 socios, consolidando la confianza de la comunidad.',
     icon: 'building',
+    image: {
+      src: historyMilestonePlanning,
+      alt: 'Equipo planificando la apertura de la primera sucursal con reportes y gráficos',
+    },
   },
   {
     year: '2015',
@@ -101,6 +111,10 @@ export const timeline: TimelineEntry[] = [
     description:
       'Llegamos a nuevas provincias y lanzamos nuestros programas de educación financiera gratuita.',
     icon: 'mapPin',
+    image: {
+      src: historyMilestoneGrowth,
+      alt: 'Equipo celebrando la expansión de la cooperativa a nuevas provincias',
+    },
   },
   {
     year: '2021',
@@ -129,40 +143,40 @@ export const mvvHero = {
   description: 'El propósito que nos mueve y los principios que guían cada decisión en COOPCASA.',
 };
 
-export interface MvvBlock {
+interface MissionContent {
   tag: string;
   title: string;
   text: string;
   icon: IconName;
-  iconBg: string;
-  iconColor: string;
-  background: string;
-  blobPosition: 'top-right' | 'bottom-left';
+  image: { src: ImageMetadata; alt: string };
 }
 
-// Reemplazar con la declaración de misión y visión aprobada oficialmente.
-export const mvvBlocks: MvvBlock[] = [
-  {
-    tag: 'Nuestra misión',
-    title: 'Impulsar el bienestar financiero de nuestra gente',
-    text: 'Ofrecer servicios financieros justos, accesibles y humanos que impulsen el progreso de nuestros socios y sus familias, fortaleciendo el desarrollo económico y social de la comunidad.',
-    icon: 'layers',
-    iconBg: 'bg-[linear-gradient(135deg,#22a024,#2fb531)]',
-    iconColor: '#fff',
-    background: 'linear-gradient(135deg,#fbfdfb,#fff)',
-    blobPosition: 'top-right',
+/** Misión: bloque partido imagen/texto (features/about/components/MvvBlocks.astro). */
+export const missionContent: MissionContent = {
+  tag: 'Nuestra misión',
+  title: 'Impulsar el bienestar financiero de nuestra gente',
+  text: 'Ofrecer servicios financieros justos, accesibles y humanos que impulsen el progreso de nuestros socios y sus familias, fortaleciendo el desarrollo económico y social de la comunidad.',
+  icon: 'layers',
+  image: {
+    src: missionImage,
+    alt: 'Asesora conversando con una socia durante una consulta financiera',
   },
-  {
-    tag: 'Nuestra visión',
-    title: 'Ser la cooperativa más confiable y cercana de la región',
-    text: 'Para 2030, ser reconocidos como la cooperativa de ahorro y crédito líder por su solidez, innovación tecnológica y, sobre todo, por la cercanía y el trato humano hacia cada uno de sus socios.',
-    icon: 'visionBig',
-    iconBg: 'bg-[linear-gradient(135deg,#f3e500,#ffe94d)]',
-    iconColor: '#8a7f00',
-    background: 'linear-gradient(135deg,#fffef2,#fff)',
-    blobPosition: 'bottom-left',
-  },
-];
+};
+
+interface VisionContent {
+  tag: string;
+  title: string;
+  text: string;
+  icon: IconName;
+}
+
+/** Visión: bloque centrado tipo "spotlight" con fondo radial (sin fotografía). */
+export const visionContent: VisionContent = {
+  tag: 'Nuestra visión',
+  title: 'Ser la cooperativa más confiable y cercana de la región',
+  text: 'Para 2030, ser reconocidos como la cooperativa de ahorro y crédito líder por su solidez, innovación tecnológica y, sobre todo, por la cercanía y el trato humano hacia cada uno de sus socios.',
+  icon: 'visionBig',
+};
 
 export const valuesSection = {
   eyebrow: 'Valores institucionales',

@@ -5,7 +5,7 @@ import { values, valuesSection } from '@data/about';
 
 <section class="px-5 pt-12 pb-20 lg:px-8 lg:pb-[88px]">
   <div class="mx-auto max-w-[1220px]">
-    <div class="mx-auto mb-11 max-w-[560px] text-center">
+    <div data-reveal="up" class="mx-auto mb-11 max-w-[560px] text-center">
       <div class="mb-3 text-[13px] font-bold tracking-[0.1em] text-brand-800 uppercase">
         {valuesSection.eyebrow}
       </div>
@@ -16,21 +16,47 @@ import { values, valuesSection } from '@data/about';
 
     <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {
-        values.map((value) => (
-          <div class="rounded-[20px] border border-ink-900/8 bg-white p-[26px] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-600/30 hover:shadow-[0_18px_44px_rgba(13,31,20,0.1)]">
+        values.map((value, index) => (
+          <div
+            data-reveal="up"
+            style={{ transitionDelay: `${(index % 3) * 90}ms` }}
+            tabindex="0"
+            class="group rounded-[20px] border border-ink-900/8 bg-white p-[26px] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-600/30 hover:shadow-[0_18px_44px_rgba(13,31,20,0.1)] focus:-translate-y-1.5 focus:border-brand-600/30 focus:shadow-[0_18px_44px_rgba(13,31,20,0.1)] focus:outline-none"
+          >
             <div
               class:list={[
-                'mb-[18px] flex h-[50px] w-[50px] items-center justify-center rounded-2xl',
+                'mb-[18px] flex h-[50px] w-[50px] items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110 group-focus:scale-110',
                 value.iconBg,
               ]}
             >
               <Icon name={value.icon} size={24} color={value.iconColor} />
             </div>
             <h3 class="mb-2 text-lg font-bold text-ink-900">{value.title}</h3>
-            <p class="text-sm leading-relaxed text-body-400">{value.description}</p>
+            <div class="value-reveal">
+              <p class="overflow-hidden text-sm leading-relaxed text-body-400">
+                {value.description}
+              </p>
+            </div>
           </div>
         ))
       }
     </div>
   </div>
 </section>
+
+<style>
+  /* La descripción queda visible por defecto (incluida en dispositivos
+     táctiles); solo se colapsa y revela con hover/foco en dispositivos con
+     mouse real, para no esconder contenido a quien no puede "hacer hover". */
+  @media (hover: hover) and (pointer: fine) {
+    .value-reveal {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.3s ease-out;
+    }
+    .group:hover .value-reveal,
+    .group:focus .value-reveal {
+      grid-template-rows: 1fr;
+    }
+  }
+</style>

@@ -6,6 +6,8 @@ import { formatStatValue } from '@shared/utils/formatNumber';
 
 <section class="px-5 pt-8 pb-20 lg:px-8">
   <div
+    data-stats-root
+    data-reveal="up"
     class="relative mx-auto max-w-[1220px] overflow-hidden rounded-[32px] bg-[linear-gradient(135deg,#0d1f14,#14361b)] p-7 sm:p-10 lg:p-14"
   >
     <div
@@ -21,8 +23,14 @@ import { formatStatValue } from '@shared/utils/formatNumber';
       {
         stats.map((stat) => (
           <div class="rounded-[20px] border border-white/10 bg-white/6 px-5 py-7 text-center backdrop-blur-md">
-            <div class="bg-[linear-gradient(120deg,#7ee05a,#f3e500)] bg-clip-text font-display text-[28px] leading-none font-extrabold tracking-tight text-transparent sm:text-[38px]">
-              {formatStatValue(stat.target, {
+            <div
+              data-stat-target={stat.target}
+              data-stat-prefix={stat.prefix ?? ''}
+              data-stat-suffix={stat.suffix ?? ''}
+              data-stat-decimals={stat.decimals ?? 0}
+              class="bg-[linear-gradient(120deg,#7ee05a,#f3e500)] bg-clip-text font-display text-[28px] leading-none font-extrabold tracking-tight text-transparent sm:text-[38px]"
+            >
+              {formatStatValue(0, {
                 prefix: stat.prefix,
                 suffix: stat.suffix,
                 decimals: stat.decimals,
@@ -35,3 +43,9 @@ import { formatStatValue } from '@shared/utils/formatNumber';
     </div>
   </div>
 </section>
+
+<script>
+  import { initCountUp } from '@shared/utils/countUp';
+
+  document.querySelectorAll<HTMLElement>('[data-stats-root]').forEach((root) => initCountUp(root));
+</script>

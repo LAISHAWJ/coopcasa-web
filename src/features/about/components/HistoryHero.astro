@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import BackLink from '@shared/components/BackLink.astro';
 import { historyHero } from '@data/about';
 ---
@@ -13,7 +14,7 @@ import { historyHero } from '@data/about';
   <div
     class="relative z-[1] mx-auto grid max-w-[1220px] items-center gap-10 lg:grid-cols-[1fr_0.9fr] lg:gap-[52px]"
   >
-    <div>
+    <div class="animate-fadeup">
       <BackLink class="mb-[18px]" />
       <div class="mb-3.5 text-[13px] font-bold tracking-[0.1em] text-brand-800 uppercase">
         {historyHero.eyebrow}
@@ -26,11 +27,13 @@ import { historyHero } from '@data/about';
       <p class="text-lg leading-[1.7] text-body-500">{historyHero.description}</p>
     </div>
     <div
-      class="h-[280px] overflow-hidden rounded-[26px] shadow-[0_26px_60px_rgba(13,31,20,0.16)] sm:h-[340px] lg:h-[400px]"
+      class="animate-fadeup h-[280px] overflow-hidden rounded-[26px] shadow-[0_26px_60px_rgba(13,31,20,0.16)] [animation-delay:120ms] sm:h-[340px] lg:h-[400px]"
     >
-      <img
+      <Image
         src={historyHero.image.src}
         alt={historyHero.image.alt}
+        width={700}
+        height={400}
         loading="eager"
         fetchpriority="high"
         class="h-full w-full object-cover"

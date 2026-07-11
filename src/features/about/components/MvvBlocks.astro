@@ -1,49 +1,64 @@
 ---
+import { Image } from 'astro:assets';
 import Icon from '@shared/ui/Icon.astro';
-import { mvvBlocks } from '@data/about';
+import { missionContent, visionContent } from '@data/about';
 ---
 
 <section class="px-5 pt-8 pb-5 lg:px-8">
-  <div class="mx-auto flex max-w-[1080px] flex-col gap-6">
-    {
-      mvvBlocks.map((block) => (
-        <div
-          class="relative overflow-hidden rounded-[26px] border border-ink-900/8 p-7 shadow-[0_8px_30px_rgba(13,31,20,0.05)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_44px_rgba(13,31,20,0.1)] sm:p-10"
-          style={{ background: block.background }}
-        >
-          <div
-            class:list={[
-              'pointer-events-none absolute h-[220px] w-[220px] rounded-full bg-[radial-gradient(circle,rgba(43,168,44,0.16),transparent_65%)] sm:h-[280px] sm:w-[280px]',
-              block.blobPosition === 'top-right' ? '-top-20 -right-14' : '-bottom-20 -left-14',
-            ]}
+  <div class="mx-auto flex max-w-[1080px] flex-col gap-8">
+    <!-- Misión: bloque partido imagen/texto. -->
+    <div class="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
+      <div data-reveal="left" class="relative">
+        <div class="overflow-hidden rounded-[26px] shadow-[0_20px_50px_rgba(13,31,20,0.14)]">
+          <Image
+            src={missionContent.image.src}
+            alt={missionContent.image.alt}
+            width={640}
+            height={480}
+            loading="lazy"
+            class="h-[260px] w-full object-cover sm:h-[320px]"
           />
-          <div class="relative z-[1] grid grid-cols-1 items-center gap-6 sm:grid-cols-[100px_1fr] sm:gap-8">
-            <div
-              class:list={[
-                'flex h-[72px] w-[72px] items-center justify-center rounded-3xl sm:h-[88px] sm:w-[88px]',
-                block.iconBg,
-              ]}
-            >
-              <Icon
-                name={block.icon}
-                size={36}
-                color={block.iconColor}
-                strokeWidth={1.8}
-                class="sm:h-10 sm:w-10"
-              />
-            </div>
-            <div>
-              <div class="mb-2.5 text-[13px] font-bold tracking-[0.1em] text-brand-800 uppercase">
-                {block.tag}
-              </div>
-              <h2 class="mb-3 text-2xl font-extrabold tracking-tight text-ink-900 sm:text-[28px]">
-                {block.title}
-              </h2>
-              <p class="text-[16.5px] leading-relaxed text-body-500">{block.text}</p>
-            </div>
-          </div>
         </div>
-      ))
-    }
+        <div
+          class="absolute -bottom-6 left-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#22a024,#2fb531)] shadow-[0_14px_30px_rgba(43,168,44,0.35)]"
+        >
+          <Icon name={missionContent.icon} size={30} color="#fff" strokeWidth={1.8} />
+        </div>
+      </div>
+      <div data-reveal="right" class="[animation-delay:80ms]">
+        <div class="mb-2.5 text-[13px] font-bold tracking-[0.1em] text-brand-800 uppercase">
+          {missionContent.tag}
+        </div>
+        <h2 class="mb-3 text-2xl font-extrabold tracking-tight text-ink-900 sm:text-[28px]">
+          {missionContent.title}
+        </h2>
+        <p class="text-[16.5px] leading-relaxed text-body-500">{missionContent.text}</p>
+      </div>
+    </div>
+
+    <!-- Visión: bloque centrado tipo "spotlight" con fondo radial, sin fotografía. -->
+    <div
+      data-reveal="up"
+      class="relative overflow-hidden rounded-[28px] bg-[linear-gradient(135deg,#fffef2,#fff)] px-7 py-14 text-center shadow-[0_8px_30px_rgba(13,31,20,0.05)] sm:px-10 sm:py-16"
+    >
+      <div
+        class="pointer-events-none absolute top-1/2 left-1/2 h-[320px] w-[320px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(243,229,0,0.22),transparent_68%)]"
+      >
+      </div>
+      <div class="relative z-[1] mx-auto flex max-w-[620px] flex-col items-center">
+        <div
+          class="mb-6 flex h-[88px] w-[88px] items-center justify-center rounded-full bg-[linear-gradient(135deg,#f3e500,#ffe94d)] shadow-[0_14px_34px_rgba(243,229,0,0.4)]"
+        >
+          <Icon name={visionContent.icon} size={40} color="#8a7f00" strokeWidth={1.6} />
+        </div>
+        <div class="mb-2.5 text-[13px] font-bold tracking-[0.1em] text-gold-800 uppercase">
+          {visionContent.tag}
+        </div>
+        <h2 class="mb-3 text-2xl font-extrabold tracking-tight text-ink-900 sm:text-[28px]">
+          {visionContent.title}
+        </h2>
+        <p class="text-[16.5px] leading-relaxed text-body-500">{visionContent.text}</p>
+      </div>
+    </div>
   </div>
 </section>
