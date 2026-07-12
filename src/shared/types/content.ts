@@ -26,4 +26,5 @@ export interface StatItem {
   suffix?: string;
   /** Decimales a mostrar (0 por defecto). */
   decimals?: number;
+  icon: IconName;
 }
