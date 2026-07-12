@@ -1,3 +1,5 @@
+import type { IconName } from '@shared/config/icons';
+
 /** Home → sección de servicios (encabezado; las tarjetas viven en data/services.ts). */
 export const servicesSection = {
   eyebrow: 'Productos y Servicios',
@@ -16,13 +18,34 @@ export const statsSection = {
 export const appPromo = {
   badge: 'Nueva App Móvil',
   title: 'Tu cooperativa en el bolsillo',
+  subtitle: 'Todo tu dinero, siempre a un toque de distancia.',
   description:
     'Ahorra, transfiere y paga tus préstamos desde donde estés. Descubre todo lo que la App de COOPCASA puede hacer por ti.',
+  // Mini-features destacadas (con ícono) mostradas entre la descripción y el CTA.
+  features: [
+    { icon: 'transfer', label: 'Transferencias al instante' },
+    { icon: 'coin', label: 'Ahorro programado automático' },
+    { icon: 'lock', label: 'Acceso seguro con huella o Face ID' },
+  ] as { icon: IconName; label: string }[],
   ctaLabel: 'Conocer la App',
+  // Reemplazar por los enlaces reales de las tiendas cuando la app esté publicada.
+  appStoreUrl: '#',
+  googlePlayUrl: '#',
+  // Contenido decorativo del mockup de teléfono en esta sección (pantalla de inicio ilustrativa).
   preview: {
     userName: 'Hola, María',
     balanceLabel: 'Balance total',
     balanceAmount: 'RD$ 248,750',
+    quickActions: [
+      { label: 'Transferir', icon: 'transfer' },
+      { label: 'Pagar', icon: 'briefcaseLoan' },
+      { label: 'Depositar', icon: 'coin' },
+    ] as { label: string; icon: IconName }[],
+    transaction: {
+      title: 'Pago recibido',
+      subtitle: 'Depósito de nómina',
+      trailing: '+RD$18,500',
+    },
   },
 };
 

@@ -2,6 +2,8 @@
 import { Image } from 'astro:assets';
 import logo from '@assets/images/coopcasa-logo.png';
 import Button from '@shared/ui/Button.astro';
+import Icon from '@shared/ui/Icon.astro';
+import StoreBadgeLink from '@features/mobile-app/components/StoreBadgeLink.astro';
 import { appPromo } from '@data/home';
 ---
 
@@ -25,14 +27,47 @@ import { appPromo } from '@data/home';
         {appPromo.badge}
       </div>
       <h2
-        class="mb-3.5 text-[28px] leading-[1.1] font-extrabold tracking-tight text-white sm:text-[34px]"
+        class="mb-2.5 text-[28px] leading-[1.1] font-extrabold tracking-tight text-white sm:text-[34px]"
       >
         {appPromo.title}
       </h2>
-      <p class="mb-[26px] max-w-[420px] text-base leading-relaxed text-white/72">
+      <p class="mb-3.5 max-w-[420px] text-lg font-semibold text-brand-200">
+        {appPromo.subtitle}
+      </p>
+      <p class="mb-[22px] max-w-[420px] text-base leading-relaxed text-white/72">
         {appPromo.description}
       </p>
-      <Button href="/app-movil" variant="inverse" icon="arrowRight">{appPromo.ctaLabel}</Button>
+      <div class="mb-[26px] flex flex-col gap-2.5">
+        {
+          appPromo.features.map((feature) => (
+            <div class="flex items-center gap-2.5 text-[14.5px] font-medium text-white/90">
+              <span class="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-white/10">
+                <Icon name={feature.icon} size={14} color="#7ee05a" strokeWidth={2.4} />
+              </span>
+              {feature.label}
+            </div>
+          ))
+        }
+      </div>
+      <div class="flex flex-wrap items-center gap-3.5">
+        <Button href="/app-movil" variant="inverse" icon="arrowRight">{appPromo.ctaLabel}</Button>
+      </div>
+      <div class="mt-[22px] flex flex-wrap gap-2.5">
+        <StoreBadgeLink
+          href={appPromo.appStoreUrl}
+          icon="appleLogo"
+          iconColor="#0d1f14"
+          storeLabel="Descárgala en"
+          storeName="App Store"
+        />
+        <StoreBadgeLink
+          href={appPromo.googlePlayUrl}
+          icon="googlePlay"
+          iconColor="#0d1f14"
+          storeLabel="Disponible en"
+          storeName="Google Play"
+        />
+      </div>
     </div>
 
     <div
@@ -72,9 +107,37 @@ import { appPromo } from '@data/home';
               {appPromo.preview.balanceAmount}
             </div>
           </div>
-          <div class="mt-4 flex flex-1 flex-col gap-2.5">
-            <div class="h-10 rounded-xl border border-ink-900/7 bg-white"></div>
-            <div class="h-10 rounded-xl border border-ink-900/7 bg-white"></div>
+          <div class="mt-4 grid grid-cols-3 gap-1.5">
+            {
+              appPromo.preview.quickActions.map((action) => (
+                <div class="flex flex-col items-center gap-1.5">
+                  <div class="flex h-9 w-9 items-center justify-center rounded-full bg-brand-600/10">
+                    <Icon name={action.icon} size={16} color="#1f8f22" />
+                  </div>
+                  <span class="text-center text-[8.5px] leading-tight font-semibold text-body-400">
+                    {action.label}
+                  </span>
+                </div>
+              ))
+            }
+          </div>
+          <div class="mt-4 flex flex-1 flex-col justify-end pb-1">
+            <div class="flex items-center gap-2.5 rounded-2xl border border-ink-900/7 bg-white px-3 py-2.5 shadow-[0_2px_8px_rgba(13,31,20,0.05)]">
+              <div class="flex h-9 w-9 flex-none items-center justify-center rounded-[10px] bg-brand-600/12">
+                <Icon name="transfer" size={16} color="#1f8f22" />
+              </div>
+              <div class="min-w-0 flex-1">
+                <div class="truncate text-xs font-bold text-ink-900">
+                  {appPromo.preview.transaction.title}
+                </div>
+                <div class="truncate text-[10px] text-body-200">
+                  {appPromo.preview.transaction.subtitle}
+                </div>
+              </div>
+              <div class="flex-none text-xs font-bold text-brand-800">
+                {appPromo.preview.transaction.trailing}
+              </div>
+            </div>
           </div>
         </div>
       </div>
