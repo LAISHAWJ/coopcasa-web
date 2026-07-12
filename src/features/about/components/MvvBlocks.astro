@@ -5,18 +5,18 @@ import { missionContent, visionContent } from '@data/about';
 ---
 
 <section class="px-5 pt-8 pb-5 lg:px-8">
-  <div class="mx-auto flex max-w-[1080px] flex-col gap-8">
-    <!-- Misión: bloque partido imagen/texto. -->
-    <div class="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
+  <div class="mx-auto flex max-w-[1180px] flex-col gap-8">
+    <!-- Misión: asimétrica, con el ícono como tipografía/textura de fondo. -->
+    <div class="relative grid grid-cols-1 items-center gap-10 overflow-hidden lg:grid-cols-[1fr_1.05fr] lg:gap-6">
       <div data-reveal="left" class="relative">
-        <div class="overflow-hidden rounded-[26px] shadow-[0_20px_50px_rgba(13,31,20,0.14)]">
+        <div class="overflow-hidden rounded-[28px] shadow-[0_24px_54px_rgba(13,31,20,0.16)]">
           <Image
             src={missionContent.image.src}
             alt={missionContent.image.alt}
-            width={640}
-            height={480}
+            width={680}
+            height={560}
             loading="lazy"
-            class="h-[260px] w-full object-cover sm:h-[320px]"
+            class="h-[300px] w-full object-cover sm:h-[420px] lg:h-[460px]"
           />
         </div>
         <div
@@ -25,24 +25,39 @@ import { missionContent, visionContent } from '@data/about';
           <Icon name={missionContent.icon} size={30} color="#fff" strokeWidth={1.8} />
         </div>
       </div>
-      <div data-reveal="right" class="[transition-delay:80ms]">
-        <div class="mb-2.5 text-[13px] font-bold tracking-[0.1em] text-brand-800 uppercase">
+      <div data-reveal="right" class="relative [transition-delay:80ms] lg:pt-10 lg:pl-10">
+        <Icon
+          name={missionContent.icon}
+          size={220}
+          color="#2ba82c"
+          strokeWidth={0.6}
+          class="pointer-events-none absolute -top-6 -right-4 opacity-[0.07] sm:opacity-[0.09] lg:-right-10"
+        />
+        <div class="relative mb-2.5 text-[13px] font-bold tracking-[0.1em] text-brand-800 uppercase">
           {missionContent.tag}
         </div>
-        <h2 class="mb-3 text-2xl font-extrabold tracking-tight text-ink-900 sm:text-[28px]">
+        <h2 class="relative mb-3 text-2xl font-extrabold tracking-tight text-ink-900 sm:text-[30px]">
           {missionContent.title}
         </h2>
-        <p class="text-[16.5px] leading-relaxed text-body-500">{missionContent.text}</p>
+        <p class="relative max-w-[440px] text-[16.5px] leading-relaxed text-body-500">
+          {missionContent.text}
+        </p>
       </div>
     </div>
 
-    <!-- Visión: bloque centrado tipo "spotlight" con fondo radial, sin fotografía. -->
+    <!-- Visión: banda oscura con el año objetivo como tipografía grande de fondo. -->
     <div
       data-reveal="up"
-      class="relative overflow-hidden rounded-[28px] bg-[linear-gradient(135deg,#fffef2,#fff)] px-7 py-14 text-center shadow-[0_8px_30px_rgba(13,31,20,0.05)] sm:px-10 sm:py-16"
+      class="relative overflow-hidden rounded-[28px] bg-[linear-gradient(135deg,#0d1f14,#14361b)] px-7 py-16 text-center shadow-[0_20px_50px_rgba(13,31,20,0.25)] sm:px-10 sm:py-20"
     >
+      <span
+        aria-hidden="true"
+        class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[140px] leading-none font-extrabold text-white/[0.05] select-none sm:text-[220px] lg:text-[280px]"
+      >
+        {visionContent.targetYear}
+      </span>
       <div
-        class="pointer-events-none absolute top-1/2 left-1/2 h-[320px] w-[320px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(243,229,0,0.22),transparent_68%)]"
+        class="pointer-events-none absolute top-1/2 left-1/2 h-[320px] w-[320px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(243,229,0,0.16),transparent_68%)]"
       >
       </div>
       <div class="relative z-[1] mx-auto flex max-w-[620px] flex-col items-center">
@@ -51,13 +66,13 @@ import { missionContent, visionContent } from '@data/about';
         >
           <Icon name={visionContent.icon} size={40} color="#8a7f00" strokeWidth={1.6} />
         </div>
-        <div class="mb-2.5 text-[13px] font-bold tracking-[0.1em] text-gold-800 uppercase">
+        <div class="mb-2.5 text-[13px] font-bold tracking-[0.1em] text-gold-400 uppercase">
           {visionContent.tag}
         </div>
-        <h2 class="mb-3 text-2xl font-extrabold tracking-tight text-ink-900 sm:text-[28px]">
+        <h2 class="mb-3 text-2xl font-extrabold tracking-tight text-white sm:text-[30px]">
           {visionContent.title}
         </h2>
-        <p class="text-[16.5px] leading-relaxed text-body-500">{visionContent.text}</p>
+        <p class="text-[16.5px] leading-relaxed text-white/75">{visionContent.text}</p>
       </div>
     </div>
   </div>

@@ -32,12 +32,23 @@ export const aboutTeaser = {
   mvvCtaLabel: 'Misión, Visión y Valores',
 };
 
-/** Página "Historia" → hero + timeline. */
+/** Página "Historia" → hero (solo texto; el impacto visual llega en FoundingSpotlight). */
 export const historyHero = {
   eyebrow: 'Conócenos',
   title: 'Nuestra historia',
   description:
     'Lo que comenzó como el sueño de un grupo de familias es hoy una de las cooperativas más queridas de la región. Este es el camino que hemos recorrido juntos.',
+};
+
+/**
+ * Página "Historia" → bloque fundacional asimétrico (features/about/components/FoundingSpotlight.astro).
+ * El "yearLabel" se usa además como tipografía grande de fondo.
+ */
+export const foundingStory = {
+  yearLabel: '2001',
+  eyebrow: 'Nuestros orígenes',
+  title: 'Nace COOPCASA',
+  text: 'Un grupo de 30 familias funda la cooperativa con el sueño de ahorrar juntas y apoyarse mutuamente. Empezamos con una idea simple: que cada aporte, sin importar su tamaño, valiera lo mismo para todos. Esa idea sigue siendo el corazón de COOPCASA.',
   image: {
     src: historyHeroImage,
     alt: 'Apretón de manos que simboliza la confianza fundacional de COOPCASA',
@@ -76,29 +87,27 @@ export const institutionalFacts: InstitutionalFact[] = [
   },
 ];
 
-export interface TimelineEntry {
-  year: string;
+export interface GrowthChapter {
+  yearLabel: string;
   title: string;
   description: string;
   icon: IconName;
-  /** Fotografía opcional; solo algunos hitos la llevan para variar el ritmo visual del timeline. */
+  /** Fotografía opcional; el capítulo sin foto usa un tratamiento de color + ícono grande. */
   image?: { src: ImageMetadata; alt: string };
 }
 
-// Reemplazar con los hitos reales de la cooperativa.
-export const timeline: TimelineEntry[] = [
+/**
+ * Página "Historia" → capítulos de crecimiento (features/about/components/GrowthChapters.astro).
+ * Cada capítulo es una sección full-width con su propio tratamiento visual (no una tarjeta
+ * repetida ni un timeline conectado). El hito de 2026 se consolidó con la banda de cifras
+ * (InstitutionalNumbers) para no duplicar el dato de "+12,500 socios".
+ */
+export const growthChapters: GrowthChapter[] = [
   {
-    year: '2001',
-    title: 'Nace COOPCASA',
-    description:
-      'Un grupo de 30 familias funda la cooperativa con el sueño de ahorrar juntas y apoyarse mutuamente.',
-    icon: 'heart',
-  },
-  {
-    year: '2008',
+    yearLabel: '2008',
     title: 'Primera sucursal propia',
     description:
-      'Abrimos nuestra primera oficina y superamos los 1,000 socios, consolidando la confianza de la comunidad.',
+      'Abrimos nuestra primera oficina y superamos los 1,000 socios, consolidando la confianza de la comunidad que nos vio nacer.',
     icon: 'building',
     image: {
       src: historyMilestonePlanning,
@@ -106,10 +115,10 @@ export const timeline: TimelineEntry[] = [
     },
   },
   {
-    year: '2015',
+    yearLabel: '2015',
     title: 'Expansión regional',
     description:
-      'Llegamos a nuevas provincias y lanzamos nuestros programas de educación financiera gratuita.',
+      'Llegamos a nuevas provincias y lanzamos nuestros programas de educación financiera gratuita, llevando el cooperativismo más allá de San Pedro de Macorís.',
     icon: 'mapPin',
     image: {
       src: historyMilestoneGrowth,
@@ -117,21 +126,15 @@ export const timeline: TimelineEntry[] = [
     },
   },
   {
-    year: '2021',
+    yearLabel: '2021',
     title: 'Transformación digital',
     description:
-      'Estrenamos la Oficina Virtual y la App móvil, acercando la cooperativa a cada socio 24/7.',
+      'Estrenamos la Oficina Virtual y la App móvil, acercando la cooperativa a cada socio sin importar dónde esté, las 24 horas del día.',
     icon: 'deviceMobile',
-  },
-  {
-    year: '2026',
-    title: 'Más de 12,500 socios',
-    description:
-      'Hoy gestionamos más de RD$1.8B en activos y seguimos creciendo con el mismo espíritu del primer día.',
-    icon: 'users',
   },
 ];
 
+/** Página "Historia" → banda de cifras institucionales (features/about/components/InstitutionalNumbers.astro). */
 export const historyStatsSection = {
   title: 'Nuestra evolución en números',
 };
@@ -168,14 +171,17 @@ interface VisionContent {
   title: string;
   text: string;
   icon: IconName;
+  /** Año objetivo mencionado en el texto; se usa también como tipografía grande de fondo. */
+  targetYear: string;
 }
 
-/** Visión: bloque centrado tipo "spotlight" con fondo radial (sin fotografía). */
+/** Visión: banda oscura tipo "spotlight" con el año objetivo como tipografía grande de fondo. */
 export const visionContent: VisionContent = {
   tag: 'Nuestra visión',
   title: 'Ser la cooperativa más confiable y cercana de la región',
   text: 'Para 2030, ser reconocidos como la cooperativa de ahorro y crédito líder por su solidez, innovación tecnológica y, sobre todo, por la cercanía y el trato humano hacia cada uno de sus socios.',
   icon: 'visionBig',
+  targetYear: '2030',
 };
 
 export const valuesSection = {

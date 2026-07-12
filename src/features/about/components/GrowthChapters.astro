@@ -1,0 +1,111 @@
+---
+import { Image } from 'astro:assets';
+import Icon from '@shared/ui/Icon.astro';
+import { growthChapters } from '@data/about';
+
+const [branchChapter, expansionChapter, digitalChapter] = growthChapters;
+---
+
+<section aria-label="Capítulos de crecimiento de COOPCASA">
+  <!-- 2008: foto full-bleed, texto anclado abajo-izquierda. -->
+  <div class="relative min-h-[440px] w-full overflow-hidden sm:min-h-[520px]">
+    <Image
+      src={branchChapter.image!.src}
+      alt={branchChapter.image!.alt}
+      width={1600}
+      height={900}
+      loading="lazy"
+      class="absolute inset-0 h-full w-full object-cover"
+    />
+    <div
+      class="absolute inset-0 bg-[linear-gradient(0deg,rgba(10,24,16,0.88),rgba(10,24,16,0.35)_55%,rgba(10,24,16,0.15))]"
+    >
+    </div>
+    <div
+      data-reveal="up"
+      class="relative z-[1] flex h-full min-h-[440px] items-end px-5 pb-12 sm:min-h-[520px] sm:px-10 sm:pb-16 lg:px-20"
+    >
+      <div class="max-w-[520px]">
+        <div class="mb-3 flex items-center gap-2.5">
+          <Icon name={branchChapter.icon} size={18} color="#7ee05a" strokeWidth={2.2} />
+          <span class="font-display text-sm font-bold tracking-[0.08em] text-brand-200 uppercase">
+            {branchChapter.yearLabel}
+          </span>
+        </div>
+        <h2 class="mb-3 text-[28px] leading-[1.1] font-extrabold tracking-tight text-white sm:text-[36px]">
+          {branchChapter.title}
+        </h2>
+        <p class="text-[15.5px] leading-relaxed text-white/80 sm:text-base">
+          {branchChapter.description}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2015: foto full-bleed, texto anclado abajo-derecha (alineación invertida para asimetría). -->
+  <div class="relative min-h-[440px] w-full overflow-hidden sm:min-h-[520px]">
+    <Image
+      src={expansionChapter.image!.src}
+      alt={expansionChapter.image!.alt}
+      width={1600}
+      height={900}
+      loading="lazy"
+      class="absolute inset-0 h-full w-full object-cover"
+    />
+    <div
+      class="absolute inset-0 bg-[linear-gradient(0deg,rgba(10,24,16,0.88),rgba(10,24,16,0.35)_55%,rgba(10,24,16,0.15))]"
+    >
+    </div>
+    <div
+      data-reveal="up"
+      class="relative z-[1] flex h-full min-h-[440px] items-end justify-end px-5 pb-12 text-right sm:min-h-[520px] sm:px-10 sm:pb-16 lg:px-20"
+    >
+      <div class="max-w-[520px]">
+        <div class="mb-3 flex items-center justify-end gap-2.5">
+          <span class="font-display text-sm font-bold tracking-[0.08em] text-gold-400 uppercase">
+            {expansionChapter.yearLabel}
+          </span>
+          <Icon name={expansionChapter.icon} size={18} color="#f3e500" strokeWidth={2.2} />
+        </div>
+        <h2 class="mb-3 text-[28px] leading-[1.1] font-extrabold tracking-tight text-white sm:text-[36px]">
+          {expansionChapter.title}
+        </h2>
+        <p class="text-[15.5px] leading-relaxed text-white/80 sm:text-base">
+          {expansionChapter.description}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2021: sin foto — bloque de color de marca con ícono gigante decorativo. -->
+  <div
+    class="relative min-h-[400px] w-full overflow-hidden bg-[linear-gradient(120deg,#0d1f14,#14361b_60%,#1f5230)]"
+  >
+    <Icon
+      name={digitalChapter.icon}
+      size={340}
+      color="#ffffff"
+      strokeWidth={0.7}
+      class="pointer-events-none absolute -right-16 -bottom-16 opacity-[0.07] sm:-right-10 sm:opacity-[0.09]"
+    />
+    <div
+      data-reveal="up"
+      class="relative z-[1] flex min-h-[400px] items-center px-5 py-16 sm:px-10 lg:px-20"
+    >
+      <div class="max-w-[520px]">
+        <div class="mb-3 flex items-center gap-2.5">
+          <Icon name={digitalChapter.icon} size={18} color="#7ee05a" strokeWidth={2.2} />
+          <span class="font-display text-sm font-bold tracking-[0.08em] text-brand-200 uppercase">
+            {digitalChapter.yearLabel}
+          </span>
+        </div>
+        <h2 class="mb-3 text-[28px] leading-[1.1] font-extrabold tracking-tight text-white sm:text-[36px]">
+          {digitalChapter.title}
+        </h2>
+        <p class="text-[15.5px] leading-relaxed text-white/80 sm:text-base">
+          {digitalChapter.description}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

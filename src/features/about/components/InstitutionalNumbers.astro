@@ -1,0 +1,86 @@
+---
+import Icon from '@shared/ui/Icon.astro';
+import { stats } from '@data/stats';
+import { historyStatsSection, institutionalFacts, institutionalFactsSection } from '@data/about';
+import { formatStatValue } from '@shared/utils/formatNumber';
+---
+
+<section class="px-5 pt-8 pb-20 lg:px-8">
+  <div
+    data-stats-root
+    data-reveal="up"
+    class="relative mx-auto max-w-[1220px] overflow-hidden rounded-[32px] bg-[linear-gradient(135deg,#0d1f14,#14361b)] p-7 sm:p-10 lg:p-14"
+  >
+    <div
+      class="pointer-events-none absolute -top-[100px] -right-10 h-[300px] w-[300px] rounded-full bg-[radial-gradient(circle,rgba(43,168,44,0.28),transparent_65%)] lg:h-[360px] lg:w-[360px]"
+    >
+    </div>
+
+    <div class="relative z-[1] mx-auto mb-10 max-w-[560px] text-center">
+      <h2 class="text-[26px] font-extrabold tracking-tight text-white sm:text-[32px]">
+        {historyStatsSection.title}
+      </h2>
+    </div>
+
+    <!-- Cifras como tipografía expresiva: sin cajas ni bordes, solo número + etiqueta
+         separados por una línea divisoria. -->
+    <div class="relative z-[1] grid grid-cols-2 lg:grid-cols-4">
+      {
+        stats.map((stat, index) => (
+          <div
+            class:list={[
+              'flex flex-col items-center gap-1.5 border-white/10 px-4 py-5 text-center',
+              index > 0 && 'border-t sm:border-t-0 sm:border-l',
+            ]}
+          >
+            <div
+              data-stat-target={stat.target}
+              data-stat-prefix={stat.prefix ?? ''}
+              data-stat-suffix={stat.suffix ?? ''}
+              data-stat-decimals={stat.decimals ?? 0}
+              class="bg-[linear-gradient(120deg,#7ee05a,#f3e500)] bg-clip-text font-display text-[34px] leading-none font-extrabold tracking-tight text-transparent sm:text-[46px]"
+            >
+              {formatStatValue(0, {
+                prefix: stat.prefix,
+                suffix: stat.suffix,
+                decimals: stat.decimals,
+              })}
+            </div>
+            <div class="text-[13px] font-medium text-white/72">{stat.label}</div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="relative z-[1] mt-10 border-t border-white/10 pt-8">
+      <div class="mb-1.5 text-center text-[12px] font-bold tracking-[0.1em] text-white/50 uppercase">
+        {institutionalFactsSection.eyebrow}
+      </div>
+      <p class="mb-5 text-center text-sm font-semibold text-white/80">
+        {institutionalFactsSection.title}
+      </p>
+      <div class="mx-auto flex max-w-[900px] flex-col flex-wrap items-center justify-center gap-x-10 gap-y-4 sm:flex-row">
+        {
+          institutionalFacts.map((fact) => (
+            <div class="flex max-w-[280px] items-start gap-2.5 text-left">
+              <Icon
+                name={fact.icon}
+                size={16}
+                color="#7ee05a"
+                strokeWidth={2.2}
+                class="mt-0.5 flex-none"
+              />
+              <span class="text-[13.5px] leading-snug text-white/65">{fact.value}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initCountUp } from '@shared/utils/countUp';
+
+  document.querySelectorAll<HTMLElement>('[data-stats-root]').forEach((root) => initCountUp(root));
+</script>
