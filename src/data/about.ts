@@ -1,15 +1,14 @@
 import type { ImageMetadata } from 'astro';
-import type { IconCard } from '@shared/types/content';
 import type { IconName } from '@shared/config/icons';
 import { siteConfig } from './siteConfig';
 import aboutTeaserImage from '@assets/images/about-team-collaboration.webp';
-import foundingAgreementIllustration from '@assets/images/history-founding-agreement-illustration.webp';
-import branchSearchIllustration from '@assets/images/history-branch-search-illustration.webp';
-import neighborhoodIllustration from '@assets/images/history-expansion-neighborhood-illustration.webp';
-import growthAnalyticsIllustration from '@assets/images/history-digital-growth-illustration.webp';
-import missionFamilyIllustration from '@assets/images/mission-family-illustration.webp';
-import visionWinnersIllustration from '@assets/images/vision-winners-illustration.webp';
-import valuesCollaborationIllustration from '@assets/images/values-collaboration-illustration.webp';
+import foundingHandshakePhoto from '@assets/images/fundacion-acuerdo-manos.webp';
+import branchAdvisorPhoto from '@assets/images/asesor-cliente-firma.webp';
+import teamLobbyPhoto from '@assets/images/equipo-oficina-conversando.webp';
+import digitalDeskPhoto from '@assets/images/profesional-escritorio-digital.webp';
+import missionConsultPhoto from '@assets/images/asesora-clienta-consulta.webp';
+import visionFamilyHousePhoto from '@assets/images/familia-frente-casa.webp';
+import valuesHandshakeDetailPhoto from '@assets/images/manos-apreton-confianza.webp';
 
 /** Home → sección "Sobre nosotros" (teaser), mini íconos Misión/Visión/Valores/Comunidad. */
 export const aboutTeaserPoints: { title: string; icon: IconName }[] = [
@@ -55,8 +54,8 @@ export const foundingStory = {
   // Tono "antiguo" del recorrido cronológico (ver GrowthChapters para la progresión completa).
   accentColor: '#8a7f00',
   image: {
-    src: foundingAgreementIllustration,
-    alt: 'Ilustración de dos personas estrechando la mano sobre un acuerdo firmado, símbolo de la confianza fundacional de COOPCASA',
+    src: foundingHandshakePhoto,
+    alt: 'Dos personas estrechándose la mano al aire libre, símbolo de la confianza fundacional de COOPCASA',
   },
 };
 
@@ -125,8 +124,8 @@ export const growthChapters: GrowthChapter[] = [
     icon: 'building',
     accentColor: '#2ba82c',
     image: {
-      src: branchSearchIllustration,
-      alt: 'Ilustración de una lupa enfocando una casa, representando la apertura de la primera sucursal de COOPCASA',
+      src: branchAdvisorPhoto,
+      alt: 'Asesor y clienta cerrando un acuerdo en un escritorio, representando la apertura de la primera sucursal de COOPCASA',
     },
   },
   {
@@ -137,8 +136,8 @@ export const growthChapters: GrowthChapter[] = [
     icon: 'mapPin',
     accentColor: '#5bc93a',
     image: {
-      src: neighborhoodIllustration,
-      alt: 'Ilustración de varias casas en fila, representando la expansión de COOPCASA a nuevas comunidades',
+      src: teamLobbyPhoto,
+      alt: 'Equipo de cuatro profesionales conversando en el lobby de una oficina, representando la expansión de COOPCASA a nuevas comunidades',
     },
   },
   {
@@ -149,8 +148,8 @@ export const growthChapters: GrowthChapter[] = [
     icon: 'deviceMobile',
     accentColor: '#7ee05a',
     image: {
-      src: growthAnalyticsIllustration,
-      alt: 'Ilustración de dos personas revisando una gráfica de crecimiento en una pantalla',
+      src: digitalDeskPhoto,
+      alt: 'Profesional trabajando en su escritorio, representando la transformación digital de COOPCASA',
     },
   },
 ];
@@ -185,8 +184,8 @@ export const missionContent: MissionContent = {
   icon: 'layers',
   bigWord: 'Misión',
   image: {
-    src: missionFamilyIllustration,
-    alt: 'Ilustración de una familia tomada de la mano, representando el bienestar financiero de los socios de COOPCASA',
+    src: missionConsultPhoto,
+    alt: 'Asesora de COOPCASA atendiendo a una clienta en una consulta financiera, representando el bienestar financiero de los socios',
   },
 };
 
@@ -211,8 +210,8 @@ export const visionContent: VisionContent = {
   targetYear: '2030',
   bigWord: 'Visión',
   image: {
-    src: visionWinnersIllustration,
-    alt: 'Ilustración de dos personas celebrando con las manos en alto, representando la visión de éxito compartido de COOPCASA',
+    src: visionFamilyHousePhoto,
+    alt: 'Familia caminando de la mano frente a su casa, representando la visión de progreso y futuro de los socios de COOPCASA',
   },
 };
 
@@ -220,53 +219,48 @@ export const valuesSection = {
   eyebrow: 'Valores institucionales',
   title: 'Los principios que nos definen',
   image: {
-    src: valuesCollaborationIllustration,
-    alt: 'Ilustración de un documento con tareas completadas junto a un equipo de personas, representando los valores compartidos de COOPCASA',
+    src: valuesHandshakeDetailPhoto,
+    alt: 'Detalle de un apretón de manos, representando la confianza y solidaridad como valores compartidos de COOPCASA',
   },
 };
 
+/** Valores: tipografía y color como protagonistas, sin iconografía genérica (features/about/components/ValuesBento.astro). */
+export interface ValueItem {
+  title: string;
+  description: string;
+  accentColor: string;
+}
+
 // Reemplazar con los valores institucionales reales, si difieren.
-export const values: IconCard[] = [
+export const values: ValueItem[] = [
   {
     title: 'Transparencia',
     description: 'Información clara y honesta en cada operación y decisión.',
-    icon: 'eye',
-    iconBg: 'bg-brand-600/10',
-    iconColor: '#1f8f22',
+    accentColor: '#1f8f22',
   },
   {
     title: 'Solidaridad',
     description: 'El bienestar de uno es el bienestar de todos.',
-    icon: 'heart',
-    iconBg: 'bg-gold-400/22',
-    iconColor: '#a89a00',
+    accentColor: '#a89a00',
   },
   {
     title: 'Compromiso',
     description: 'Damos lo mejor por cada socio y su familia.',
-    icon: 'check',
-    iconBg: 'bg-brand-600/10',
-    iconColor: '#1f8f22',
+    accentColor: '#1f8f22',
   },
   {
     title: 'Equidad',
     description: 'Las mismas oportunidades y trato justo para todos.',
-    icon: 'scale',
-    iconBg: 'bg-gold-400/22',
-    iconColor: '#a89a00',
+    accentColor: '#a89a00',
   },
   {
     title: 'Cercanía',
     description: 'Trato humano y personalizado en cada interacción.',
-    icon: 'chat',
-    iconBg: 'bg-brand-600/10',
-    iconColor: '#1f8f22',
+    accentColor: '#1f8f22',
   },
   {
     title: 'Responsabilidad',
     description: 'Cuidamos el patrimonio de nuestros socios y la comunidad.',
-    icon: 'shield',
-    iconBg: 'bg-gold-400/22',
-    iconColor: '#a89a00',
+    accentColor: '#a89a00',
   },
 ];

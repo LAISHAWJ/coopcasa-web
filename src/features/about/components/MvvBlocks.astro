@@ -4,7 +4,8 @@ import { missionContent, visionContent } from '@data/about';
 ---
 
 <!-- Misión y Visión: un solo panel dividido en dos mitades (no cards separadas).
-     El contraste claro/oscuro entre ambas ES la separación visual. -->
+     El contraste claro/oscuro entre ambas ES la separación visual. En mobile,
+     una franja de transición con degradado marca el quiebre entre ambas. -->
 <section class="overflow-hidden">
   <div class="grid grid-cols-1 md:grid-cols-2">
     <!-- Misión: mitad clara. -->
@@ -19,7 +20,7 @@ import { missionContent, visionContent } from '@data/about';
         {missionContent.bigWord}
       </span>
 
-      <div class="relative z-[1] mx-auto w-full max-w-[440px] md:mx-0 md:ml-auto md:mr-4 lg:mr-8">
+      <div class="relative z-[1] mx-auto w-full max-w-[440px] md:mx-0 md:mr-4 md:ml-auto lg:mr-8">
         <div data-story="up" class="mb-2.5 text-[13px] font-bold tracking-[0.1em] text-brand-800 uppercase">
           {missionContent.tag}
         </div>
@@ -33,13 +34,20 @@ import { missionContent, visionContent } from '@data/about';
           <Image
             src={missionContent.image.src}
             alt={missionContent.image.alt}
-            width={420}
-            height={438}
+            width={560}
+            height={373}
             loading="lazy"
             class="drop-shadow-brand h-auto w-[240px] sm:w-[280px]"
           />
         </div>
       </div>
+    </div>
+
+    <!-- Transición mobile: franja de degradado entre Misión y Visión (oculta en md+). -->
+    <div
+      aria-hidden="true"
+      class="h-10 bg-[linear-gradient(180deg,#ffffff,#0d1f14)] md:hidden"
+    >
     </div>
 
     <!-- Visión: mitad oscura, contraste directo con Misión. -->
@@ -70,8 +78,8 @@ import { missionContent, visionContent } from '@data/about';
           <Image
             src={visionContent.image.src}
             alt={visionContent.image.alt}
-            width={420}
-            height={422}
+            width={560}
+            height={373}
             loading="lazy"
             class="drop-shadow-gold h-auto w-[240px] sm:w-[280px]"
           />
@@ -82,7 +90,7 @@ import { missionContent, visionContent } from '@data/about';
 </section>
 
 <style>
-  /* Sombra suave que sigue el contorno real de la ilustración (canal alpha),
+  /* Sombra suave que sigue el contorno real de la foto (canal alpha),
      no una sombra rectangular. Dos capas: una ajustada y una más difusa. */
   .drop-shadow-brand {
     filter:
@@ -95,7 +103,7 @@ import { missionContent, visionContent } from '@data/about';
       drop-shadow(0 22px 30px rgba(243, 229, 0, 0.14));
   }
 
-  /* Flotación continua sutil, reforzando que la imagen no tiene marco/fondo. */
+  /* Flotación continua sutil, reforzando que la foto no tiene marco/fondo. */
   @media (prefers-reduced-motion: no-preference) {
     .float-soft {
       animation: mvv-float 6s ease-in-out infinite;

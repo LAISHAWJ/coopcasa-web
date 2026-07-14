@@ -1,15 +1,15 @@
 ---
 import { Image } from 'astro:assets';
-import Icon from '@shared/ui/Icon.astro';
 import { values, valuesSection } from '@data/about';
 
 const AREAS = ['a', 'b', 'c', 'd', 'e', 'f'];
 ---
 
 <!-- Valores: tratamiento propio y diferenciado del panel Misión/Visión de
-     arriba — fondo propio, ilustración flotante junto al encabezado, y celdas
-     sin cajas/bordes (el ícono y el título flotan directamente sobre el fondo
-     de la sección). -->
+     arriba. En vez de iconos genéricos, cada valor se apoya en tipografía
+     grande (numeración) y color de acento como elementos protagonistas; el
+     único apoyo fotográfico es un recorte de detalle (manos estrechándose)
+     junto al encabezado, no un ícono plano. -->
 <section class="relative overflow-hidden bg-surface-50 px-5 pt-16 pb-20 lg:px-8 lg:pb-28">
   <div class="mx-auto max-w-[1100px]">
     <div
@@ -28,18 +28,17 @@ const AREAS = ['a', 'b', 'c', 'd', 'e', 'f'];
         <Image
           src={valuesSection.image.src}
           alt={valuesSection.image.alt}
-          width={340}
-          height={312}
+          width={300}
+          height={200}
           loading="lazy"
-          class="drop-shadow-values h-auto w-[150px] sm:w-[190px]"
+          class="drop-shadow-values h-auto w-[150px] rounded-2xl sm:w-[190px]"
         />
       </div>
     </div>
 
     <!-- Mosaico asimétrico (no cards idénticas): un bloque grande + cinco de
-         distinto tamaño. La descripción se revela con hover/foco en
-         dispositivos con mouse real; en touch queda visible siempre, en
-         formato compacto (ver .values-bento__desc más abajo). -->
+         distinto tamaño. Cada celda lleva su número de orden en tipografía
+         grande y el color de acento como protagonista, en vez de un ícono. -->
     <div data-story-group class="values-bento">
       {
         values.map((value, index) => (
@@ -47,19 +46,24 @@ const AREAS = ['a', 'b', 'c', 'd', 'e', 'f'];
             <div
               tabindex="0"
               class:list={[
-                'group relative flex h-full flex-col justify-between rounded-[22px] p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-white/70 hover:shadow-[0_20px_44px_rgba(13,31,20,0.1)] focus:-translate-y-1 focus:bg-white/70 focus:shadow-[0_20px_44px_rgba(13,31,20,0.1)] focus:outline-none',
+                'group relative flex h-full flex-col justify-end gap-3 overflow-hidden rounded-[22px] p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-white/70 hover:shadow-[0_20px_44px_rgba(13,31,20,0.1)] focus:-translate-y-1 focus:bg-white/70 focus:shadow-[0_20px_44px_rgba(13,31,20,0.1)] focus:outline-none',
                 index === 0 ? 'sm:p-8' : '',
               ]}
             >
-              <div
+              <span
+                aria-hidden="true"
+                style={{ color: value.accentColor }}
                 class:list={[
-                  'flex flex-none items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110 group-focus:scale-110',
-                  index === 0 ? 'h-16 w-16' : 'h-12 w-12',
-                  value.iconBg,
+                  'pointer-events-none absolute -top-2 -right-1 font-display font-extrabold opacity-[0.12] transition-transform duration-300 select-none group-hover:scale-110 group-focus:scale-110',
+                  index === 0 ? 'text-[110px] sm:text-[140px]' : 'text-[80px]',
                 ]}
               >
-                <Icon name={value.icon} size={index === 0 ? 28 : 22} color={value.iconColor} />
-              </div>
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <div
+                style={{ background: value.accentColor }}
+                class="h-1 w-10 flex-none rounded-full"
+              />
               <div>
                 <h3
                   class:list={[
