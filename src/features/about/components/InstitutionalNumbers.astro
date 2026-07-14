@@ -8,7 +8,7 @@ import { formatStatValue } from '@shared/utils/formatNumber';
 <section class="px-5 pt-8 pb-20 lg:px-8">
   <div
     data-stats-root
-    data-reveal="up"
+    data-story-group
     class="relative mx-auto max-w-[1220px] overflow-hidden rounded-[32px] bg-[linear-gradient(135deg,#0d1f14,#14361b)] p-7 sm:p-10 lg:p-14"
   >
     <div
@@ -16,7 +16,7 @@ import { formatStatValue } from '@shared/utils/formatNumber';
     >
     </div>
 
-    <div class="relative z-[1] mx-auto mb-10 max-w-[560px] text-center">
+    <div data-story="up" class="relative z-[1] mx-auto mb-10 max-w-[560px] text-center">
       <h2 class="text-[26px] font-extrabold tracking-tight text-white sm:text-[32px]">
         {historyStatsSection.title}
       </h2>
@@ -24,7 +24,7 @@ import { formatStatValue } from '@shared/utils/formatNumber';
 
     <!-- Cifras como tipografía expresiva: sin cajas ni bordes, solo número + etiqueta
          separados por una línea divisoria. -->
-    <div class="relative z-[1] grid grid-cols-2 lg:grid-cols-4">
+    <div data-story="scale" class="relative z-[1] grid grid-cols-2 lg:grid-cols-4">
       {
         stats.map((stat, index) => (
           <div
@@ -52,7 +52,7 @@ import { formatStatValue } from '@shared/utils/formatNumber';
       }
     </div>
 
-    <div class="relative z-[1] mt-10 border-t border-white/10 pt-8">
+    <div data-story="up" class="relative z-[1] mt-10 border-t border-white/10 pt-8">
       <div class="mb-1.5 text-center text-[12px] font-bold tracking-[0.1em] text-white/50 uppercase">
         {institutionalFactsSection.eyebrow}
       </div>
@@ -81,6 +81,8 @@ import { formatStatValue } from '@shared/utils/formatNumber';
 
 <script>
   import { initCountUp } from '@shared/utils/countUp';
+  import { initScrollStory } from '@shared/utils/scrollStory';
 
   document.querySelectorAll<HTMLElement>('[data-stats-root]').forEach((root) => initCountUp(root));
+  initScrollStory();
 </script>

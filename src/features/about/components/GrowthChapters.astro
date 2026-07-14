@@ -7,79 +7,109 @@ const [branchChapter, expansionChapter, digitalChapter] = growthChapters;
 ---
 
 <section aria-label="Capítulos de crecimiento de COOPCASA">
-  <!-- 2008: foto full-bleed, texto anclado abajo-izquierda. -->
-  <div class="relative min-h-[440px] w-full overflow-hidden sm:min-h-[520px]">
-    <Image
-      src={branchChapter.image!.src}
-      alt={branchChapter.image!.alt}
-      width={1600}
-      height={900}
-      loading="lazy"
-      class="absolute inset-0 h-full w-full object-cover"
-    />
+  <!-- 2008: editorial claro, foto 3D flotante a la izquierda. -->
+  <div class="overflow-hidden bg-white px-5 py-20 lg:px-8 lg:py-28">
     <div
-      class="absolute inset-0 bg-[linear-gradient(0deg,rgba(10,24,16,0.88),rgba(10,24,16,0.35)_55%,rgba(10,24,16,0.15))]"
+      data-story-group
+      class="mx-auto grid max-w-[1180px] items-center gap-14 lg:grid-cols-[1fr_1.05fr] lg:gap-12"
     >
-    </div>
-    <div
-      data-reveal="up"
-      class="relative z-[1] flex h-full min-h-[440px] items-end px-5 pb-12 sm:min-h-[520px] sm:px-10 sm:pb-16 lg:px-20"
-    >
-      <div class="max-w-[520px]">
-        <div class="mb-3 flex items-center gap-2.5">
-          <Icon name={branchChapter.icon} size={18} color="#7ee05a" strokeWidth={2.2} />
-          <span class="font-display text-sm font-bold tracking-[0.08em] text-brand-200 uppercase">
-            {branchChapter.yearLabel}
-          </span>
+      <div data-story="left" class="relative mx-auto w-full max-w-[440px] lg:mx-0">
+        <div
+          data-tilt
+          data-tilt-x="4"
+          data-tilt-y="-5"
+          style={{
+            transform: 'perspective(1000px) rotateY(-5deg) rotateX(3deg)',
+            clipPath: 'polygon(0 0, 96% 0, 100% 100%, 4% 100%)',
+            boxShadow:
+              '0 10px 20px -6px rgba(13,31,20,0.16), 0 30px 55px -12px rgba(13,31,20,0.2), 0 70px 100px -24px rgba(43,168,44,0.2)',
+          }}
+          class="relative overflow-hidden transition-shadow duration-500 will-change-transform"
+        >
+          <Image
+            src={branchChapter.image!.src}
+            alt={branchChapter.image!.alt}
+            width={680}
+            height={520}
+            loading="lazy"
+            class="h-[300px] w-full object-cover sm:h-[380px]"
+          />
         </div>
-        <h2 class="mb-3 text-[28px] leading-[1.1] font-extrabold tracking-tight text-white sm:text-[36px]">
+        <div
+          class="absolute -bottom-6 left-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#22a024,#2fb531)] shadow-[0_14px_30px_rgba(43,168,44,0.4)]"
+        >
+          <Icon name={branchChapter.icon} size={24} color="#fff" strokeWidth={1.8} />
+        </div>
+      </div>
+
+      <div class="relative lg:pl-6">
+        <div data-story="up" class="mb-3.5 font-display text-sm font-bold tracking-[0.1em] text-brand-800 uppercase">
+          {branchChapter.yearLabel}
+        </div>
+        <h2 data-story="up" class="mb-4 text-[28px] leading-[1.1] font-extrabold tracking-tight text-ink-900 sm:text-[36px]">
           {branchChapter.title}
         </h2>
-        <p class="text-[15.5px] leading-relaxed text-white/80 sm:text-base">
+        <p data-story="up" class="max-w-[460px] text-lg leading-[1.7] text-body-500">
           {branchChapter.description}
         </p>
       </div>
     </div>
   </div>
 
-  <!-- 2015: foto full-bleed, texto anclado abajo-derecha (alineación invertida para asimetría). -->
-  <div class="relative min-h-[440px] w-full overflow-hidden sm:min-h-[520px]">
-    <Image
-      src={expansionChapter.image!.src}
-      alt={expansionChapter.image!.alt}
-      width={1600}
-      height={900}
-      loading="lazy"
-      class="absolute inset-0 h-full w-full object-cover"
-    />
+  <!-- 2015: editorial claro, foto 3D flotante a la derecha (alineación invertida). -->
+  <div class="overflow-hidden bg-surface-50 px-5 py-20 lg:px-8 lg:py-28">
     <div
-      class="absolute inset-0 bg-[linear-gradient(0deg,rgba(10,24,16,0.88),rgba(10,24,16,0.35)_55%,rgba(10,24,16,0.15))]"
+      data-story-group
+      class="mx-auto grid max-w-[1180px] items-center gap-14 lg:grid-cols-[1.05fr_1fr] lg:gap-12"
     >
-    </div>
-    <div
-      data-reveal="up"
-      class="relative z-[1] flex h-full min-h-[440px] items-end justify-end px-5 pb-12 text-right sm:min-h-[520px] sm:px-10 sm:pb-16 lg:px-20"
-    >
-      <div class="max-w-[520px]">
-        <div class="mb-3 flex items-center justify-end gap-2.5">
-          <span class="font-display text-sm font-bold tracking-[0.08em] text-gold-400 uppercase">
-            {expansionChapter.yearLabel}
-          </span>
-          <Icon name={expansionChapter.icon} size={18} color="#f3e500" strokeWidth={2.2} />
+      <div class="relative lg:order-1 lg:pr-6">
+        <div data-story="up" class="mb-3.5 font-display text-sm font-bold tracking-[0.1em] text-brand-800 uppercase">
+          {expansionChapter.yearLabel}
         </div>
-        <h2 class="mb-3 text-[28px] leading-[1.1] font-extrabold tracking-tight text-white sm:text-[36px]">
+        <h2 data-story="up" class="mb-4 text-[28px] leading-[1.1] font-extrabold tracking-tight text-ink-900 sm:text-[36px]">
           {expansionChapter.title}
         </h2>
-        <p class="text-[15.5px] leading-relaxed text-white/80 sm:text-base">
+        <p data-story="up" class="max-w-[460px] text-lg leading-[1.7] text-body-500">
           {expansionChapter.description}
         </p>
+      </div>
+
+      <div data-story="right" class="relative order-first mx-auto w-full max-w-[440px] lg:order-2 lg:mx-0">
+        <div
+          data-tilt
+          data-tilt-x="-4"
+          data-tilt-y="5"
+          style={{
+            transform: 'perspective(1000px) rotateY(5deg) rotateX(-4deg)',
+            clipPath: 'polygon(4% 0, 100% 0, 96% 100%, 0 100%)',
+            boxShadow:
+              '0 10px 20px -6px rgba(13,31,20,0.16), 0 30px 55px -12px rgba(13,31,20,0.2), 0 70px 100px -24px rgba(243,229,0,0.18)',
+          }}
+          class="relative overflow-hidden transition-shadow duration-500 will-change-transform"
+        >
+          <Image
+            src={expansionChapter.image!.src}
+            alt={expansionChapter.image!.alt}
+            width={680}
+            height={520}
+            loading="lazy"
+            class="h-[300px] w-full object-cover sm:h-[380px]"
+          />
+        </div>
+        <div
+          class="absolute -bottom-6 right-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#f3e500,#ffe94d)] shadow-[0_14px_30px_rgba(243,229,0,0.4)]"
+        >
+          <Icon name={expansionChapter.icon} size={24} color="#8a7f00" strokeWidth={1.8} />
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- 2021: sin foto — bloque de color de marca con ícono gigante decorativo. -->
+  <!-- 2021: quiebre de ritmo — bloque de color de marca full-bleed con ícono
+       gigante decorativo (sin foto), entre la ligereza editorial de arriba y
+       la banda de cifras del cierre. -->
   <div
-    class="relative min-h-[400px] w-full overflow-hidden bg-[linear-gradient(120deg,#0d1f14,#14361b_60%,#1f5230)]"
+    class="relative min-h-[420px] w-full overflow-hidden bg-[linear-gradient(120deg,#0d1f14,#14361b_60%,#1f5230)]"
   >
     <Icon
       name={digitalChapter.icon}
@@ -89,23 +119,31 @@ const [branchChapter, expansionChapter, digitalChapter] = growthChapters;
       class="pointer-events-none absolute -right-16 -bottom-16 opacity-[0.07] sm:-right-10 sm:opacity-[0.09]"
     />
     <div
-      data-reveal="up"
-      class="relative z-[1] flex min-h-[400px] items-center px-5 py-16 sm:px-10 lg:px-20"
+      data-story-group
+      class="relative z-[1] flex min-h-[420px] items-center px-5 py-16 sm:px-10 lg:px-20"
     >
       <div class="max-w-[520px]">
-        <div class="mb-3 flex items-center gap-2.5">
+        <div data-story="up" class="mb-3 flex items-center gap-2.5">
           <Icon name={digitalChapter.icon} size={18} color="#7ee05a" strokeWidth={2.2} />
           <span class="font-display text-sm font-bold tracking-[0.08em] text-brand-200 uppercase">
             {digitalChapter.yearLabel}
           </span>
         </div>
-        <h2 class="mb-3 text-[28px] leading-[1.1] font-extrabold tracking-tight text-white sm:text-[36px]">
+        <h2 data-story="up" class="mb-3 text-[28px] leading-[1.1] font-extrabold tracking-tight text-white sm:text-[36px]">
           {digitalChapter.title}
         </h2>
-        <p class="text-[15.5px] leading-relaxed text-white/80 sm:text-base">
+        <p data-story="up" class="text-[15.5px] leading-relaxed text-white/80 sm:text-base">
           {digitalChapter.description}
         </p>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  import { initScrollStory } from '@shared/utils/scrollStory';
+  import { initTilt3d } from '@shared/utils/tilt3d';
+
+  initScrollStory();
+  initTilt3d();
+</script>

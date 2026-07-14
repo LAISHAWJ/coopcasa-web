@@ -3,20 +3,22 @@ import { Image } from 'astro:assets';
 import { foundingStory } from '@data/about';
 ---
 
-<section class="relative overflow-hidden bg-white px-5 py-20 lg:px-8 lg:py-28">
+<section class="overflow-hidden bg-white px-5 py-20 lg:px-8 lg:py-28">
   <!-- Tipografía expresiva de fondo: el año de fundación como elemento gráfico,
        no como dato aislado. aria-hidden porque el año ya está en el texto. -->
   <span
     aria-hidden="true"
-    class="pointer-events-none absolute -top-10 -left-6 font-display text-[150px] leading-none font-extrabold text-brand-600/8 select-none sm:text-[220px] lg:-top-16 lg:text-[300px]"
+    data-parallax="30"
+    class="pointer-events-none absolute -top-10 -left-6 font-display text-[150px] leading-none font-extrabold text-brand-600/[0.06] select-none sm:text-[220px] lg:-top-16 lg:text-[300px]"
   >
     {foundingStory.yearLabel}
   </span>
 
   <div
+    data-story-group
     class="relative z-[1] mx-auto grid max-w-[1180px] items-center gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-10"
   >
-    <div data-reveal="right" class="lg:order-2 lg:pl-6">
+    <div data-story="right" class="lg:order-2 lg:pl-6">
       <div class="mb-3.5 text-[13px] font-bold tracking-[0.1em] text-brand-800 uppercase">
         {foundingStory.eyebrow}
       </div>
@@ -30,19 +32,37 @@ import { foundingStory } from '@data/about';
       </p>
     </div>
 
-    <div data-reveal="left" class="relative lg:order-1">
+    <div data-story="left" class="relative mx-auto w-full max-w-[420px] lg:order-1 lg:mx-0">
       <div
-        class="relative mx-auto max-w-[380px] -rotate-2 overflow-hidden rounded-[26px] shadow-[0_30px_60px_rgba(13,31,20,0.2)] transition-transform duration-500 hover:rotate-0 lg:mx-0 lg:ml-10"
+        data-tilt
+        data-tilt-x="-3"
+        data-tilt-y="7"
+        style={{
+          transform: 'perspective(1000px) rotateY(7deg) rotateX(-3deg)',
+          clipPath: 'polygon(4% 0, 100% 0, 100% 100%, 0 96%)',
+          boxShadow:
+            '0 10px 20px -6px rgba(13,31,20,0.18), 0 30px 55px -12px rgba(13,31,20,0.24), 0 70px 110px -24px rgba(43,168,44,0.22)',
+        }}
+        class="relative overflow-hidden transition-shadow duration-500 will-change-transform"
       >
         <Image
           src={foundingStory.image.src}
           alt={foundingStory.image.alt}
-          width={560}
-          height={640}
+          width={640}
+          height={720}
           loading="lazy"
-          class="h-[340px] w-full object-cover sm:h-[420px]"
+          class="h-[360px] w-full object-cover sm:h-[440px]"
         />
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  import { initScrollStory, initParallax } from '@shared/utils/scrollStory';
+  import { initTilt3d } from '@shared/utils/tilt3d';
+
+  initScrollStory();
+  initParallax();
+  initTilt3d();
+</script>
