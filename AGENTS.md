@@ -1,3 +1,7 @@
+<!-- Este archivo se duplica tal cual como CLAUDE.md (copia real, no symlink,
+     para que funcione igual en cualquier sistema operativo/clon). Si editas
+     este archivo, aplica el mismo cambio en CLAUDE.md. -->
+
 ## Development
 
 When starting the dev server, use background mode:
