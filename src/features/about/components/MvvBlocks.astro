@@ -4,76 +4,121 @@ import Icon from '@shared/ui/Icon.astro';
 import { missionContent, visionContent } from '@data/about';
 ---
 
-<section class="px-5 pt-8 pb-5 lg:px-8">
-  <div class="mx-auto flex max-w-[1180px] flex-col gap-8">
-    <!-- Misión: asimétrica, con el ícono como tipografía/textura de fondo. -->
-    <div class="relative grid grid-cols-1 items-center gap-10 overflow-hidden lg:grid-cols-[1fr_1.05fr] lg:gap-6">
-      <div data-reveal="left" class="relative">
-        <div class="overflow-hidden rounded-[28px] shadow-[0_24px_54px_rgba(13,31,20,0.16)]">
+<!-- Misión: editorial claro, imagen 3D flotante + palabra gigante de fondo. -->
+<section class="overflow-hidden px-5 pt-8 pb-20 lg:px-8 lg:pb-28">
+  <div data-story-group class="relative mx-auto max-w-[1180px]">
+    <span
+      aria-hidden="true"
+      data-parallax="26"
+      class="pointer-events-none absolute -top-16 -left-4 font-display text-[110px] leading-none font-extrabold text-brand-600/[0.06] select-none sm:text-[170px] lg:-top-24 lg:text-[220px]"
+    >
+      {missionContent.bigWord}
+    </span>
+
+    <div class="relative grid grid-cols-1 items-center gap-14 lg:grid-cols-[1fr_1.05fr] lg:gap-10">
+      <div data-story="left" class="relative mx-auto w-full max-w-[460px] lg:mx-0">
+        <div
+          data-tilt
+          data-tilt-x="4"
+          data-tilt-y="-6"
+          style={{
+            transform: 'perspective(1000px) rotateY(-6deg) rotateX(3deg)',
+            clipPath: 'polygon(0 0, 100% 0, 100% 90%, 6% 100%)',
+            boxShadow:
+              '0 10px 20px -6px rgba(13,31,20,0.18), 0 30px 55px -12px rgba(13,31,20,0.22), 0 70px 100px -24px rgba(43,168,44,0.25)',
+          }}
+          class="relative overflow-hidden transition-shadow duration-500 will-change-transform"
+        >
           <Image
             src={missionContent.image.src}
             alt={missionContent.image.alt}
-            width={680}
-            height={560}
+            width={720}
+            height={620}
             loading="lazy"
-            class="h-[300px] w-full object-cover sm:h-[420px] lg:h-[460px]"
+            class="h-[320px] w-full object-cover sm:h-[420px] lg:h-[480px]"
           />
         </div>
         <div
-          class="absolute -bottom-6 left-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#22a024,#2fb531)] shadow-[0_14px_30px_rgba(43,168,44,0.35)]"
+          class="absolute -bottom-7 left-8 flex h-16 w-16 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#22a024,#2fb531)] shadow-[0_16px_32px_rgba(43,168,44,0.4)]"
         >
           <Icon name={missionContent.icon} size={30} color="#fff" strokeWidth={1.8} />
         </div>
       </div>
-      <div data-reveal="right" class="relative [transition-delay:80ms] lg:pt-10 lg:pl-10">
-        <Icon
-          name={missionContent.icon}
-          size={220}
-          color="#2ba82c"
-          strokeWidth={0.6}
-          class="pointer-events-none absolute -top-6 -right-4 opacity-[0.07] sm:opacity-[0.09] lg:-right-10"
-        />
-        <div class="relative mb-2.5 text-[13px] font-bold tracking-[0.1em] text-brand-800 uppercase">
+
+      <div class="relative lg:pt-6 lg:pl-6">
+        <div data-story="up" class="mb-2.5 text-[13px] font-bold tracking-[0.1em] text-brand-800 uppercase">
           {missionContent.tag}
         </div>
-        <h2 class="relative mb-3 text-2xl font-extrabold tracking-tight text-ink-900 sm:text-[30px]">
+        <h2
+          data-story="up"
+          class="mb-4 text-2xl font-extrabold tracking-tight text-ink-900 sm:text-[32px]"
+        >
           {missionContent.title}
         </h2>
-        <p class="relative max-w-[440px] text-[16.5px] leading-relaxed text-body-500">
+        <p data-story="up" class="max-w-[440px] text-[16.5px] leading-relaxed text-body-500">
           {missionContent.text}
         </p>
       </div>
     </div>
-
-    <!-- Visión: banda oscura con el año objetivo como tipografía grande de fondo. -->
-    <div
-      data-reveal="up"
-      class="relative overflow-hidden rounded-[28px] bg-[linear-gradient(135deg,#0d1f14,#14361b)] px-7 py-16 text-center shadow-[0_20px_50px_rgba(13,31,20,0.25)] sm:px-10 sm:py-20"
-    >
-      <span
-        aria-hidden="true"
-        class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[140px] leading-none font-extrabold text-white/[0.05] select-none sm:text-[220px] lg:text-[280px]"
-      >
-        {visionContent.targetYear}
-      </span>
-      <div
-        class="pointer-events-none absolute top-1/2 left-1/2 h-[320px] w-[320px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(243,229,0,0.16),transparent_68%)]"
-      >
-      </div>
-      <div class="relative z-[1] mx-auto flex max-w-[620px] flex-col items-center">
-        <div
-          class="mb-6 flex h-[88px] w-[88px] items-center justify-center rounded-full bg-[linear-gradient(135deg,#f3e500,#ffe94d)] shadow-[0_14px_34px_rgba(243,229,0,0.4)]"
-        >
-          <Icon name={visionContent.icon} size={40} color="#8a7f00" strokeWidth={1.6} />
-        </div>
-        <div class="mb-2.5 text-[13px] font-bold tracking-[0.1em] text-gold-400 uppercase">
-          {visionContent.tag}
-        </div>
-        <h2 class="mb-3 text-2xl font-extrabold tracking-tight text-white sm:text-[30px]">
-          {visionContent.title}
-        </h2>
-        <p class="text-[16.5px] leading-relaxed text-white/75">{visionContent.text}</p>
-      </div>
-    </div>
   </div>
 </section>
+
+<!-- Visión: banda oscura atmosférica full-bleed, sin foto — el año objetivo como
+     tipografía gigante de fondo. Deliberadamente distinta a Misión (fotográfica)
+     y a Valores (grid interactivo) para que los tres conceptos no compartan
+     plantilla. -->
+<section class="relative overflow-hidden bg-[linear-gradient(135deg,#0d1f14,#14361b)] py-24 lg:py-32">
+  <div
+    aria-hidden="true"
+    data-parallax="-34"
+    class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[160px] leading-none font-extrabold text-white/[0.045] select-none sm:text-[260px] lg:text-[360px]"
+  >
+    {visionContent.targetYear}
+  </div>
+  <div class="vision-glow pointer-events-none absolute top-1/2 left-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(243,229,0,0.18),transparent_68%)]">
+  </div>
+
+  <div data-story-group class="relative z-[1] mx-auto flex max-w-[620px] flex-col items-center px-5 text-center lg:px-8">
+    <div
+      data-story="scale"
+      class="mb-6 flex h-[88px] w-[88px] items-center justify-center rounded-full bg-[linear-gradient(135deg,#f3e500,#ffe94d)] shadow-[0_16px_40px_rgba(243,229,0,0.45)]"
+    >
+      <Icon name={visionContent.icon} size={40} color="#8a7f00" strokeWidth={1.6} />
+    </div>
+    <div data-story="up" class="mb-2.5 text-[13px] font-bold tracking-[0.1em] text-gold-400 uppercase">
+      {visionContent.tag}
+    </div>
+    <h2 data-story="up" class="mb-4 text-2xl font-extrabold tracking-tight text-white sm:text-[32px]">
+      {visionContent.title}
+    </h2>
+    <p data-story="up" class="text-[16.5px] leading-relaxed text-white/75">{visionContent.text}</p>
+  </div>
+</section>
+
+<style>
+  @media (prefers-reduced-motion: no-preference) {
+    .vision-glow {
+      animation: vision-breathe 6s ease-in-out infinite;
+    }
+  }
+  @keyframes vision-breathe {
+    0%,
+    100% {
+      opacity: 0.7;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.08);
+    }
+  }
+</style>
+
+<script>
+  import { initScrollStory, initParallax } from '@shared/utils/scrollStory';
+  import { initTilt3d } from '@shared/utils/tilt3d';
+
+  initScrollStory();
+  initParallax();
+  initTilt3d();
+</script>

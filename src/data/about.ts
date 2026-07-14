@@ -151,15 +151,18 @@ interface MissionContent {
   title: string;
   text: string;
   icon: IconName;
+  /** Palabra gigante translúcida de fondo (tipografía expresiva). */
+  bigWord: string;
   image: { src: ImageMetadata; alt: string };
 }
 
-/** Misión: bloque partido imagen/texto (features/about/components/MvvBlocks.astro). */
+/** Misión: bloque editorial imagen 3D/texto (features/about/components/MvvBlocks.astro). */
 export const missionContent: MissionContent = {
   tag: 'Nuestra misión',
   title: 'Impulsar el bienestar financiero de nuestra gente',
   text: 'Ofrecer servicios financieros justos, accesibles y humanos que impulsen el progreso de nuestros socios y sus familias, fortaleciendo el desarrollo económico y social de la comunidad.',
   icon: 'layers',
+  bigWord: 'Misión',
   image: {
     src: missionImage,
     alt: 'Asesora conversando con una socia durante una consulta financiera',
