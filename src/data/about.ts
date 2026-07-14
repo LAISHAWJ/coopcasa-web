@@ -3,10 +3,13 @@ import type { IconCard } from '@shared/types/content';
 import type { IconName } from '@shared/config/icons';
 import { siteConfig } from './siteConfig';
 import aboutTeaserImage from '@assets/images/about-team-collaboration.webp';
-import historyHeroImage from '@assets/images/history-founding-handshake.webp';
-import historyMilestonePlanning from '@assets/images/history-milestone-planning.webp';
-import historyMilestoneGrowth from '@assets/images/history-milestone-growth.webp';
-import missionImage from '@assets/images/mission-advisory-consultation.webp';
+import foundingAgreementIllustration from '@assets/images/history-founding-agreement-illustration.webp';
+import branchSearchIllustration from '@assets/images/history-branch-search-illustration.webp';
+import neighborhoodIllustration from '@assets/images/history-expansion-neighborhood-illustration.webp';
+import growthAnalyticsIllustration from '@assets/images/history-digital-growth-illustration.webp';
+import missionFamilyIllustration from '@assets/images/mission-family-illustration.webp';
+import visionWinnersIllustration from '@assets/images/vision-winners-illustration.webp';
+import valuesCollaborationIllustration from '@assets/images/values-collaboration-illustration.webp';
 
 /** Home → sección "Sobre nosotros" (teaser), mini íconos Misión/Visión/Valores/Comunidad. */
 export const aboutTeaserPoints: { title: string; icon: IconName }[] = [
@@ -49,16 +52,24 @@ export const foundingStory = {
   eyebrow: 'Nuestros orígenes',
   title: 'Nace COOPCASA',
   text: 'Un grupo de 30 familias funda la cooperativa con el sueño de ahorrar juntas y apoyarse mutuamente. Empezamos con una idea simple: que cada aporte, sin importar su tamaño, valiera lo mismo para todos. Esa idea sigue siendo el corazón de COOPCASA.',
+  // Tono "antiguo" del recorrido cronológico (ver GrowthChapters para la progresión completa).
+  accentColor: '#8a7f00',
   image: {
-    src: historyHeroImage,
-    alt: 'Apretón de manos que simboliza la confianza fundacional de COOPCASA',
+    src: foundingAgreementIllustration,
+    alt: 'Ilustración de dos personas estrechando la mano sobre un acuerdo firmado, símbolo de la confianza fundacional de COOPCASA',
   },
 };
 
-/** Página "Historia" → bloque de datos institucionales/legales (justo debajo del hero). */
+/**
+ * Página "Historia" → cierre: "ficha institucional" con tratamiento de
+ * documento/sello oficial (features/about/components/InstitutionalFicha.astro),
+ * separada de la banda de cifras animadas.
+ */
 export const institutionalFactsSection = {
   eyebrow: 'Información institucional',
-  title: 'Quiénes somos, en cifras legales',
+  title: 'Nuestra ficha institucional',
+  /** Texto corto dentro del sello circular decorativo. */
+  stampLabel: 'Registro oficial',
 };
 
 export interface InstitutionalFact {
@@ -92,15 +103,18 @@ export interface GrowthChapter {
   title: string;
   description: string;
   icon: IconName;
-  /** Fotografía opcional; el capítulo sin foto usa un tratamiento de color + ícono grande. */
-  image?: { src: ImageMetadata; alt: string };
+  /** Color de acento del capítulo; progresa de "antiguo" a "actual" a lo largo de la página. */
+  accentColor: string;
+  image: { src: ImageMetadata; alt: string };
 }
 
 /**
  * Página "Historia" → capítulos de crecimiento (features/about/components/GrowthChapters.astro).
- * Cada capítulo es una sección full-width con su propio tratamiento visual (no una tarjeta
- * repetida ni un timeline conectado). El hito de 2026 se consolidó con la banda de cifras
- * (InstitutionalNumbers) para no duplicar el dato de "+12,500 socios".
+ * Cada capítulo es un bloque editorial con su propia ilustración flotante y su propio
+ * acento de color (no una tarjeta repetida ni un timeline conectado). El "accentColor"
+ * progresa del más apagado/institucional al verde de marca pleno, dando sensación de
+ * avance en el tiempo sin una línea de tiempo literal. El hito de 2026 se consolidó con
+ * la banda de cifras (InstitutionalNumbers) para no duplicar el dato de "+12,500 socios".
  */
 export const growthChapters: GrowthChapter[] = [
   {
@@ -109,9 +123,10 @@ export const growthChapters: GrowthChapter[] = [
     description:
       'Abrimos nuestra primera oficina y superamos los 1,000 socios, consolidando la confianza de la comunidad que nos vio nacer.',
     icon: 'building',
+    accentColor: '#2ba82c',
     image: {
-      src: historyMilestonePlanning,
-      alt: 'Equipo planificando la apertura de la primera sucursal con reportes y gráficos',
+      src: branchSearchIllustration,
+      alt: 'Ilustración de una lupa enfocando una casa, representando la apertura de la primera sucursal de COOPCASA',
     },
   },
   {
@@ -120,9 +135,10 @@ export const growthChapters: GrowthChapter[] = [
     description:
       'Llegamos a nuevas provincias y lanzamos nuestros programas de educación financiera gratuita, llevando el cooperativismo más allá de San Pedro de Macorís.',
     icon: 'mapPin',
+    accentColor: '#5bc93a',
     image: {
-      src: historyMilestoneGrowth,
-      alt: 'Equipo celebrando la expansión de la cooperativa a nuevas provincias',
+      src: neighborhoodIllustration,
+      alt: 'Ilustración de varias casas en fila, representando la expansión de COOPCASA a nuevas comunidades',
     },
   },
   {
@@ -131,6 +147,11 @@ export const growthChapters: GrowthChapter[] = [
     description:
       'Estrenamos la Oficina Virtual y la App móvil, acercando la cooperativa a cada socio sin importar dónde esté, las 24 horas del día.',
     icon: 'deviceMobile',
+    accentColor: '#7ee05a',
+    image: {
+      src: growthAnalyticsIllustration,
+      alt: 'Ilustración de dos personas revisando una gráfica de crecimiento en una pantalla',
+    },
   },
 ];
 
@@ -156,7 +177,7 @@ interface MissionContent {
   image: { src: ImageMetadata; alt: string };
 }
 
-/** Misión: bloque editorial imagen 3D/texto (features/about/components/MvvBlocks.astro). */
+/** Misión: mitad izquierda del panel Misión/Visión (features/about/components/MvvBlocks.astro). */
 export const missionContent: MissionContent = {
   tag: 'Nuestra misión',
   title: 'Impulsar el bienestar financiero de nuestra gente',
@@ -164,8 +185,8 @@ export const missionContent: MissionContent = {
   icon: 'layers',
   bigWord: 'Misión',
   image: {
-    src: missionImage,
-    alt: 'Asesora conversando con una socia durante una consulta financiera',
+    src: missionFamilyIllustration,
+    alt: 'Ilustración de una familia tomada de la mano, representando el bienestar financiero de los socios de COOPCASA',
   },
 };
 
@@ -176,20 +197,32 @@ interface VisionContent {
   icon: IconName;
   /** Año objetivo mencionado en el texto; se usa también como tipografía grande de fondo. */
   targetYear: string;
+  /** Palabra gigante translúcida de fondo (tipografía expresiva), espejo de missionContent.bigWord. */
+  bigWord: string;
+  image: { src: ImageMetadata; alt: string };
 }
 
-/** Visión: banda oscura tipo "spotlight" con el año objetivo como tipografía grande de fondo. */
+/** Visión: mitad derecha del panel Misión/Visión, con fondo oscuro para contrastar con Misión. */
 export const visionContent: VisionContent = {
   tag: 'Nuestra visión',
   title: 'Ser la cooperativa más confiable y cercana de la región',
   text: 'Para 2030, ser reconocidos como la cooperativa de ahorro y crédito líder por su solidez, innovación tecnológica y, sobre todo, por la cercanía y el trato humano hacia cada uno de sus socios.',
   icon: 'visionBig',
   targetYear: '2030',
+  bigWord: 'Visión',
+  image: {
+    src: visionWinnersIllustration,
+    alt: 'Ilustración de dos personas celebrando con las manos en alto, representando la visión de éxito compartido de COOPCASA',
+  },
 };
 
 export const valuesSection = {
   eyebrow: 'Valores institucionales',
   title: 'Los principios que nos definen',
+  image: {
+    src: valuesCollaborationIllustration,
+    alt: 'Ilustración de un documento con tareas completadas junto a un equipo de personas, representando los valores compartidos de COOPCASA',
+  },
 };
 
 // Reemplazar con los valores institucionales reales, si difieren.
