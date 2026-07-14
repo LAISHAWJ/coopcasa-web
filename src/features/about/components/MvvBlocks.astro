@@ -1,124 +1,136 @@
 ---
 import { Image } from 'astro:assets';
-import Icon from '@shared/ui/Icon.astro';
 import { missionContent, visionContent } from '@data/about';
 ---
 
-<!-- Misión: editorial claro, imagen 3D flotante + palabra gigante de fondo. -->
-<section class="overflow-hidden px-5 pt-8 pb-20 lg:px-8 lg:pb-28">
-  <div data-story-group class="relative mx-auto max-w-[1180px]">
-    <span
-      aria-hidden="true"
-      data-parallax="26"
-      class="pointer-events-none absolute -top-16 -left-4 font-display text-[110px] leading-none font-extrabold text-brand-600/[0.06] select-none sm:text-[170px] lg:-top-24 lg:text-[220px]"
+<!-- Misión y Visión: un solo panel dividido en dos mitades (no cards separadas).
+     El contraste claro/oscuro entre ambas ES la separación visual. -->
+<section class="overflow-hidden">
+  <div class="grid grid-cols-1 md:grid-cols-2">
+    <!-- Misión: mitad clara. -->
+    <div
+      data-story-group
+      class="relative flex min-h-[600px] flex-col justify-center overflow-hidden bg-[linear-gradient(160deg,#fbfdfb,#fff)] px-6 py-16 sm:px-10 lg:min-h-[680px] lg:px-14 lg:py-20"
     >
-      {missionContent.bigWord}
-    </span>
+      <span
+        aria-hidden="true"
+        class="pointer-events-none absolute -top-6 -left-4 font-display text-[110px] leading-none font-extrabold text-brand-600/[0.07] select-none sm:text-[150px] lg:text-[190px]"
+      >
+        {missionContent.bigWord}
+      </span>
 
-    <div class="relative grid grid-cols-1 items-center gap-14 lg:grid-cols-[1fr_1.05fr] lg:gap-10">
-      <div data-story="left" class="relative mx-auto w-full max-w-[460px] lg:mx-0">
-        <div
-          data-tilt
-          data-tilt-x="4"
-          data-tilt-y="-6"
-          style={{
-            transform: 'perspective(1000px) rotateY(-6deg) rotateX(3deg)',
-            clipPath: 'polygon(0 0, 100% 0, 100% 90%, 6% 100%)',
-            boxShadow:
-              '0 10px 20px -6px rgba(13,31,20,0.18), 0 30px 55px -12px rgba(13,31,20,0.22), 0 70px 100px -24px rgba(43,168,44,0.25)',
-          }}
-          class="relative overflow-hidden transition-shadow duration-500 will-change-transform"
-        >
-          <Image
-            src={missionContent.image.src}
-            alt={missionContent.image.alt}
-            width={720}
-            height={620}
-            loading="lazy"
-            class="h-[320px] w-full object-cover sm:h-[420px] lg:h-[480px]"
-          />
-        </div>
-        <div
-          class="absolute -bottom-7 left-8 flex h-16 w-16 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#22a024,#2fb531)] shadow-[0_16px_32px_rgba(43,168,44,0.4)]"
-        >
-          <Icon name={missionContent.icon} size={30} color="#fff" strokeWidth={1.8} />
-        </div>
-      </div>
-
-      <div class="relative lg:pt-6 lg:pl-6">
+      <div class="relative z-[1] mx-auto w-full max-w-[440px] md:mx-0 md:ml-auto md:mr-4 lg:mr-8">
         <div data-story="up" class="mb-2.5 text-[13px] font-bold tracking-[0.1em] text-brand-800 uppercase">
           {missionContent.tag}
         </div>
-        <h2
-          data-story="up"
-          class="mb-4 text-2xl font-extrabold tracking-tight text-ink-900 sm:text-[32px]"
-        >
+        <h2 data-story="up" class="mb-4 text-2xl font-extrabold tracking-tight text-ink-900 sm:text-[30px]">
           {missionContent.title}
         </h2>
-        <p data-story="up" class="max-w-[440px] text-[16.5px] leading-relaxed text-body-500">
+        <p data-story="up" class="mb-8 text-[15.5px] leading-relaxed text-body-500">
           {missionContent.text}
         </p>
+        <div data-story="scale" class="float-soft flex justify-center">
+          <Image
+            src={missionContent.image.src}
+            alt={missionContent.image.alt}
+            width={420}
+            height={438}
+            loading="lazy"
+            class="drop-shadow-brand h-auto w-[240px] sm:w-[280px]"
+          />
+        </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- Visión: banda oscura atmosférica full-bleed, sin foto — el año objetivo como
-     tipografía gigante de fondo. Deliberadamente distinta a Misión (fotográfica)
-     y a Valores (grid interactivo) para que los tres conceptos no compartan
-     plantilla. -->
-<section class="relative overflow-hidden bg-[linear-gradient(135deg,#0d1f14,#14361b)] py-24 lg:py-32">
-  <div
-    aria-hidden="true"
-    data-parallax="-34"
-    class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[160px] leading-none font-extrabold text-white/[0.045] select-none sm:text-[260px] lg:text-[360px]"
-  >
-    {visionContent.targetYear}
-  </div>
-  <div class="vision-glow pointer-events-none absolute top-1/2 left-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(243,229,0,0.18),transparent_68%)]">
-  </div>
-
-  <div data-story-group class="relative z-[1] mx-auto flex max-w-[620px] flex-col items-center px-5 text-center lg:px-8">
+    <!-- Visión: mitad oscura, contraste directo con Misión. -->
     <div
-      data-story="scale"
-      class="mb-6 flex h-[88px] w-[88px] items-center justify-center rounded-full bg-[linear-gradient(135deg,#f3e500,#ffe94d)] shadow-[0_16px_40px_rgba(243,229,0,0.45)]"
+      data-story-group
+      class="relative flex min-h-[600px] flex-col justify-center overflow-hidden bg-[linear-gradient(160deg,#0d1f14,#14361b)] px-6 py-16 sm:px-10 lg:min-h-[680px] lg:px-14 lg:py-20"
     >
-      <Icon name={visionContent.icon} size={40} color="#8a7f00" strokeWidth={1.6} />
+      <span
+        aria-hidden="true"
+        class="pointer-events-none absolute -top-6 -right-4 font-display text-[110px] leading-none font-extrabold text-white/[0.05] select-none sm:text-[150px] lg:text-[190px]"
+      >
+        {visionContent.bigWord}
+      </span>
+      <div class="vision-glow pointer-events-none absolute top-1/3 right-0 h-[320px] w-[320px] translate-x-1/3 rounded-full bg-[radial-gradient(circle,rgba(243,229,0,0.18),transparent_68%)]">
+      </div>
+
+      <div class="relative z-[1] mx-auto w-full max-w-[440px] md:mx-0 md:mr-auto md:ml-4 lg:ml-8">
+        <div data-story="up" class="mb-2.5 text-[13px] font-bold tracking-[0.1em] text-gold-400 uppercase">
+          {visionContent.tag}
+        </div>
+        <h2 data-story="up" class="mb-4 text-2xl font-extrabold tracking-tight text-white sm:text-[30px]">
+          {visionContent.title}
+        </h2>
+        <p data-story="up" class="mb-8 text-[15.5px] leading-relaxed text-white/75">
+          {visionContent.text}
+        </p>
+        <div data-story="scale" class="float-soft float-soft--delayed flex justify-center">
+          <Image
+            src={visionContent.image.src}
+            alt={visionContent.image.alt}
+            width={420}
+            height={422}
+            loading="lazy"
+            class="drop-shadow-gold h-auto w-[240px] sm:w-[280px]"
+          />
+        </div>
+      </div>
     </div>
-    <div data-story="up" class="mb-2.5 text-[13px] font-bold tracking-[0.1em] text-gold-400 uppercase">
-      {visionContent.tag}
-    </div>
-    <h2 data-story="up" class="mb-4 text-2xl font-extrabold tracking-tight text-white sm:text-[32px]">
-      {visionContent.title}
-    </h2>
-    <p data-story="up" class="text-[16.5px] leading-relaxed text-white/75">{visionContent.text}</p>
   </div>
 </section>
 
 <style>
+  /* Sombra suave que sigue el contorno real de la ilustración (canal alpha),
+     no una sombra rectangular. Dos capas: una ajustada y una más difusa. */
+  .drop-shadow-brand {
+    filter:
+      drop-shadow(0 8px 10px rgba(13, 31, 20, 0.18))
+      drop-shadow(0 22px 30px rgba(43, 168, 44, 0.16));
+  }
+  .drop-shadow-gold {
+    filter:
+      drop-shadow(0 8px 10px rgba(0, 0, 0, 0.3))
+      drop-shadow(0 22px 30px rgba(243, 229, 0, 0.14));
+  }
+
+  /* Flotación continua sutil, reforzando que la imagen no tiene marco/fondo. */
   @media (prefers-reduced-motion: no-preference) {
+    .float-soft {
+      animation: mvv-float 6s ease-in-out infinite;
+    }
+    .float-soft--delayed {
+      animation-delay: 1.4s;
+    }
     .vision-glow {
       animation: vision-breathe 6s ease-in-out infinite;
+    }
+  }
+  @keyframes mvv-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-14px);
     }
   }
   @keyframes vision-breathe {
     0%,
     100% {
       opacity: 0.7;
-      transform: translate(-50%, -50%) scale(1);
+      transform: scale(1);
     }
     50% {
       opacity: 1;
-      transform: translate(-50%, -50%) scale(1.08);
+      transform: scale(1.08);
     }
   }
 </style>
 
 <script>
-  import { initScrollStory, initParallax } from '@shared/utils/scrollStory';
-  import { initTilt3d } from '@shared/utils/tilt3d';
+  import { initScrollStory } from '@shared/utils/scrollStory';
 
   initScrollStory();
-  initParallax();
-  initTilt3d();
 </script>

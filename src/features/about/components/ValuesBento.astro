@@ -1,19 +1,39 @@
 ---
+import { Image } from 'astro:assets';
 import Icon from '@shared/ui/Icon.astro';
 import { values, valuesSection } from '@data/about';
 
 const AREAS = ['a', 'b', 'c', 'd', 'e', 'f'];
 ---
 
-<section class="px-5 pt-16 pb-20 lg:px-8 lg:pb-28">
+<!-- Valores: tratamiento propio y diferenciado del panel Misión/Visión de
+     arriba — fondo propio, ilustración flotante junto al encabezado, y celdas
+     sin cajas/bordes (el ícono y el título flotan directamente sobre el fondo
+     de la sección). -->
+<section class="relative overflow-hidden bg-surface-50 px-5 pt-16 pb-20 lg:px-8 lg:pb-28">
   <div class="mx-auto max-w-[1100px]">
-    <div data-story-group class="mx-auto mb-12 max-w-[560px] text-center">
-      <div data-story="up" class="mb-3 text-[13px] font-bold tracking-[0.1em] text-brand-800 uppercase">
-        {valuesSection.eyebrow}
+    <div
+      data-story-group
+      class="relative mb-12 flex flex-col items-center gap-6 text-center sm:flex-row sm:justify-between sm:text-left"
+    >
+      <div data-story="up" class="max-w-[480px]">
+        <div class="mb-3 text-[13px] font-bold tracking-[0.1em] text-brand-800 uppercase">
+          {valuesSection.eyebrow}
+        </div>
+        <h2 class="text-[26px] font-extrabold tracking-tight text-ink-900 sm:text-[36px]">
+          {valuesSection.title}
+        </h2>
       </div>
-      <h2 data-story="up" class="text-[26px] font-extrabold tracking-tight text-ink-900 sm:text-[36px]">
-        {valuesSection.title}
-      </h2>
+      <div data-story="scale" class="values-float flex-none">
+        <Image
+          src={valuesSection.image.src}
+          alt={valuesSection.image.alt}
+          width={340}
+          height={312}
+          loading="lazy"
+          class="drop-shadow-values h-auto w-[150px] sm:w-[190px]"
+        />
+      </div>
     </div>
 
     <!-- Mosaico asimétrico (no cards idénticas): un bloque grande + cinco de
@@ -27,7 +47,7 @@ const AREAS = ['a', 'b', 'c', 'd', 'e', 'f'];
             <div
               tabindex="0"
               class:list={[
-                'group relative flex h-full flex-col justify-between overflow-hidden rounded-[22px] border border-ink-900/8 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_44px_rgba(13,31,20,0.12)] focus:-translate-y-1 focus:shadow-[0_20px_44px_rgba(13,31,20,0.12)] focus:outline-none',
+                'group relative flex h-full flex-col justify-between rounded-[22px] p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-white/70 hover:shadow-[0_20px_44px_rgba(13,31,20,0.1)] focus:-translate-y-1 focus:bg-white/70 focus:shadow-[0_20px_44px_rgba(13,31,20,0.1)] focus:outline-none',
                 index === 0 ? 'sm:p-8' : '',
               ]}
             >
@@ -64,6 +84,27 @@ const AREAS = ['a', 'b', 'c', 'd', 'e', 'f'];
 </section>
 
 <style>
+  .drop-shadow-values {
+    filter:
+      drop-shadow(0 6px 8px rgba(13, 31, 20, 0.12))
+      drop-shadow(0 16px 24px rgba(43, 168, 44, 0.14));
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .values-float {
+      animation: values-float 5.5s ease-in-out infinite;
+    }
+  }
+  @keyframes values-float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(-2deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(2deg);
+    }
+  }
+
   .values-bento {
     display: grid;
     gap: 1.1rem;
