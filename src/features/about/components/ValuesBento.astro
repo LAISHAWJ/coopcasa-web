@@ -24,21 +24,23 @@ const AREAS = ['a', 'b', 'c', 'd', 'e', 'f'];
           {valuesSection.title}
         </h2>
       </div>
-      <div data-story="scale" class="values-float flex-none">
+      <div data-story="scale" class="photo-frame flex-none">
         <Image
           src={valuesSection.image.src}
           alt={valuesSection.image.alt}
           width={300}
           height={200}
           loading="lazy"
-          class="drop-shadow-values h-auto w-[150px] rounded-2xl sm:w-[190px]"
+          class="aspect-[3/2] h-auto w-[150px] rounded-2xl object-cover sm:w-[190px]"
         />
       </div>
     </div>
 
     <!-- Mosaico asimétrico (no cards idénticas): un bloque grande + cinco de
          distinto tamaño. Cada celda lleva su número de orden en tipografía
-         grande y el color de acento como protagonista, en vez de un ícono. -->
+         grande y el color de acento como protagonista, en vez de un ícono.
+         Vidrio más tenue que el panel de Misión/Visión de arriba, para
+         diferenciar sin perder cohesión. -->
     <div data-story-group class="values-bento">
       {
         values.map((value, index) => (
@@ -46,7 +48,7 @@ const AREAS = ['a', 'b', 'c', 'd', 'e', 'f'];
             <div
               tabindex="0"
               class:list={[
-                'group relative flex h-full flex-col justify-end gap-3 overflow-hidden rounded-[22px] p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-white/70 hover:shadow-[0_20px_44px_rgba(13,31,20,0.1)] focus:-translate-y-1 focus:bg-white/70 focus:shadow-[0_20px_44px_rgba(13,31,20,0.1)] focus:outline-none',
+                'glass-subtle group relative flex h-full flex-col justify-end gap-3 overflow-hidden rounded-[22px] p-6 transition-all duration-300 hover:-translate-y-1 focus:-translate-y-1 focus:outline-none',
                 index === 0 ? 'sm:p-8' : '',
               ]}
             >
@@ -88,24 +90,34 @@ const AREAS = ['a', 'b', 'c', 'd', 'e', 'f'];
 </section>
 
 <style>
-  .drop-shadow-values {
-    filter:
-      drop-shadow(0 6px 8px rgba(13, 31, 20, 0.12))
-      drop-shadow(0 16px 24px rgba(43, 168, 44, 0.14));
+  .photo-frame :global(img) {
+    box-shadow:
+      0 4px 10px rgba(13, 31, 20, 0.12),
+      0 16px 32px rgba(13, 31, 20, 0.16);
   }
 
-  @media (prefers-reduced-motion: no-preference) {
-    .values-float {
-      animation: values-float 5.5s ease-in-out infinite;
-    }
+  /* Vidrio tenue: base visible en reposo (no solo al hover), más sutil que
+     el panel de Misión/Visión (menos blur, menos opacidad). */
+  .glass-subtle {
+    background: rgba(255, 255, 255, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
-  @keyframes values-float {
-    0%,
-    100% {
-      transform: translateY(0) rotate(-2deg);
+  .glass-subtle:hover,
+  .glass-subtle:focus {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 20px 44px rgba(13, 31, 20, 0.1);
+  }
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .glass-subtle {
+      background: rgba(255, 255, 255, 0.85);
     }
-    50% {
-      transform: translateY(-10px) rotate(2deg);
+    .glass-subtle:hover,
+    .glass-subtle:focus {
+      background: rgba(255, 255, 255, 0.95);
     }
   }
 
