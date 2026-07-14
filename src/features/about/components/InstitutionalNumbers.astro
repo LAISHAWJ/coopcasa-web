@@ -1,11 +1,10 @@
 ---
-import Icon from '@shared/ui/Icon.astro';
 import { stats } from '@data/stats';
-import { historyStatsSection, institutionalFacts, institutionalFactsSection } from '@data/about';
+import { historyStatsSection } from '@data/about';
 import { formatStatValue } from '@shared/utils/formatNumber';
 ---
 
-<section class="px-5 pt-8 pb-20 lg:px-8">
+<section class="px-5 pt-8 pb-16 lg:px-8">
   <div
     data-stats-root
     data-story-group
@@ -50,31 +49,6 @@ import { formatStatValue } from '@shared/utils/formatNumber';
           </div>
         ))
       }
-    </div>
-
-    <div data-story="up" class="relative z-[1] mt-10 border-t border-white/10 pt-8">
-      <div class="mb-1.5 text-center text-[12px] font-bold tracking-[0.1em] text-white/50 uppercase">
-        {institutionalFactsSection.eyebrow}
-      </div>
-      <p class="mb-5 text-center text-sm font-semibold text-white/80">
-        {institutionalFactsSection.title}
-      </p>
-      <div class="mx-auto flex max-w-[900px] flex-col flex-wrap items-center justify-center gap-x-10 gap-y-4 sm:flex-row">
-        {
-          institutionalFacts.map((fact) => (
-            <div class="flex max-w-[280px] items-start gap-2.5 text-left">
-              <Icon
-                name={fact.icon}
-                size={16}
-                color="#7ee05a"
-                strokeWidth={2.2}
-                class="mt-0.5 flex-none"
-              />
-              <span class="text-[13.5px] leading-snug text-white/65">{fact.value}</span>
-            </div>
-          ))
-        }
-      </div>
     </div>
   </div>
 </section>

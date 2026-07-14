@@ -1,0 +1,55 @@
+---
+import Icon from '@shared/ui/Icon.astro';
+import { institutionalFacts, institutionalFactsSection } from '@data/about';
+---
+
+<!-- Ficha institucional: tratamiento de documento/sello oficial, distinto de
+     la banda de cifras (arriba, oscura y animada) y del resto de bloques
+     narrativos de la página. No es "un párrafo más": es la pieza formal de
+     cierre con los datos legales reales de la cooperativa. -->
+<section class="px-5 pb-20 lg:px-8 lg:pb-28">
+  <div data-story-group class="relative mx-auto max-w-[840px]">
+    <div
+      data-story="up"
+      class="relative rounded-[28px] border-2 border-dashed border-brand-600/25 bg-[linear-gradient(160deg,#fbfdfb,#fff)] p-8 shadow-[0_20px_50px_rgba(13,31,20,0.08)] sm:p-12"
+    >
+      <div
+        class="absolute -top-9 right-8 flex h-[76px] w-[76px] flex-col items-center justify-center rounded-full bg-[linear-gradient(135deg,#22a024,#2fb531)] text-center shadow-[0_14px_30px_rgba(43,168,44,0.35)] ring-[6px] ring-white sm:right-12"
+      >
+        <Icon name="shield" size={22} color="#fff" />
+        <span class="mt-0.5 px-1.5 text-[7px] leading-tight font-bold tracking-wide text-white uppercase">
+          {institutionalFactsSection.stampLabel}
+        </span>
+      </div>
+
+      <div class="mb-8 text-center sm:text-left">
+        <div class="mb-1.5 text-[13px] font-bold tracking-[0.1em] text-brand-800 uppercase">
+          {institutionalFactsSection.eyebrow}
+        </div>
+        <h2 class="text-2xl font-extrabold tracking-tight text-ink-900 sm:text-[28px]">
+          {institutionalFactsSection.title}
+        </h2>
+      </div>
+
+      <dl class="grid grid-cols-1 gap-7 border-t border-ink-900/8 pt-8 sm:grid-cols-3">
+        {
+          institutionalFacts.map((fact) => (
+            <div>
+              <dt class="mb-1.5 flex items-center gap-2 text-[12px] font-bold tracking-wide text-brand-800 uppercase">
+                <Icon name={fact.icon} size={15} color="#1f8f22" strokeWidth={2.2} class="flex-none" />
+                {fact.label}
+              </dt>
+              <dd class="text-[14.5px] leading-relaxed text-body-500">{fact.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initScrollStory } from '@shared/utils/scrollStory';
+
+  initScrollStory();
+</script>

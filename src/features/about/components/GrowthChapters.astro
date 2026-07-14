@@ -2,148 +2,106 @@
 import { Image } from 'astro:assets';
 import Icon from '@shared/ui/Icon.astro';
 import { growthChapters } from '@data/about';
-
-const [branchChapter, expansionChapter, digitalChapter] = growthChapters;
+import { hexToRgba } from '@shared/utils/color';
 ---
 
+<!--
+  Capítulos de crecimiento: cada uno es un bloque editorial con su propia
+  ilustración flotante (sin marco, sombra de contorno) y su propio acento de
+  color. El acento progresa del más apagado al verde de marca pleno, y el
+  lado de la imagen se alterna, dando sensación de avance sin timeline ni
+  cards repetidas.
+-->
 <section aria-label="Capítulos de crecimiento de COOPCASA">
-  <!-- 2008: editorial claro, foto 3D flotante a la izquierda. -->
-  <div class="overflow-hidden bg-white px-5 py-20 lg:px-8 lg:py-28">
-    <div
-      data-story-group
-      class="mx-auto grid max-w-[1180px] items-center gap-14 lg:grid-cols-[1fr_1.05fr] lg:gap-12"
-    >
-      <div data-story="left" class="relative mx-auto w-full max-w-[440px] lg:mx-0">
+  {
+    growthChapters.map((chapter, index) => {
+      const isReversed = index % 2 === 1;
+      const wash = hexToRgba(chapter.accentColor, 0.06);
+      const shadow = hexToRgba(chapter.accentColor, 0.3);
+      return (
         <div
-          data-tilt
-          data-tilt-x="4"
-          data-tilt-y="-5"
-          style={{
-            transform: 'perspective(1000px) rotateY(-5deg) rotateX(3deg)',
-            clipPath: 'polygon(0 0, 96% 0, 100% 100%, 4% 100%)',
-            boxShadow:
-              '0 10px 20px -6px rgba(13,31,20,0.16), 0 30px 55px -12px rgba(13,31,20,0.2), 0 70px 100px -24px rgba(43,168,44,0.2)',
-          }}
-          class="relative overflow-hidden transition-shadow duration-500 will-change-transform"
+          class="overflow-hidden px-5 py-20 lg:px-8 lg:py-28"
+          style={{ background: `linear-gradient(180deg, #fff, ${wash})` }}
         >
-          <Image
-            src={branchChapter.image!.src}
-            alt={branchChapter.image!.alt}
-            width={680}
-            height={520}
-            loading="lazy"
-            class="h-[300px] w-full object-cover sm:h-[380px]"
-          />
-        </div>
-        <div
-          class="absolute -bottom-6 left-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#22a024,#2fb531)] shadow-[0_14px_30px_rgba(43,168,44,0.4)]"
-        >
-          <Icon name={branchChapter.icon} size={24} color="#fff" strokeWidth={1.8} />
-        </div>
-      </div>
+          <div
+            data-story-group
+            class:list={[
+              'mx-auto grid max-w-[1180px] items-center gap-14 lg:gap-12',
+              isReversed ? 'lg:grid-cols-[1.05fr_1fr]' : 'lg:grid-cols-[1fr_1.05fr]',
+            ]}
+          >
+            <div
+              class:list={[
+                'relative mx-auto w-full max-w-[400px] lg:mx-0',
+                isReversed ? 'order-first lg:order-2' : 'lg:order-1',
+              ]}
+            >
+              <div
+                data-story={isReversed ? 'right' : 'left'}
+                class="chapter-float flex justify-center"
+                style={{ '--chapter-shadow': shadow }}
+              >
+                <Image
+                  src={chapter.image.src}
+                  alt={chapter.image.alt}
+                  width={420}
+                  height={360}
+                  loading="lazy"
+                  class="chapter-drop-shadow h-auto w-full"
+                />
+              </div>
+            </div>
 
-      <div class="relative lg:pl-6">
-        <div data-story="up" class="mb-3.5 font-display text-sm font-bold tracking-[0.1em] text-brand-800 uppercase">
-          {branchChapter.yearLabel}
+            <div class:list={['relative', isReversed ? 'lg:order-1 lg:pr-6' : 'lg:order-2 lg:pl-6']}>
+              <div
+                data-story="up"
+                style={{ color: chapter.accentColor }}
+                class="mb-3.5 flex items-center gap-2.5 font-display text-sm font-bold tracking-[0.1em] uppercase"
+              >
+                <Icon name={chapter.icon} size={18} color={chapter.accentColor} strokeWidth={2.2} />
+                {chapter.yearLabel}
+              </div>
+              <h2
+                data-story="up"
+                class="mb-4 text-[28px] leading-[1.1] font-extrabold tracking-tight text-ink-900 sm:text-[36px]"
+              >
+                {chapter.title}
+              </h2>
+              <p data-story="up" class="max-w-[460px] text-lg leading-[1.7] text-body-500">
+                {chapter.description}
+              </p>
+            </div>
+          </div>
         </div>
-        <h2 data-story="up" class="mb-4 text-[28px] leading-[1.1] font-extrabold tracking-tight text-ink-900 sm:text-[36px]">
-          {branchChapter.title}
-        </h2>
-        <p data-story="up" class="max-w-[460px] text-lg leading-[1.7] text-body-500">
-          {branchChapter.description}
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <!-- 2015: editorial claro, foto 3D flotante a la derecha (alineación invertida). -->
-  <div class="overflow-hidden bg-surface-50 px-5 py-20 lg:px-8 lg:py-28">
-    <div
-      data-story-group
-      class="mx-auto grid max-w-[1180px] items-center gap-14 lg:grid-cols-[1.05fr_1fr] lg:gap-12"
-    >
-      <div class="relative lg:order-1 lg:pr-6">
-        <div data-story="up" class="mb-3.5 font-display text-sm font-bold tracking-[0.1em] text-brand-800 uppercase">
-          {expansionChapter.yearLabel}
-        </div>
-        <h2 data-story="up" class="mb-4 text-[28px] leading-[1.1] font-extrabold tracking-tight text-ink-900 sm:text-[36px]">
-          {expansionChapter.title}
-        </h2>
-        <p data-story="up" class="max-w-[460px] text-lg leading-[1.7] text-body-500">
-          {expansionChapter.description}
-        </p>
-      </div>
-
-      <div data-story="right" class="relative order-first mx-auto w-full max-w-[440px] lg:order-2 lg:mx-0">
-        <div
-          data-tilt
-          data-tilt-x="-4"
-          data-tilt-y="5"
-          style={{
-            transform: 'perspective(1000px) rotateY(5deg) rotateX(-4deg)',
-            clipPath: 'polygon(4% 0, 100% 0, 96% 100%, 0 100%)',
-            boxShadow:
-              '0 10px 20px -6px rgba(13,31,20,0.16), 0 30px 55px -12px rgba(13,31,20,0.2), 0 70px 100px -24px rgba(243,229,0,0.18)',
-          }}
-          class="relative overflow-hidden transition-shadow duration-500 will-change-transform"
-        >
-          <Image
-            src={expansionChapter.image!.src}
-            alt={expansionChapter.image!.alt}
-            width={680}
-            height={520}
-            loading="lazy"
-            class="h-[300px] w-full object-cover sm:h-[380px]"
-          />
-        </div>
-        <div
-          class="absolute -bottom-6 right-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#f3e500,#ffe94d)] shadow-[0_14px_30px_rgba(243,229,0,0.4)]"
-        >
-          <Icon name={expansionChapter.icon} size={24} color="#8a7f00" strokeWidth={1.8} />
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 2021: quiebre de ritmo — bloque de color de marca full-bleed con ícono
-       gigante decorativo (sin foto), entre la ligereza editorial de arriba y
-       la banda de cifras del cierre. -->
-  <div
-    class="relative min-h-[420px] w-full overflow-hidden bg-[linear-gradient(120deg,#0d1f14,#14361b_60%,#1f5230)]"
-  >
-    <Icon
-      name={digitalChapter.icon}
-      size={340}
-      color="#ffffff"
-      strokeWidth={0.7}
-      class="pointer-events-none absolute -right-16 -bottom-16 opacity-[0.07] sm:-right-10 sm:opacity-[0.09]"
-    />
-    <div
-      data-story-group
-      class="relative z-[1] flex min-h-[420px] items-center px-5 py-16 sm:px-10 lg:px-20"
-    >
-      <div class="max-w-[520px]">
-        <div data-story="up" class="mb-3 flex items-center gap-2.5">
-          <Icon name={digitalChapter.icon} size={18} color="#7ee05a" strokeWidth={2.2} />
-          <span class="font-display text-sm font-bold tracking-[0.08em] text-brand-200 uppercase">
-            {digitalChapter.yearLabel}
-          </span>
-        </div>
-        <h2 data-story="up" class="mb-3 text-[28px] leading-[1.1] font-extrabold tracking-tight text-white sm:text-[36px]">
-          {digitalChapter.title}
-        </h2>
-        <p data-story="up" class="text-[15.5px] leading-relaxed text-white/80 sm:text-base">
-          {digitalChapter.description}
-        </p>
-      </div>
-    </div>
-  </div>
+      );
+    })
+  }
 </section>
+
+<style>
+  .chapter-drop-shadow {
+    filter:
+      drop-shadow(0 10px 14px rgba(13, 31, 20, 0.14))
+      drop-shadow(0 24px 36px var(--chapter-shadow));
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .chapter-float {
+      animation: chapter-float 6s ease-in-out infinite;
+    }
+  }
+  @keyframes chapter-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+</style>
 
 <script>
   import { initScrollStory } from '@shared/utils/scrollStory';
-  import { initTilt3d } from '@shared/utils/tilt3d';
 
   initScrollStory();
-  initTilt3d();
 </script>

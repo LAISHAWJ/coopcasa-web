@@ -1,15 +1,18 @@
 ---
 import { Image } from 'astro:assets';
 import { foundingStory } from '@data/about';
+import { hexToRgba } from '@shared/utils/color';
+
+const accentShadow = hexToRgba(foundingStory.accentColor, 0.28);
 ---
 
-<section class="overflow-hidden bg-white px-5 py-20 lg:px-8 lg:py-28">
+<section class="relative overflow-hidden bg-white px-5 py-20 lg:px-8 lg:py-28">
   <!-- Tipografía expresiva de fondo: el año de fundación como elemento gráfico,
-       no como dato aislado. aria-hidden porque el año ya está en el texto. -->
+       teñido con el acento "antiguo" que abre la progresión cronológica. -->
   <span
     aria-hidden="true"
-    data-parallax="30"
-    class="pointer-events-none absolute -top-10 -left-6 font-display text-[150px] leading-none font-extrabold text-brand-600/[0.06] select-none sm:text-[220px] lg:-top-16 lg:text-[300px]"
+    style={{ color: foundingStory.accentColor, opacity: 0.08 }}
+    class="pointer-events-none absolute -top-10 -left-6 font-display text-[150px] leading-none font-extrabold select-none sm:text-[220px] lg:-top-16 lg:text-[300px]"
   >
     {foundingStory.yearLabel}
   </span>
@@ -19,7 +22,10 @@ import { foundingStory } from '@data/about';
     class="relative z-[1] mx-auto grid max-w-[1180px] items-center gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-10"
   >
     <div data-story="right" class="lg:order-2 lg:pl-6">
-      <div class="mb-3.5 text-[13px] font-bold tracking-[0.1em] text-brand-800 uppercase">
+      <div
+        style={{ color: foundingStory.accentColor }}
+        class="mb-3.5 text-[13px] font-bold tracking-[0.1em] uppercase"
+      >
         {foundingStory.eyebrow}
       </div>
       <h2
@@ -32,37 +38,45 @@ import { foundingStory } from '@data/about';
       </p>
     </div>
 
-    <div data-story="left" class="relative mx-auto w-full max-w-[420px] lg:order-1 lg:mx-0">
-      <div
-        data-tilt
-        data-tilt-x="-3"
-        data-tilt-y="7"
-        style={{
-          transform: 'perspective(1000px) rotateY(7deg) rotateX(-3deg)',
-          clipPath: 'polygon(4% 0, 100% 0, 100% 100%, 0 96%)',
-          boxShadow:
-            '0 10px 20px -6px rgba(13,31,20,0.18), 0 30px 55px -12px rgba(13,31,20,0.24), 0 70px 110px -24px rgba(43,168,44,0.22)',
-        }}
-        class="relative overflow-hidden transition-shadow duration-500 will-change-transform"
-      >
+    <div data-story="left" class="relative mx-auto w-full max-w-[380px] lg:order-1 lg:mx-0">
+      <div data-story="scale" class="founding-float flex justify-center">
         <Image
           src={foundingStory.image.src}
           alt={foundingStory.image.alt}
-          width={640}
-          height={720}
+          width={420}
+          height={406}
           loading="lazy"
-          class="h-[360px] w-full object-cover sm:h-[440px]"
+          class="drop-shadow-founding h-auto w-full"
         />
       </div>
     </div>
   </div>
 </section>
 
+<style define:vars={{ accentShadow }}>
+  .drop-shadow-founding {
+    filter:
+      drop-shadow(0 10px 14px rgba(13, 31, 20, 0.16))
+      drop-shadow(0 26px 40px var(--accentShadow));
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .founding-float {
+      animation: founding-float 6.5s ease-in-out infinite;
+    }
+  }
+  @keyframes founding-float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(-1.5deg);
+    }
+    50% {
+      transform: translateY(-12px) rotate(1.5deg);
+    }
+  }
+</style>
+
 <script>
-  import { initScrollStory, initParallax } from '@shared/utils/scrollStory';
-  import { initTilt3d } from '@shared/utils/tilt3d';
+  import { initScrollStory } from '@shared/utils/scrollStory';
 
   initScrollStory();
-  initParallax();
-  initTilt3d();
 </script>
