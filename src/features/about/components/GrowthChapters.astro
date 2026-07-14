@@ -6,18 +6,19 @@ import { hexToRgba } from '@shared/utils/color';
 ---
 
 <!--
-  Capítulos de crecimiento: cada uno es un bloque editorial con su propia
-  ilustración flotante (sin marco, sombra de contorno) y su propio acento de
-  color. El acento progresa del más apagado al verde de marca pleno, y el
-  lado de la imagen se alterna, dando sensación de avance sin timeline ni
+  Capítulos de crecimiento: cada uno es un bloque editorial con su propio
+  acento de color y una foto real en marco normal (recuadro + sombra
+  calibrada), dentro de un panel glass que flota sobre el degradado con tinte
+  del capítulo. El acento progresa del más apagado al verde de marca pleno, y
+  el lado de la imagen se alterna, dando sensación de avance sin timeline ni
   cards repetidas.
 -->
 <section aria-label="Capítulos de crecimiento de COOPCASA">
   {
     growthChapters.map((chapter, index) => {
       const isReversed = index % 2 === 1;
-      const wash = hexToRgba(chapter.accentColor, 0.06);
-      const shadow = hexToRgba(chapter.accentColor, 0.3);
+      const wash = hexToRgba(chapter.accentColor, 0.1);
+      const shadow = hexToRgba(chapter.accentColor, 0.24);
       return (
         <div
           class="overflow-hidden px-5 py-20 lg:px-8 lg:py-28"
@@ -25,29 +26,26 @@ import { hexToRgba } from '@shared/utils/color';
         >
           <div
             data-story-group
+            style={{ '--chapter-shadow': shadow }}
             class:list={[
-              'mx-auto grid max-w-[1180px] items-center gap-14 lg:gap-12',
+              'glass-light mx-auto grid max-w-[1180px] items-center gap-14 rounded-[28px] p-8 sm:p-10 lg:gap-12 lg:p-14',
               isReversed ? 'lg:grid-cols-[1.05fr_1fr]' : 'lg:grid-cols-[1fr_1.05fr]',
             ]}
           >
             <div
               class:list={[
-                'relative mx-auto w-full max-w-[400px] lg:mx-0',
+                'relative mx-auto w-full max-w-[420px] lg:mx-0',
                 isReversed ? 'order-first lg:order-2' : 'lg:order-1',
               ]}
             >
-              <div
-                data-story={isReversed ? 'right' : 'left'}
-                class="chapter-float flex justify-center"
-                style={{ '--chapter-shadow': shadow }}
-              >
+              <div data-story={isReversed ? 'right' : 'left'} class="photo-frame flex justify-center">
                 <Image
                   src={chapter.image.src}
                   alt={chapter.image.alt}
-                  width={480}
-                  height={270}
+                  width={840}
+                  height={473}
                   loading="lazy"
-                  class="chapter-drop-shadow h-auto w-full"
+                  class="aspect-[16/9] h-auto w-full rounded-2xl object-cover"
                 />
               </div>
             </div>
@@ -79,24 +77,23 @@ import { hexToRgba } from '@shared/utils/color';
 </section>
 
 <style>
-  .chapter-drop-shadow {
-    filter:
-      drop-shadow(0 10px 14px rgba(13, 31, 20, 0.14))
-      drop-shadow(0 24px 36px var(--chapter-shadow));
+  .glass-light {
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 20px 50px rgba(13, 31, 20, 0.1);
   }
-  @media (prefers-reduced-motion: no-preference) {
-    .chapter-float {
-      animation: chapter-float 6s ease-in-out infinite;
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .glass-light {
+      background: rgba(255, 255, 255, 0.92);
     }
   }
-  @keyframes chapter-float {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-12px);
-    }
+
+  .photo-frame :global(img) {
+    box-shadow:
+      0 10px 14px rgba(13, 31, 20, 0.14),
+      0 24px 36px var(--chapter-shadow);
   }
 </style>
 

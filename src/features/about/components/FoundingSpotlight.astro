@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import { foundingStory } from '@data/about';
 import { hexToRgba } from '@shared/utils/color';
 
-const accentShadow = hexToRgba(foundingStory.accentColor, 0.28);
+const accentGlow = hexToRgba(foundingStory.accentColor, 0.16);
 ---
 
 <section class="relative overflow-hidden bg-white px-5 py-20 lg:px-8 lg:py-28">
@@ -16,10 +16,17 @@ const accentShadow = hexToRgba(foundingStory.accentColor, 0.28);
   >
     {foundingStory.yearLabel}
   </span>
+  <!-- Mancha de color decorativa: da contraste detrás del panel glass. -->
+  <div
+    aria-hidden="true"
+    style={{ background: `radial-gradient(circle, ${accentGlow}, transparent 65%)` }}
+    class="pointer-events-none absolute top-1/2 left-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[6px]"
+  >
+  </div>
 
   <div
     data-story-group
-    class="relative z-[1] mx-auto grid max-w-[1180px] items-center gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-10"
+    class="glass-light relative z-[1] mx-auto grid max-w-[1180px] items-center gap-14 rounded-[28px] p-8 sm:p-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10 lg:p-14"
   >
     <div data-story="right" class="lg:order-2 lg:pl-6">
       <div
@@ -38,40 +45,39 @@ const accentShadow = hexToRgba(foundingStory.accentColor, 0.28);
       </p>
     </div>
 
-    <div data-story="left" class="relative mx-auto w-full max-w-[380px] lg:order-1 lg:mx-0">
-      <div data-story="scale" class="founding-float flex justify-center">
+    <div data-story="left" class="relative mx-auto w-full max-w-[440px] lg:order-1 lg:mx-0">
+      <div data-story="scale" class="photo-frame">
         <Image
           src={foundingStory.image.src}
           alt={foundingStory.image.alt}
-          width={480}
-          height={270}
+          width={880}
+          height={495}
           loading="lazy"
-          class="drop-shadow-founding h-auto w-full"
+          class="aspect-[16/9] h-auto w-full rounded-2xl object-cover"
         />
       </div>
     </div>
   </div>
 </section>
 
-<style define:vars={{ accentShadow }}>
-  .drop-shadow-founding {
-    filter:
-      drop-shadow(0 10px 14px rgba(13, 31, 20, 0.16))
-      drop-shadow(0 26px 40px var(--accentShadow));
+<style>
+  .glass-light {
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 20px 50px rgba(13, 31, 20, 0.1);
   }
-  @media (prefers-reduced-motion: no-preference) {
-    .founding-float {
-      animation: founding-float 6.5s ease-in-out infinite;
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .glass-light {
+      background: rgba(255, 255, 255, 0.92);
     }
   }
-  @keyframes founding-float {
-    0%,
-    100% {
-      transform: translateY(0) rotate(-1.5deg);
-    }
-    50% {
-      transform: translateY(-12px) rotate(1.5deg);
-    }
+
+  .photo-frame :global(img) {
+    box-shadow:
+      0 10px 14px rgba(13, 31, 20, 0.14),
+      0 24px 40px rgba(13, 31, 20, 0.14);
   }
 </style>
 
