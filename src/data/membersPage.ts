@@ -1,3 +1,5 @@
+import membersHeroImage from '@assets/images/members-affiliation-advisory.webp';
+
 /** Página "Hazte Socio" → hero. */
 export const membersHero = {
   titleLine1: 'Hazte Socio',
@@ -8,8 +10,7 @@ export const membersHero = {
     'Ser socio es ser dueño. Únete a una comunidad de más de 12,500 personas que ahorran, crecen y se apoyan mutuamente. El proceso es simple y te acompañamos en cada paso.',
   ctaLabel: 'Llenar formulario',
   image: {
-    // Reemplazar por una fotografía real de asesoría/afiliación.
-    src: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80',
+    src: membersHeroImage,
     alt: 'Asesoría de afiliación en COOPCASA',
   },
 };
