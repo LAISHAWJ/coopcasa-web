@@ -1,7 +1,7 @@
 # COOPCASA Web
 
 Sitio web institucional de COOPCASA (cooperativa de ahorro y crédito), migrado desde el
-prototipo HTML aprobado por el cliente a un proyecto de producción con **Astro**,
+prototipo HTML a un proyecto de producción con **Astro**,
 **TypeScript** y **Tailwind CSS**. El objetivo de esta migración fue mantener el diseño
 aprobado **exactamente igual** mientras se reestructuraba el código en una arquitectura
 profesional, escalable y lista para que el cliente edite contenido y el equipo de backend
