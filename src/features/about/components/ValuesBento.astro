@@ -1,38 +1,23 @@
 ---
-import { Image } from 'astro:assets';
 import { values, valuesSection } from '@data/about';
 
 const AREAS = ['a', 'b', 'c', 'd', 'e', 'f'];
 ---
 
 <!-- Valores: tratamiento propio y diferenciado del panel Misión/Visión de
-     arriba. En vez de iconos genéricos, cada valor se apoya en tipografía
-     grande (numeración) y color de acento como elementos protagonistas; el
-     único apoyo fotográfico es un recorte de detalle (manos estrechándose)
-     junto al encabezado, no un ícono plano. -->
+     arriba. Solo texto, tipografía y color como protagonistas (sin
+     fotografía): cada valor se apoya en una numeración grande y su color de
+     acento en vez de íconos o imágenes. -->
 <section class="relative overflow-hidden bg-surface-50 px-5 pt-16 pb-20 lg:px-8 lg:pb-28">
   <div class="mx-auto max-w-[1100px]">
-    <div
-      data-story-group
-      class="relative mb-12 flex flex-col items-center gap-6 text-center sm:flex-row sm:justify-between sm:text-left"
-    >
-      <div data-story="up" class="max-w-[480px]">
+    <div data-story-group class="relative mb-12 text-center">
+      <div data-story="up" class="mx-auto max-w-[560px]">
         <div class="mb-3 text-[13px] font-bold tracking-[0.1em] text-brand-800 uppercase">
           {valuesSection.eyebrow}
         </div>
         <h2 class="text-[26px] font-extrabold tracking-tight text-ink-900 sm:text-[36px]">
           {valuesSection.title}
         </h2>
-      </div>
-      <div data-story="scale" class="photo-frame flex-none">
-        <Image
-          src={valuesSection.image.src}
-          alt={valuesSection.image.alt}
-          width={300}
-          height={200}
-          loading="lazy"
-          class="aspect-[3/2] h-auto w-[150px] rounded-2xl object-cover sm:w-[190px]"
-        />
       </div>
     </div>
 
@@ -90,12 +75,6 @@ const AREAS = ['a', 'b', 'c', 'd', 'e', 'f'];
 </section>
 
 <style>
-  .photo-frame :global(img) {
-    box-shadow:
-      0 4px 10px rgba(13, 31, 20, 0.12),
-      0 16px 32px rgba(13, 31, 20, 0.16);
-  }
-
   /* Vidrio tenue: base visible en reposo (no solo al hover), más sutil que
      el panel de Misión/Visión (menos blur, menos opacidad). */
   .glass-subtle {

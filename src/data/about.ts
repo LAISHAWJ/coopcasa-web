@@ -8,7 +8,6 @@ import teamLobbyPhoto from '@assets/images/equipo-oficina-conversando.webp';
 import digitalDeskPhoto from '@assets/images/profesional-escritorio-digital.webp';
 import missionConsultPhoto from '@assets/images/asesora-clienta-consulta.webp';
 import visionFamilyHousePhoto from '@assets/images/familia-frente-casa.webp';
-import valuesHandshakeDetailPhoto from '@assets/images/manos-apreton-confianza.webp';
 
 /** Home → sección "Sobre nosotros" (teaser), mini íconos Misión/Visión/Valores/Comunidad. */
 export const aboutTeaserPoints: { title: string; icon: IconName }[] = [
@@ -218,10 +217,6 @@ export const visionContent: VisionContent = {
 export const valuesSection = {
   eyebrow: 'Valores institucionales',
   title: 'Los principios que nos definen',
-  image: {
-    src: valuesHandshakeDetailPhoto,
-    alt: 'Detalle de un apretón de manos, representando la confianza y solidaridad como valores compartidos de COOPCASA',
-  },
 };
 
 /** Valores: tipografía y color como protagonistas, sin iconografía genérica (features/about/components/ValuesBento.astro). */

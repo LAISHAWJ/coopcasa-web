@@ -10,10 +10,13 @@ import { missionContent, visionContent } from '@data/about';
      (recuadro redondeado + sombra), sin recorte de fondo. En mobile, una
      franja de transición con degradado marca el quiebre entre ambas. -->
 <section class="overflow-hidden">
-  <div class="grid grid-cols-1 md:grid-cols-2">
+  <!-- data-story-group envuelve ambas mitades (no cada una por separado) para
+       que Misión y Visión se revelen en cascada (panel → foto → panel → foto)
+       en vez de simultáneas: mismo mecanismo de stagger de scrollStory.ts,
+       aplicado a un solo grupo compartido. -->
+  <div data-story-group class="grid grid-cols-1 md:grid-cols-2">
     <!-- Misión: mitad clara. -->
     <div
-      data-story-group
       class="relative flex min-h-[600px] flex-col justify-center overflow-hidden bg-[linear-gradient(160deg,#fbfdfb,#fff)] px-6 py-16 sm:px-10 lg:min-h-[680px] lg:px-14 lg:py-20"
     >
       <div
@@ -59,7 +62,6 @@ import { missionContent, visionContent } from '@data/about';
 
     <!-- Visión: mitad oscura, contraste directo con Misión. -->
     <div
-      data-story-group
       class="relative flex min-h-[600px] flex-col justify-center overflow-hidden bg-[linear-gradient(160deg,#0d1f14,#14361b)] px-6 py-16 sm:px-10 lg:min-h-[680px] lg:px-14 lg:py-20"
     >
       <span
