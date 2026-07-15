@@ -1,4 +1,9 @@
+import type { ImageMetadata } from 'astro';
 import type { IconCard, FaqItem } from '@shared/types/content';
+import saldoHogarPhoto from '@assets/images/app-consulta-saldo-hogar.webp';
+import transferenciaCafePhoto from '@assets/images/app-transferencia-pago-cafe.webp';
+import ahorroParejaPhoto from '@assets/images/app-ahorro-planificacion-pareja.webp';
+import seguridadConfianzaPhoto from '@assets/images/app-seguridad-soporte-confianza.webp';
 
 export const mobileAppHero = {
   eyebrow: 'App Móvil COOPCASA',
@@ -58,74 +63,66 @@ export const appFaqSection = {
   title: 'Preguntas frecuentes de la App',
 };
 
-// NOTA PARA EL CLIENTE: esta lista describe las funcionalidades que un socio
-// puede realizar desde la app. Son las funcionalidades típicas de una app de
-// cooperativa financiera; confirmar/ajustar cuáles están realmente
-// disponibles (o en qué fase de desarrollo) antes de publicar.
-export const appFeatures: IconCard[] = [
+export interface AppFeatureBlock {
+  eyebrow: string;
+  title: string;
+  bullets: string[];
+  image: { src: ImageMetadata; alt: string };
+}
+
+// NOTA PARA EL CLIENTE: cada bloque agrupa varias funcionalidades típicas de
+// una app de cooperativa financiera; confirmar/ajustar cuáles están
+// realmente disponibles (o en qué fase de desarrollo) antes de publicar.
+export const appFeatureBlocks: AppFeatureBlock[] = [
   {
-    title: 'Consulta de saldo y movimientos',
-    description:
-      'Revisa el balance y el detalle de cada transacción de tus cuentas en tiempo real.',
-    icon: 'document',
-    iconBg: 'bg-brand-600/10',
-    iconColor: '#1f8f22',
+    eyebrow: 'Tus cuentas',
+    title: 'Controla tu dinero desde donde estés',
+    bullets: [
+      'Consulta tu saldo y movimientos en tiempo real',
+      'Recibe notificaciones al instante de cada transacción',
+    ],
+    image: {
+      src: saldoHogarPhoto,
+      alt: 'Mujer revisando su saldo y movimientos desde el teléfono, relajada en casa',
+    },
   },
   {
-    title: 'Transferencias inmediatas',
-    description: 'Envía dinero entre tus cuentas o a terceros al instante, sin filas ni papeleo.',
-    icon: 'transfer',
-    iconBg: 'bg-gold-400/22',
-    iconColor: '#a89a00',
+    eyebrow: 'Transferencias y pagos',
+    title: 'Mueve tu dinero al instante',
+    bullets: [
+      'Transfiere entre tus cuentas o a terceros sin filas',
+      'Paga tus préstamos o los de un familiar',
+      'Recibe tu comprobante al momento',
+    ],
+    image: {
+      src: transferenciaCafePhoto,
+      alt: 'Mujer realizando un pago desde su teléfono con tarjeta en mano',
+    },
   },
   {
-    title: 'Solicitud de préstamos en línea',
-    description: 'Solicita tu crédito desde la app y da seguimiento al estatus de tu solicitud.',
-    icon: 'editPencil',
-    iconBg: 'bg-brand-600/10',
-    iconColor: '#1f8f22',
+    eyebrow: 'Ahorro y crédito',
+    title: 'Ahorra y planifica tu futuro',
+    bullets: [
+      'Define metas de ahorro y automatiza tus aportes',
+      'Abre y renueva certificados financieros en segundos',
+      'Solicita tu préstamo y da seguimiento a tu solicitud',
+    ],
+    image: {
+      src: ahorroParejaPhoto,
+      alt: 'Pareja de socios mayores revisando juntos sus documentos financieros en casa',
+    },
   },
   {
-    title: 'Pago de préstamos',
-    description: 'Paga tus cuotas o las de terceros y recibe tu comprobante al momento.',
-    icon: 'briefcaseLoan',
-    iconBg: 'bg-gold-400/22',
-    iconColor: '#a89a00',
-  },
-  {
-    title: 'Ahorro programado',
-    description: 'Define metas y automatiza tus aportes para alcanzarlas más rápido.',
-    icon: 'coin',
-    iconBg: 'bg-brand-600/10',
-    iconColor: '#1f8f22',
-  },
-  {
-    title: 'Certificados en línea',
-    description: 'Abre y renueva certificados financieros desde tu teléfono en segundos.',
-    icon: 'chartGrowth',
-    iconBg: 'bg-gold-400/22',
-    iconColor: '#a89a00',
-  },
-  {
-    title: 'Acceso biométrico',
-    description: 'Entra con huella o Face ID. Tu información siempre cifrada y protegida.',
-    icon: 'lock',
-    iconBg: 'bg-brand-600/10',
-    iconColor: '#1f8f22',
-  },
-  {
-    title: 'Notificaciones en tiempo real',
-    description: 'Recibe alertas de cada movimiento para tener el control total de tu dinero.',
-    icon: 'bell',
-    iconBg: 'bg-gold-400/22',
-    iconColor: '#a89a00',
-  },
-  {
-    title: 'Soporte dentro de la app',
-    description: 'Contacta a un representante o consulta ayuda sin salir de la aplicación.',
-    icon: 'chat',
-    iconBg: 'bg-brand-600/10',
-    iconColor: '#1f8f22',
+    eyebrow: 'Seguridad y soporte',
+    title: 'Pensada para cada socio',
+    bullets: [
+      'Entra con huella o Face ID, siempre cifrado',
+      'Soporte dentro de la app, sin salir de ella',
+    ],
+    image: {
+      src: seguridadConfianzaPhoto,
+      alt: 'Hombre sonriendo con confianza mientras usa la app desde su teléfono',
+    },
   },
 ];
 
