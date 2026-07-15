@@ -1,7 +1,7 @@
 import type { ImageMetadata } from 'astro';
 import type { IconName } from '@shared/config/icons';
 import { siteConfig } from './siteConfig';
-import aboutTeaserImage from '@assets/images/about-team-collaboration.webp';
+import aboutTeaserImage from '@assets/images/equipo-coopcasa-reunion.webp';
 import foundingHandshakePhoto from '@assets/images/fundacion-acuerdo-manos.webp';
 import branchAdvisorPhoto from '@assets/images/asesor-cliente-firma.webp';
 import teamLobbyPhoto from '@assets/images/equipo-oficina-conversando.webp';
@@ -25,7 +25,7 @@ export const aboutTeaser = {
     'Nacimos en 2001 con un grupo de familias que decidieron ahorrar juntas. Hoy somos una de las cooperativas de ahorro y crédito más sólidas de la región, pero seguimos rigiéndonos por el mismo principio: las personas antes que las ganancias.',
   image: {
     src: aboutTeaserImage,
-    alt: 'Equipo de colaboradores de COOPCASA conversando en una reunión de trabajo',
+    alt: 'Equipo de profesionales de COOPCASA reunidos alrededor de una mesa de trabajo',
   },
   // Reemplazar con los años reales de operación.
   yearsBadge: { value: '25', caption: 'años impulsando el cooperativismo' },
