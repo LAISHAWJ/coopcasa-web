@@ -2,6 +2,10 @@
 import Button from '@shared/ui/Button.astro';
 import { ctaBanner } from '@data/home';
 import { JOIN_PANEL_MODAL_ID } from '@features/members/constants';
+
+// URL del Portal de la Oficina Virtual (proyecto neocoop_member-portail,
+// React) — ver .env.example. El login de ejemplo en Astro ya no se usa.
+const portalLoginUrl = `${import.meta.env.PUBLIC_PORTAL_URL ?? 'http://localhost:5173'}/login`;
 ---
 
 <section class="px-5 pt-5 pb-20 lg:px-8">
@@ -35,7 +39,7 @@ import { JOIN_PANEL_MODAL_ID } from '@features/members/constants';
         <Button data-modal-open={JOIN_PANEL_MODAL_ID} variant="inverse" size="lg"
           >{ctaBanner.primaryCtaLabel}</Button
         >
-        <Button href="/oficina-virtual/login" variant="ghost-light" size="lg" icon="loginArrow">
+        <Button href={portalLoginUrl} variant="ghost-light" size="lg" icon="loginArrow">
           {ctaBanner.secondaryCtaLabel}
         </Button>
       </div>

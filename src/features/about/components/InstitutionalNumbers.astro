@@ -54,9 +54,17 @@ import { formatStatValue } from '@shared/utils/formatNumber';
 </section>
 
 <script>
+  // Aislado en su propio <script> (grafo de módulos independiente) a
+  // propósito: no debe depender de gsap/ScrollTrigger. Si esa dependencia
+  // falla en build/dev, el conteo de esta sección debe seguir funcionando
+  // igual (ver initScrollStory más abajo, que sí depende de gsap).
   import { initCountUp } from '@shared/utils/countUp';
-  import { initScrollStory } from '@shared/utils/scrollStory';
 
   document.querySelectorAll<HTMLElement>('[data-stats-root]').forEach((root) => initCountUp(root));
+</script>
+
+<script>
+  import { initScrollStory } from '@shared/utils/scrollStory';
+
   initScrollStory();
 </script>

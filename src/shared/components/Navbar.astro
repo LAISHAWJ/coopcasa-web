@@ -17,6 +17,10 @@ import {
 } from '@data/menu';
 
 const MOBILE_NAV_MODAL_ID = 'mobile-nav';
+
+// URL del Portal de la Oficina Virtual (proyecto neocoop_member-portail,
+// React) — ver .env.example. El login de ejemplo en Astro ya no se usa.
+const portalLoginUrl = `${import.meta.env.PUBLIC_PORTAL_URL ?? 'http://localhost:5173'}/login`;
 ---
 
 <div
@@ -91,7 +95,7 @@ const MOBILE_NAV_MODAL_ID = 'mobile-nav';
 
     <div class="flex items-center gap-2">
       <div class="hidden lg:block">
-        <Button href="/oficina-virtual/login" size="sm" icon="loginArrow">
+        <Button href={portalLoginUrl} size="sm" icon="loginArrow">
           {loginButtonLabel}
         </Button>
       </div>
@@ -173,12 +177,7 @@ const MOBILE_NAV_MODAL_ID = 'mobile-nav';
     </div>
   </nav>
 
-  <Button
-    href="/oficina-virtual/login"
-    size="lg"
-    icon="loginArrow"
-    class="mt-6 w-full justify-center"
-  >
+  <Button href={portalLoginUrl} size="lg" icon="loginArrow" class="mt-6 w-full justify-center">
     {loginButtonLabel}
   </Button>
 </Modal>

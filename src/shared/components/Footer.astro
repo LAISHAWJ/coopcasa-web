@@ -13,6 +13,10 @@ import {
   footerColumnLabels,
   footerVirtualOfficeLabel,
 } from '@data/footer';
+
+// URL del Portal de la Oficina Virtual (proyecto neocoop_member-portail,
+// React) — ver .env.example. El login de ejemplo en Astro ya no se usa.
+const portalLoginUrl = `${import.meta.env.PUBLIC_PORTAL_URL ?? 'http://localhost:5173'}/login`;
 ---
 
 <footer id="contacto" class="scroll-mt-20 bg-ink-900 px-5 pt-[72px] pb-8 text-white lg:px-8">
@@ -106,7 +110,7 @@ import {
             {siteConfig.contact.email}
           </a>
           <Button
-            href="/oficina-virtual/login"
+            href={portalLoginUrl}
             variant="ghost-light"
             size="sm"
             icon="loginArrow"
