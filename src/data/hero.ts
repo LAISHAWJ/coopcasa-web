@@ -1,5 +1,5 @@
 import type { IconCard } from '@shared/types/content';
-import heroImage from '@assets/images/hero-family-savings.webp';
+import heroImage from '@assets/images/hero-family-cutout.png';
 
 export const hero = {
   // Reemplazar con el texto de posicionamiento y el año real de fundación.
