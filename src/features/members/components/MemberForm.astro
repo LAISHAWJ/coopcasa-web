@@ -3,7 +3,7 @@ import Input from '@shared/ui/Input.astro';
 import Select from '@shared/ui/Select.astro';
 import Checkbox from '@shared/ui/Checkbox.astro';
 import Button from '@shared/ui/Button.astro';
-import { branchOptions, referralSourceOptions } from '@data/members';
+import { referralSourceOptions } from '@data/members';
 import { joinPanelContent, memberFormFields } from '@data/membersPage';
 ---
 
@@ -78,13 +78,6 @@ import { joinPanelContent, memberFormFields } from '@data/membersPage';
   </div>
 
   <Select
-    id="member-branch"
-    name="branch"
-    label={memberFormFields.branch.label}
-    required
-    options={branchOptions}
-  />
-  <Select
     id="member-referralSource"
     name="referralSource"
     label={memberFormFields.referralSource.label}
@@ -142,7 +135,6 @@ import { joinPanelContent, memberFormFields } from '@data/membersPage';
         email: formData.get('email'),
         addressStreet: formData.get('addressStreet'),
         addressCity: formData.get('addressCity'),
-        branch: formData.get('branch'),
         referralSource: formData.get('referralSource'),
         acceptedTerms: formData.get('acceptedTerms') === 'on',
       };
@@ -164,7 +156,6 @@ import { joinPanelContent, memberFormFields } from '@data/membersPage';
         addressStreet: String(values.addressStreet ?? ''),
         addressReference: String(formData.get('addressReference') ?? '') || undefined,
         addressCity: String(values.addressCity ?? ''),
-        branch: String(values.branch ?? ''),
         referralSource: String(values.referralSource ?? ''),
         acceptedTerms: true,
       };

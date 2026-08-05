@@ -6,7 +6,6 @@ export type MemberFormErrors = Partial<
     | 'email'
     | 'addressStreet'
     | 'addressCity'
-    | 'branch'
     | 'referralSource'
     | 'acceptedTerms',
     string
@@ -41,7 +40,6 @@ export function validateMemberForm(
 
   if (!asText('addressStreet')) errors.addressStreet = 'Ingresa la calle y número.';
   if (!asText('addressCity')) errors.addressCity = 'Ingresa la ciudad o municipio.';
-  if (!asText('branch')) errors.branch = 'Selecciona dónde quieres afiliarte.';
   if (!asText('referralSource')) errors.referralSource = 'Selecciona una opción.';
   if (!data.acceptedTerms) errors.acceptedTerms = 'Debes aceptar los Términos y Condiciones.';
 

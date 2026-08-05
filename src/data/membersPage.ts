@@ -58,6 +58,5 @@ export const memberFormFields = {
     placeholder: 'Residencial, apartamento y/o referencias',
   },
   addressCity: { label: 'Ciudad o municipio', placeholder: 'Ciudad o municipio' },
-  branch: { label: '¿Dónde quieres afiliarte?' },
   referralSource: { label: '¿Por qué vía supiste de nosotros?' },
 };

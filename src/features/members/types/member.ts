@@ -6,7 +6,6 @@ export interface MemberRequest {
   addressStreet: string;
   addressReference?: string;
   addressCity: string;
-  branch: string;
   referralSource: string;
   acceptedTerms: boolean;
 }
