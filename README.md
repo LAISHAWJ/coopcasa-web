@@ -35,7 +35,6 @@ conecte sus APIs sin tocar componentes.
 ```
 src/
   features/            # un folder por dominio de negocio
-    auth/               # login (Oficina Virtual)
     members/            # "Hazte Socio": formulario, panel lateral, secciones de la página
     mobile-app/          # página "App Móvil"
     memories/            # "Memorias Anuales"
@@ -97,7 +96,7 @@ indicando qué debe actualizar el cliente:
 | `memories.ts`                            | Memorias anuales (agregar una entrada nueva cada año)                 |
 | `about.ts`                               | Historia (timeline) y Misión/Visión/Valores                           |
 | `members.ts`                             | Opciones de "cómo nos conociste" del formulario                       |
-| `membersPage.ts` / `auth.ts` / `home.ts` | Copys específicos de cada página, títulos/descripciones SEO (`*Seo`) y mensajes de error de los formularios (`*ValidationMessages`) |
+| `membersPage.ts` / `home.ts`             | Copys específicos de cada página, títulos/descripciones SEO (`*Seo`) y mensajes de error del formulario (`memberValidationMessages`) |
 
 Los **colores, iconos y animaciones** no son contenido editable por el cliente: viven en
 `src/styles/global.css` (tokens) y `src/shared/config/icons.ts` (registro de íconos SVG) y
@@ -118,32 +117,34 @@ Los arreglos que alimentan grillas (`values` en `about.ts`, `joinSteps`/`memberB
 elementos libremente: los componentes correspondientes (`ValuesBento`, `StepsSection`, `Hero`,
 `FaqAccordion`) se adaptan automáticamente sin curaduría de diseño adicional.
 
-## Formularios (listos para backend, sin backend implementado)
+## Login / Oficina Virtual
 
-Este proyecto es **solo frontend**. Los dos formularios (Login y Hazte Socio) están
-completos en UI, validación y estados de carga, pero **no** implementan autenticación real
-ni persistencia de datos. (El prototipo aprobado no incluía una página de Contacto
-dedicada — sus datos viven en el footer — por lo que no se agregó un tercer formulario;
-la arquitectura de `shared/ui` ya deja `Textarea.astro` listo si se decide sumarlo más
-adelante.)
+Este repositorio **no incluye login ni Oficina Virtual**: ambos ya existen como una
+aplicación real y separada (proyecto `neocoop_member-portail`, React). El botón/enlace
+"Iniciar Sesión" (Navbar, Footer, `CtaBanner`) simplemente redirige a
+`${PUBLIC_PORTAL_URL}/login`; en producción, solo hay que cambiar `PUBLIC_PORTAL_URL` por
+la URL pública del Portal (ver `.env.example`).
 
-- `features/auth/` — login con validación, mostrar/ocultar contraseña, "recordarme",
-  estado de carga y **flujo DEMO**: al enviarse, redirige a `/oficina-virtual/dashboard`
-  (una página placeholder) para dejar demostrada la navegación. **El backend debe
-  reemplazar la lógica de `features/auth/services/loginService.ts` por una verificación
-  real antes de producción** — está señalizado con comentarios `TODO(backend)`.
-- `features/members/` — formulario "Hazte Socio" (`MemberForm.astro`, dentro del panel
-  lateral `JoinPanel.astro`), con validación de cédula/teléfono/email/términos.
+## Formulario "Hazte Socio" (listo para backend, sin backend implementado)
 
-### Conectar las APIs reales
+Este proyecto es **solo frontend**. El formulario "Hazte Socio" (`features/members/`) está
+completo en UI, validación y estados de carga, pero **no** implementa persistencia de datos
+real. (El prototipo aprobado no incluía una página de Contacto dedicada — sus datos viven
+en el footer — por lo que no se agregó un tercer formulario; la arquitectura de `shared/ui`
+ya deja `Textarea.astro` listo si se decide sumarlo más adelante.)
+
+`MemberForm.astro` (dentro del panel lateral `JoinPanel.astro`) valida cédula, teléfono,
+email y términos antes de enviar.
+
+### Conectar la API real
 
 1. Copiar `.env.example` a `.env`.
-2. Completar `PUBLIC_API_LOGIN_URL` y `PUBLIC_API_MEMBERS_URL` con los endpoints reales.
-3. Los archivos en `features/*/services/` ya están armados para hacer `fetch` a esas
-   variables — no hace falta tocar ningún componente ni la validación.
+2. Completar `PUBLIC_API_MEMBERS_URL` con el endpoint real.
+3. `features/members/services/submitMemberApplication.ts` ya está armado para hacer
+   `fetch` a esa variable — no hace falta tocar ningún componente ni la validación.
 
-Mientras esas variables no estén configuradas, ambos formularios **simulan un envío
-exitoso** (con un `console.warn` de aviso) para no bloquear la demo de frontend.
+Mientras esa variable no esté configurada, el formulario **simula un envío exitoso** (con
+un `console.warn` de aviso) para no bloquear la demo de frontend.
 
 ## Responsive (importante)
 
@@ -178,9 +179,8 @@ animación se mantuvo exacto.
 ## Antes de salir a producción
 
 - [ ] Reemplazar `siteConfig.url` y `site` en `astro.config.mjs` por el dominio real.
-- [ ] Completar `.env` con los endpoints reales del backend.
+- [ ] Completar `.env` con el endpoint real del backend (`PUBLIC_API_MEMBERS_URL`) y la
+      URL pública del Portal (`PUBLIC_PORTAL_URL`).
 - [ ] Reemplazar las fotos de Unsplash en `src/data/*.ts` por fotografía real de la
       cooperativa.
-- [ ] Reemplazar `dashboardPlaceholder` (`src/data/auth.ts`) por la Oficina Virtual real,
-      protegida con su propio guard de sesión.
 - [ ] Revisar todos los comentarios `// Reemplazar...` en `src/data/`.

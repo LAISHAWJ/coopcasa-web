@@ -13,10 +13,5 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
-  integrations: [
-    sitemap({
-      // La Oficina Virtual (login/dashboard demo) no debe indexarse.
-      filter: (page) => !page.includes('/oficina-virtual/'),
-    }),
-  ],
+  integrations: [sitemap()],
 });
