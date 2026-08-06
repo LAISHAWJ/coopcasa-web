@@ -89,19 +89,34 @@ indicando qué debe actualizar el cliente:
 | `menu.ts`                                | Enlaces y desplegables del navbar                                     |
 | `hero.ts`                                | Hero de la home + tira de beneficios rápidos                          |
 | `stats.ts`                               | Estadísticas institucionales (socios, años, sucursales, activos)      |
-| `services.ts`                            | Los 6 productos/servicios y su detalle en el modal                    |
+| `services.ts`                            | Los 6 productos/servicios y su detalle en el modal (fuente única: `menu.ts` y `footer.ts` leen los nombres desde aquí) |
 | `benefits.ts`                            | Contenido de la página "Hazte Socio" (pasos, beneficios, requisitos)  |
 | `faq.ts`                                 | Preguntas frecuentes de la home                                       |
 | `footer.ts`                              | Enlaces del footer y textos legales                                   |
 | `mobileApp.ts`                           | Contenido completo de la página "App Móvil"                           |
 | `memories.ts`                            | Memorias anuales (agregar una entrada nueva cada año)                 |
 | `about.ts`                               | Historia (timeline) y Misión/Visión/Valores                           |
-| `members.ts`                             | Opciones de sucursal y "cómo nos conociste" del formulario            |
-| `membersPage.ts` / `auth.ts` / `home.ts` | Copys específicos de cada página                                      |
+| `members.ts`                             | Opciones de "cómo nos conociste" del formulario                       |
+| `membersPage.ts` / `auth.ts` / `home.ts` | Copys específicos de cada página, títulos/descripciones SEO (`*Seo`) y mensajes de error de los formularios (`*ValidationMessages`) |
 
 Los **colores, iconos y animaciones** no son contenido editable por el cliente: viven en
 `src/styles/global.css` (tokens) y `src/shared/config/icons.ts` (registro de íconos SVG) y
 representan el diseño aprobado.
+
+### Qué NO debe tocar el equipo de Tecnología
+
+Para evitar romper el diseño aprobado al actualizar contenido, evitar editar:
+
+- Cualquier archivo `.astro` dentro de `src/features/**/components/` o `src/shared/components/`
+  y `src/shared/ui/` (presentación/layout).
+- `src/styles/global.css` (tokens de diseño: colores, tipografías, animaciones).
+- Los campos `icon`, `iconBg`, `iconColor` y `accentColor` dentro de `src/data/*.ts`: acompañan
+  al texto pero son decisiones de diseño, no contenido.
+
+Los arreglos que alimentan grillas (`values` en `about.ts`, `joinSteps`/`memberBenefits`/etc. en
+`benefits.ts`, `quickBenefits` en `hero.ts`, preguntas en `faq.ts`) aceptan agregar o quitar
+elementos libremente: los componentes correspondientes (`ValuesBento`, `StepsSection`, `Hero`,
+`FaqAccordion`) se adaptan automáticamente sin curaduría de diseño adicional.
 
 ## Formularios (listos para backend, sin backend implementado)
 

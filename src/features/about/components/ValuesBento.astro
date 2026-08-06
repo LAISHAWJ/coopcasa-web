@@ -1,7 +1,12 @@
 ---
 import { values, valuesSection } from '@data/about';
 
+// El mosaico asimétrico (.values-bento--mosaic, más abajo) está diseñado a
+// mano para exactamente 6 celdas. Si `values` (data/about.ts) tiene otra
+// cantidad, se usa automáticamente una grilla uniforme de respaldo
+// (.values-bento--fallback) en vez de dejar una celda vacía o sin posición.
 const AREAS = ['a', 'b', 'c', 'd', 'e', 'f'];
+const isMosaic = values.length === AREAS.length;
 ---
 
 <!-- Valores: tratamiento propio y diferenciado del panel Misión/Visión de
@@ -26,49 +31,64 @@ const AREAS = ['a', 'b', 'c', 'd', 'e', 'f'];
          grande y el color de acento como protagonista, en vez de un ícono.
          Vidrio más tenue que el panel de Misión/Visión de arriba, para
          diferenciar sin perder cohesión. -->
-    <div data-story-group class="values-bento">
+    <div
+      data-story-group
+      class:list={['values-bento', isMosaic ? 'values-bento--mosaic' : 'values-bento--fallback']}
+    >
       {
-        values.map((value, index) => (
-          <div data-story="scale" class={`values-bento__cell values-bento__cell--${AREAS[index]}`}>
+        values.map((value, index) => {
+          // El tratamiento "celda grande" (más padding, número y título más
+          // grandes) es parte del mosaico de 6 celdas; en la grilla de
+          // respaldo todas las celdas son uniformes.
+          const isFeatured = isMosaic && index === 0;
+          return (
             <div
-              tabindex="0"
+              data-story="scale"
               class:list={[
-                'glass-subtle group relative flex h-full flex-col justify-end gap-3 overflow-hidden rounded-[22px] p-6 transition-all duration-300 hover:-translate-y-1 focus:-translate-y-1 focus:outline-none',
-                index === 0 ? 'sm:p-8' : '',
+                'values-bento__cell',
+                isMosaic && `values-bento__cell--${AREAS[index]}`,
               ]}
             >
-              <span
-                aria-hidden="true"
-                style={{ color: value.accentColor }}
+              <div
+                tabindex="0"
                 class:list={[
-                  'pointer-events-none absolute -top-2 -right-1 font-display font-extrabold opacity-[0.12] transition-transform duration-300 select-none group-hover:scale-110 group-focus:scale-110',
-                  index === 0 ? 'text-[110px] sm:text-[140px]' : 'text-[80px]',
+                  'glass-subtle group relative flex h-full flex-col justify-end gap-3 overflow-hidden rounded-[22px] p-6 transition-all duration-300 hover:-translate-y-1 focus:-translate-y-1 focus:outline-none',
+                  isFeatured ? 'sm:p-8' : '',
                 ]}
               >
-                {String(index + 1).padStart(2, '0')}
-              </span>
-              <div
-                style={{ background: value.accentColor }}
-                class="h-1 w-10 flex-none rounded-full"
-              />
-              <div>
-                <h3
+                <span
+                  aria-hidden="true"
+                  style={{ color: value.accentColor }}
                   class:list={[
-                    'font-display font-extrabold tracking-tight text-ink-900',
-                    index === 0 ? 'text-[28px] sm:text-[34px]' : 'text-xl sm:text-2xl',
+                    'pointer-events-none absolute -top-2 -right-1 font-display font-extrabold opacity-[0.12] transition-transform duration-300 select-none group-hover:scale-110 group-focus:scale-110',
+                    isFeatured ? 'text-[110px] sm:text-[140px]' : 'text-[80px]',
                   ]}
                 >
-                  {value.title}
-                </h3>
-                <div class="values-bento__desc">
-                  <p class="overflow-hidden pt-2 text-[14px] leading-relaxed text-body-400">
-                    {value.description}
-                  </p>
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <div
+                  style={{ background: value.accentColor }}
+                  class="h-1 w-10 flex-none rounded-full"
+                />
+                <div>
+                  <h3
+                    class:list={[
+                      'font-display font-extrabold tracking-tight text-ink-900',
+                      isFeatured ? 'text-[28px] sm:text-[34px]' : 'text-xl sm:text-2xl',
+                    ]}
+                  >
+                    {value.title}
+                  </h3>
+                  <div class="values-bento__desc">
+                    <p class="overflow-hidden pt-2 text-[14px] leading-relaxed text-body-400">
+                      {value.description}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))
+          );
+        })
       }
     </div>
   </div>
@@ -103,6 +123,14 @@ const AREAS = ['a', 'b', 'c', 'd', 'e', 'f'];
   .values-bento {
     display: grid;
     gap: 1.1rem;
+  }
+  .values-bento__cell {
+    min-height: 168px;
+  }
+
+  /* Mosaico asimétrico: solo se aplica cuando `values` tiene exactamente 6
+     elementos (ver `isMosaic` en el script de este componente). */
+  .values-bento--mosaic {
     grid-template-columns: 1fr;
     grid-template-areas:
       'a'
@@ -112,30 +140,27 @@ const AREAS = ['a', 'b', 'c', 'd', 'e', 'f'];
       'e'
       'f';
   }
-  .values-bento__cell {
-    min-height: 168px;
-  }
-  .values-bento__cell--a {
+  .values-bento--mosaic .values-bento__cell--a {
     grid-area: a;
   }
-  .values-bento__cell--b {
+  .values-bento--mosaic .values-bento__cell--b {
     grid-area: b;
   }
-  .values-bento__cell--c {
+  .values-bento--mosaic .values-bento__cell--c {
     grid-area: c;
   }
-  .values-bento__cell--d {
+  .values-bento--mosaic .values-bento__cell--d {
     grid-area: d;
   }
-  .values-bento__cell--e {
+  .values-bento--mosaic .values-bento__cell--e {
     grid-area: e;
   }
-  .values-bento__cell--f {
+  .values-bento--mosaic .values-bento__cell--f {
     grid-area: f;
   }
 
   @media (min-width: 640px) {
-    .values-bento {
+    .values-bento--mosaic {
       grid-template-columns: repeat(2, 1fr);
       grid-template-areas:
         'a a'
@@ -146,7 +171,7 @@ const AREAS = ['a', 'b', 'c', 'd', 'e', 'f'];
   }
 
   @media (min-width: 1024px) {
-    .values-bento {
+    .values-bento--mosaic {
       grid-template-columns: repeat(4, 1fr);
       grid-auto-rows: 172px;
       grid-template-areas:
@@ -154,8 +179,27 @@ const AREAS = ['a', 'b', 'c', 'd', 'e', 'f'];
         'a a c d'
         'e e f f';
     }
-    .values-bento__cell--a {
+    .values-bento--mosaic .values-bento__cell--a {
       min-height: unset;
+    }
+  }
+
+  /* Grilla de respaldo: se activa sola si `values` no tiene exactamente 6
+     elementos, para que agregar/quitar un valor nunca deje una celda vacía
+     o sin posición asignada. Celdas uniformes, sin mosaico artístico. */
+  .values-bento--fallback {
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 640px) {
+    .values-bento--fallback {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .values-bento--fallback {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 

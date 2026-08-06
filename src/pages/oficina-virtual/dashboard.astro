@@ -2,7 +2,7 @@
 import MainLayout from '@shared/layouts/MainLayout.astro';
 import Button from '@shared/ui/Button.astro';
 import Icon from '@shared/ui/Icon.astro';
-import { dashboardPlaceholder } from '@data/auth';
+import { dashboardPlaceholder, dashboardSeo } from '@data/auth';
 ---
 
 <!--
@@ -12,8 +12,8 @@ import { dashboardPlaceholder } from '@data/auth';
   la autenticación, e idealmente protegerla con un guard de sesión.
 -->
 <MainLayout
-  title="Oficina Virtual"
-  description="Panel de la Oficina Virtual de COOPCASA."
+  title={dashboardSeo.title}
+  description={dashboardSeo.description}
   showChrome={false}
   noindex
 >

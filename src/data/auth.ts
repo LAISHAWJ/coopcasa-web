@@ -1,3 +1,9 @@
+/** Página de Login → metadatos SEO (título de pestaña y meta description). */
+export const loginSeo = {
+  title: 'Iniciar Sesión',
+  description: 'Accede a tu Oficina Virtual de COOPCASA.',
+};
+
 /** Página de Login (features/auth) → panel informativo izquierdo. */
 export const loginPanel = {
   title: 'Bienvenido a tu\nOficina Virtual',
@@ -32,6 +38,23 @@ export const loginForm = {
   // Aviso visible mientras la Oficina Virtual real no está integrada (ver README, sección "Flujo demo").
   demoNotice:
     'Demo: la Oficina Virtual completa no está incluida en este sitio. Este acceso solo demuestra el flujo de navegación.',
+};
+
+/**
+ * Mensajes de error de validación del formulario de login
+ * (features/auth/validation/loginValidation.ts).
+ */
+export const loginValidationMessages = {
+  usernameRequired: 'Ingresa tu usuario o correo electrónico.',
+  passwordRequired: 'Ingresa tu contraseña.',
+  passwordTooShort: (minLength: number) =>
+    `Tu contraseña debe tener al menos ${minLength} caracteres.`,
+};
+
+/** Página placeholder /oficina-virtual/dashboard → metadatos SEO. */
+export const dashboardSeo = {
+  title: 'Oficina Virtual',
+  description: 'Panel de la Oficina Virtual de COOPCASA.',
 };
 
 /** Página placeholder /oficina-virtual/dashboard (destino del login demo). */

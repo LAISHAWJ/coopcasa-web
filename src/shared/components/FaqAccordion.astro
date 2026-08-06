@@ -71,10 +71,11 @@ const { items, idPrefix = 'faq' } = Astro.props;
     icon?.classList.toggle('bg-brand-600/10', !open);
     icon?.classList.toggle('text-brand-800', !open);
 
-    const panel = item.querySelector('[data-faq-panel]');
-    panel?.classList.toggle('max-h-[320px]', open);
+    const panel = item.querySelector<HTMLElement>('[data-faq-panel]');
+    // Alto dinámico según el contenido real (en vez de un máximo fijo en
+    // píxeles), para que una respuesta más larga nunca quede recortada.
+    if (panel) panel.style.maxHeight = open ? `${panel.scrollHeight}px` : '0px';
     panel?.classList.toggle('opacity-100', open);
-    panel?.classList.toggle('max-h-0', !open);
     panel?.classList.toggle('opacity-0', !open);
   }
 

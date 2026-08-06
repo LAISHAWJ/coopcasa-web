@@ -1,3 +1,10 @@
+/** Página "Memorias Anuales" → metadatos SEO (título de pestaña y meta description). */
+export const memoriesSeo = {
+  title: 'Memorias Anuales',
+  description:
+    'Consulta o descarga las memorias anuales de COOPCASA y conoce a fondo nuestros resultados de gestión.',
+};
+
 export const memoriesHero = {
   eyebrow: 'Transparencia',
   title: 'Memorias Anuales',
@@ -34,6 +41,8 @@ export const memories: Memory[] = [
   },
   {
     year: '2023',
+    // "expansión de nuestra red de sucursales" es texto de ejemplo: ajustar
+    // si la cooperativa solo opera desde una sede.
     description:
       'Consolidación de la Oficina Virtual y expansión de nuestra red de sucursales a nivel nacional.',
     coverGradient: 'linear-gradient(150deg,#14361b,#2ba82c)',

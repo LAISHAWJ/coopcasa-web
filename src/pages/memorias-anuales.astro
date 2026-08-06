@@ -2,12 +2,10 @@
 import MainLayout from '@shared/layouts/MainLayout.astro';
 import MemoriesHero from '@features/memories/components/MemoriesHero.astro';
 import MemoriesGrid from '@features/memories/components/MemoriesGrid.astro';
+import { memoriesSeo } from '@data/memories';
 ---
 
-<MainLayout
-  title="Memorias Anuales"
-  description="Consulta o descarga las memorias anuales de COOPCASA y conoce a fondo nuestros resultados de gestión."
->
+<MainLayout title={memoriesSeo.title} description={memoriesSeo.description}>
   <MemoriesHero />
   <MemoriesGrid />
 </MainLayout>

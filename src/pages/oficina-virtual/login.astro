@@ -3,12 +3,12 @@ import MainLayout from '@shared/layouts/MainLayout.astro';
 import BackLink from '@shared/components/BackLink.astro';
 import LoginInfoPanel from '@features/auth/components/LoginInfoPanel.astro';
 import LoginForm from '@features/auth/components/LoginForm.astro';
-import { loginForm } from '@data/auth';
+import { loginForm, loginSeo } from '@data/auth';
 ---
 
 <MainLayout
-  title="Iniciar Sesión"
-  description="Accede a tu Oficina Virtual de COOPCASA."
+  title={loginSeo.title}
+  description={loginSeo.description}
   showChrome={false}
   noindex
 >

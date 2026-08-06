@@ -6,12 +6,10 @@ import MemberBenefitsGrid from '@features/members/components/MemberBenefitsGrid.
 import WhyCoopSection from '@features/members/components/WhyCoopSection.astro';
 import RequirementsSection from '@features/members/components/RequirementsSection.astro';
 import MembersCta from '@features/members/components/MembersCta.astro';
+import { membersSeo } from '@data/membersPage';
 ---
 
-<MainLayout
-  title="Hazte Socio"
-  description="Únete a COOPCASA en minutos. Ahorra, invierte y accede a préstamos con tasas justas siendo dueño de tu cooperativa."
->
+<MainLayout title={membersSeo.title} description={membersSeo.description}>
   <MembersHero />
   <StepsSection />
   <MemberBenefitsGrid />

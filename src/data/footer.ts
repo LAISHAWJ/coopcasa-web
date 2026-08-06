@@ -1,4 +1,5 @@
 import type { NavLink } from '@shared/types/nav';
+import { services } from './services';
 
 /** Footer → texto descriptivo bajo el logo. */
 export const footerBrandDescription =
@@ -24,14 +25,12 @@ export const footerNavLinks: NavLink[] = [
   { label: 'Memorias Anuales', href: '/memorias-anuales' },
 ];
 
-/** Footer → columna "Servicios" (enlazan a la sección de servicios en home). */
-export const footerServiceLinks: string[] = [
-  'Cuentas de ahorro',
-  'Préstamos',
-  'Certificados financieros',
-  'Aportaciones',
-  'Seguros',
-];
+/**
+ * Footer → columna "Servicios" (enlazan a la sección de servicios en home).
+ * Se lee directamente de data/services.ts para que nunca quede desincronizada
+ * si se agrega, quita o renombra un servicio.
+ */
+export const footerServiceLinks: string[] = services.map((service) => service.title);
 
 /** Footer → enlaces legales en la barra inferior. */
 export const legalLinks: NavLink[] = [

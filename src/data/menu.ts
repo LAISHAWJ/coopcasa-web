@@ -1,4 +1,13 @@
 import type { NavLink, NavDropdownItem } from '@shared/types/nav';
+import { services } from './services';
+
+/**
+ * Busca el título vigente de un servicio por su `slug` en data/services.ts,
+ * para que este menú no mantenga su propia copia del nombre (evita
+ * desincronizaciones si un servicio se renombra o se agrega uno nuevo).
+ */
+const serviceLabel = (slug: string): string =>
+  services.find((service) => service.slug === slug)?.title ?? slug;
 
 /** Enlace "Inicio", siempre el primero en la navegación principal. */
 export const homeLink: NavLink = { label: 'Inicio', href: '/' };
@@ -22,13 +31,18 @@ export const aboutDropdown: NavDropdownItem[] = [
   { label: 'Memorias Anuales', href: '/memorias-anuales', icon: 'book' },
 ];
 
-/** Ítems del desplegable "Productos y Servicios" (todos apuntan a la sección de servicios en home). */
+/**
+ * Ítems del desplegable "Productos y Servicios" (todos apuntan a la sección
+ * de servicios en home). Los nombres se leen de data/services.ts; el ícono y
+ * el orden de aparición en este menú se definen aquí.
+ */
 export const productsDropdown: NavDropdownItem[] = [
-  { label: 'Cuentas de ahorro', href: '/#servicios', icon: 'dollar' },
-  { label: 'Préstamos', href: '/#servicios', icon: 'briefcaseLoan' },
-  { label: 'Certificados financieros', href: '/#servicios', icon: 'chartGrowth' },
-  { label: 'Aportaciones', href: '/#servicios', icon: 'user' },
-  { label: 'Seguros', href: '/#servicios', icon: 'shield' },
+  { label: serviceLabel('cuentas-de-ahorro'), href: '/#servicios', icon: 'dollar' },
+  { label: serviceLabel('prestamos'), href: '/#servicios', icon: 'briefcaseLoan' },
+  { label: serviceLabel('certificados-financieros'), href: '/#servicios', icon: 'chartGrowth' },
+  { label: serviceLabel('aportaciones'), href: '/#servicios', icon: 'user' },
+  { label: serviceLabel('seguros'), href: '/#servicios', icon: 'shield' },
+  { label: serviceLabel('cooperativismo'), href: '/#servicios', icon: 'building' },
   { label: 'Todos los servicios', href: '/#servicios', icon: 'grid' },
 ];
 

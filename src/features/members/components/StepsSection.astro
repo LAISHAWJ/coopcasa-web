@@ -2,6 +2,12 @@
 import Icon from '@shared/ui/Icon.astro';
 import { joinSteps, joinStepsSection } from '@data/benefits';
 import { JOIN_PANEL_MODAL_ID } from '../constants';
+
+// La grilla se pensó para 3 pasos (sm:grid-cols-3, el valor actual de
+// joinSteps). Con 1 o 2 pasos evita columnas vacías; con 4+ mantiene 3
+// columnas y los pasos extra simplemente pasan a una fila nueva.
+const stepsColsClass =
+  joinSteps.length === 1 ? 'sm:grid-cols-1' : joinSteps.length === 2 ? 'sm:grid-cols-2' : 'sm:grid-cols-3';
 ---
 
 <section class="px-5 py-16 lg:px-8 lg:py-[72px]">
@@ -15,7 +21,7 @@ import { JOIN_PANEL_MODAL_ID } from '../constants';
       </h2>
     </div>
 
-    <div class="grid grid-cols-1 gap-6 sm:grid-cols-3">
+    <div class:list={['grid grid-cols-1 gap-6', stepsColsClass]}>
       {
         joinSteps.map((step) => (
           <div class="relative rounded-[22px] border border-ink-900/8 bg-white p-7 shadow-[0_2px_12px_rgba(13,31,20,0.04)]">

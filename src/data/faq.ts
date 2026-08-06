@@ -4,6 +4,8 @@ import type { FaqItem } from '@shared/types/content';
 export const faqs: FaqItem[] = [
   {
     question: '¿Cómo puedo hacerme socio de COOPCASA?',
+    // "cualquiera de nuestras sucursales" (plural) es texto de ejemplo:
+    // ajustar si la cooperativa solo opera desde una sede.
     answer:
       'Puedes afiliarte en línea en pocos minutos completando el formulario "Hazte socio" o visitando cualquiera de nuestras sucursales. Solo necesitas tu documento de identidad y una aportación inicial desde RD$500.',
   },

@@ -5,6 +5,13 @@ import transferenciaCafePhoto from '@assets/images/app-transferencia-pago-cafe.w
 import ahorroParejaPhoto from '@assets/images/app-ahorro-planificacion-pareja.webp';
 import seguridadConfianzaPhoto from '@assets/images/app-seguridad-soporte-confianza.webp';
 
+/** Página "App Móvil" → metadatos SEO (título de pestaña y meta description). */
+export const mobileAppSeo = {
+  title: 'App Móvil',
+  description:
+    'Gestiona tus ahorros, transferencias y préstamos desde la App Móvil de COOPCASA, disponible 24/7 para iOS y Android.',
+};
+
 export const mobileAppHero = {
   eyebrow: 'App Móvil COOPCASA',
   title: 'Toda tu cooperativa,\nen la palma de tu mano',

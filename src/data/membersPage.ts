@@ -1,5 +1,12 @@
 import membersHeroImage from '@assets/images/members-affiliation-advisory.webp';
 
+/** Página "Hazte Socio" → metadatos SEO (título de pestaña y meta description). */
+export const membersSeo = {
+  title: 'Hazte Socio',
+  description:
+    'Únete a COOPCASA en minutos. Ahorra, invierte y accede a préstamos con tasas justas siendo dueño de tu cooperativa.',
+};
+
 /** Página "Hazte Socio" → hero. */
 export const membersHero = {
   titleLine1: 'Hazte Socio',
@@ -59,4 +66,22 @@ export const memberFormFields = {
   },
   addressCity: { label: 'Ciudad o municipio', placeholder: 'Ciudad o municipio' },
   referralSource: { label: '¿Por qué vía supiste de nosotros?' },
+};
+
+/**
+ * Mensajes de error de validación del formulario de afiliación
+ * (features/members/validation/memberValidation.ts).
+ */
+export const memberValidationMessages = {
+  fullNameRequired: 'Ingresa tu nombre completo.',
+  cedulaRequired: 'Ingresa tu número de cédula.',
+  cedulaInvalid: 'Formato esperado: XXX-XXXXXXX-X.',
+  phoneRequired: 'Ingresa un teléfono de contacto.',
+  phoneInvalid: 'Formato esperado: 809-123-4567.',
+  emailRequired: 'Ingresa tu correo electrónico.',
+  emailInvalid: 'Ingresa un correo electrónico válido.',
+  addressStreetRequired: 'Ingresa la calle y número.',
+  addressCityRequired: 'Ingresa la ciudad o municipio.',
+  referralSourceRequired: 'Selecciona una opción.',
+  acceptedTermsRequired: 'Debes aceptar los Términos y Condiciones.',
 };

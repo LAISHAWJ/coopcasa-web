@@ -1,3 +1,5 @@
+import { memberValidationMessages as messages } from '@data/membersPage';
+
 export type MemberFormErrors = Partial<
   Record<
     | 'fullName'
@@ -24,24 +26,24 @@ export function validateMemberForm(
   const errors: MemberFormErrors = {};
   const asText = (key: string) => String(data[key] ?? '').trim();
 
-  if (!asText('fullName')) errors.fullName = 'Ingresa tu nombre completo.';
+  if (!asText('fullName')) errors.fullName = messages.fullNameRequired;
 
   const cedula = asText('cedula');
-  if (!cedula) errors.cedula = 'Ingresa tu número de cédula.';
-  else if (!CEDULA_REGEX.test(cedula)) errors.cedula = 'Formato esperado: XXX-XXXXXXX-X.';
+  if (!cedula) errors.cedula = messages.cedulaRequired;
+  else if (!CEDULA_REGEX.test(cedula)) errors.cedula = messages.cedulaInvalid;
 
   const phone = asText('phone');
-  if (!phone) errors.phone = 'Ingresa un teléfono de contacto.';
-  else if (!PHONE_REGEX.test(phone)) errors.phone = 'Formato esperado: 809-123-4567.';
+  if (!phone) errors.phone = messages.phoneRequired;
+  else if (!PHONE_REGEX.test(phone)) errors.phone = messages.phoneInvalid;
 
   const email = asText('email');
-  if (!email) errors.email = 'Ingresa tu correo electrónico.';
-  else if (!EMAIL_REGEX.test(email)) errors.email = 'Ingresa un correo electrónico válido.';
+  if (!email) errors.email = messages.emailRequired;
+  else if (!EMAIL_REGEX.test(email)) errors.email = messages.emailInvalid;
 
-  if (!asText('addressStreet')) errors.addressStreet = 'Ingresa la calle y número.';
-  if (!asText('addressCity')) errors.addressCity = 'Ingresa la ciudad o municipio.';
-  if (!asText('referralSource')) errors.referralSource = 'Selecciona una opción.';
-  if (!data.acceptedTerms) errors.acceptedTerms = 'Debes aceptar los Términos y Condiciones.';
+  if (!asText('addressStreet')) errors.addressStreet = messages.addressStreetRequired;
+  if (!asText('addressCity')) errors.addressCity = messages.addressCityRequired;
+  if (!asText('referralSource')) errors.referralSource = messages.referralSourceRequired;
+  if (!data.acceptedTerms) errors.acceptedTerms = messages.acceptedTermsRequired;
 
   return errors;
 }

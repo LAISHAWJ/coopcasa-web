@@ -1,3 +1,5 @@
+import { loginValidationMessages as messages } from '@data/auth';
+
 export type LoginFormErrors = Partial<Record<'username' | 'password', string>>;
 
 const MIN_PASSWORD_LENGTH = 6;
@@ -8,12 +10,12 @@ export function validateLoginForm(
   const errors: LoginFormErrors = {};
 
   const username = String(data.username ?? '').trim();
-  if (!username) errors.username = 'Ingresa tu usuario o correo electrónico.';
+  if (!username) errors.username = messages.usernameRequired;
 
   const password = String(data.password ?? '');
-  if (!password) errors.password = 'Ingresa tu contraseña.';
+  if (!password) errors.password = messages.passwordRequired;
   else if (password.length < MIN_PASSWORD_LENGTH) {
-    errors.password = `Tu contraseña debe tener al menos ${MIN_PASSWORD_LENGTH} caracteres.`;
+    errors.password = messages.passwordTooShort(MIN_PASSWORD_LENGTH);
   }
 
   return errors;

@@ -5,12 +5,10 @@ import FoundingSpotlight from '@features/about/components/FoundingSpotlight.astr
 import GrowthChapters from '@features/about/components/GrowthChapters.astro';
 import InstitutionalNumbers from '@features/about/components/InstitutionalNumbers.astro';
 import InstitutionalFicha from '@features/about/components/InstitutionalFicha.astro';
+import { historySeo } from '@data/about';
 ---
 
-<MainLayout
-  title="Nuestra Historia"
-  description="Conoce la historia de COOPCASA, desde sus inicios en 2001 hasta convertirse en una de las cooperativas más sólidas de la región."
->
+<MainLayout title={historySeo.title} description={historySeo.description}>
   <HistoryHero />
   <FoundingSpotlight />
   <GrowthChapters />

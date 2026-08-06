@@ -33,6 +33,13 @@ export const aboutTeaser = {
   mvvCtaLabel: 'Misión, Visión y Valores',
 };
 
+/** Página "Historia" → metadatos SEO (título de pestaña y meta description). */
+export const historySeo = {
+  title: 'Nuestra Historia',
+  description:
+    'Conoce la historia de COOPCASA, desde sus inicios en 2001 hasta convertirse en una de las cooperativas más sólidas de la región.',
+};
+
 /** Página "Historia" → hero (solo texto; el impacto visual llega en FoundingSpotlight). */
 export const historyHero = {
   eyebrow: 'Conócenos',
@@ -114,6 +121,10 @@ export interface GrowthChapter {
  * avance en el tiempo sin una línea de tiempo literal. El hito de 2026 se consolidó con
  * la banda de cifras (InstitutionalNumbers) para no duplicar el dato de "+12,500 socios".
  */
+// Reemplazar cada capítulo con la cronología real de la cooperativa. Los
+// capítulos de 2008 y 2015 narran apertura de sucursales y expansión
+// regional a modo de ejemplo (información ficticia): ajustar o eliminar
+// si la cooperativa solo opera desde su sede en San Pedro de Macorís.
 export const growthChapters: GrowthChapter[] = [
   {
     yearLabel: '2008',
@@ -156,6 +167,13 @@ export const growthChapters: GrowthChapter[] = [
 /** Página "Historia" → banda de cifras institucionales (features/about/components/InstitutionalNumbers.astro). */
 export const historyStatsSection = {
   title: 'Nuestra evolución en números',
+};
+
+/** Página "Misión, Visión y Valores" → metadatos SEO (título de pestaña y meta description). */
+export const mvvSeo = {
+  title: 'Misión, Visión y Valores',
+  description:
+    'El propósito que mueve a COOPCASA y los principios institucionales que guían cada decisión de la cooperativa.',
 };
 
 /** Página "Misión, Visión y Valores". */
@@ -227,6 +245,11 @@ export interface ValueItem {
 }
 
 // Reemplazar con los valores institucionales reales, si difieren.
+//
+// Se puede agregar o quitar valores libremente: con exactamente 6 se ve el
+// mosaico asimétrico diseñado a mano (ver ValuesBento.astro); con cualquier
+// otra cantidad, el componente cambia solo a una grilla uniforme de
+// respaldo, sin romperse.
 export const values: ValueItem[] = [
   {
     title: 'Transparencia',

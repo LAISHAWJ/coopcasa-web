@@ -3,12 +3,10 @@ import MainLayout from '@shared/layouts/MainLayout.astro';
 import MvvHero from '@features/about/components/MvvHero.astro';
 import MvvBlocks from '@features/about/components/MvvBlocks.astro';
 import ValuesBento from '@features/about/components/ValuesBento.astro';
+import { mvvSeo } from '@data/about';
 ---
 
-<MainLayout
-  title="Misión, Visión y Valores"
-  description="El propósito que mueve a COOPCASA y los principios institucionales que guían cada decisión de la cooperativa."
->
+<MainLayout title={mvvSeo.title} description={mvvSeo.description}>
   <MvvHero />
   <MvvBlocks />
   <ValuesBento />
