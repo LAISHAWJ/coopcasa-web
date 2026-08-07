@@ -79,7 +79,10 @@ const tabs: Array<{ key: 'terms' | 'privacy'; label: string; document: LegalDocu
 </Modal>
 
 <script>
-  const modal = document.querySelector<HTMLElement>('[data-modal="legal-info"]');
+  // Encuentra el modal a partir de uno de sus propios paneles: evita hardcodear
+  // LEGAL_MODAL_ID en el cliente.
+  const anyPanel = document.querySelector<HTMLElement>('[data-legal-panel]');
+  const modal = anyPanel?.closest<HTMLElement>('[data-modal]');
   const tabButtons = modal?.querySelectorAll<HTMLElement>('[data-legal-tab]');
   const panels = modal?.querySelectorAll<HTMLElement>('[data-legal-panel]');
 
