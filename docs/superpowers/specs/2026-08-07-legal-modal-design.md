@@ -29,17 +29,21 @@ payload).
 
 ### Componentes nuevos
 
-- **`src/features/members/components/LegalModal.astro`**: modal centrado (`<Modal
+- **`src/shared/components/LegalModal.astro`**: modal centrado (`<Modal
   placement="center">`) con dos paneles — Términos y Privacidad — alternables mediante pestañas
   tipo pill, sin cerrar el modal. Usa `data-legal-panel="terms"|"privacy"` y escucha
   `modal:open` para mostrar el panel indicado por el payload (por defecto `"terms"`).
-- **`LEGAL_MODAL_ID`**: nueva constante `'legal-info'` en `src/features/members/constants.ts`.
+- **`LEGAL_MODAL_ID`**: nueva constante `'legal-info'` en `src/data/legal.ts` (junto al contenido,
+  no en `features/members/constants.ts`).
 
-`LegalModal` se renderiza una única vez, dentro de `JoinPanel.astro` (junto al modal de "Hazte
-Socio"), ya que agrupa a los triggers del formulario. Al ser un `id` de modal global
-(`data-modal="legal-info"`), el footer puede abrir el mismo modal desde cualquier página sin
-necesidad de una segunda instancia — igual que `JOIN_PANEL_MODAL_ID` puede abrirse desde
-`ServiceModal` en la home.
+> **Nota post-implementación:** durante la implementación se decidió mover `LegalModal` y
+> `LEGAL_MODAL_ID` de `features/members` a `src/shared/components/` y `src/data/legal.ts`
+> respectivamente (en vez de vivir dentro de la feature "members" como se planteaba arriba). El
+> modal lo necesita también el footer, que es compartido por todas las páginas — anidarlo dentro
+> de la feature "members" habría sido una inversión de capas. `LegalModal` se renderiza una única
+> vez en `src/shared/layouts/MainLayout.astro`, junto a `<JoinPanel />`, en vez de dentro de
+> `JoinPanel.astro`. El id sigue siendo un `data-modal` global (`"legal-info"`), así que el footer
+> y el checkbox de "Hazte Socio" abren la misma instancia sin duplicarla.
 
 ### Datos (contenido reemplazable)
 
