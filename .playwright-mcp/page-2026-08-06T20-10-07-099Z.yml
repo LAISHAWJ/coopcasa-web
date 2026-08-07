@@ -1,0 +1,182 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - link "COOPCASA COOPCASA" [ref=e4] [cursor=pointer]:
+      - /url: /
+      - img "COOPCASA" [ref=e5]
+      - generic [ref=e6]: COOPCASA
+    - navigation [ref=e7]:
+      - link "Inicio" [ref=e8] [cursor=pointer]:
+        - /url: /
+      - button "Conócenos" [ref=e10]
+      - button "Productos y Servicios" [ref=e14]
+      - link "Hazte Socio" [ref=e17] [cursor=pointer]:
+        - /url: /hazte-socio
+      - link "App Móvil" [ref=e18] [cursor=pointer]:
+        - /url: /app-movil
+      - link "Contacto" [ref=e19] [cursor=pointer]:
+        - /url: /#contacto
+    - link "Iniciar Sesión" [ref=e22] [cursor=pointer]:
+      - /url: http://localhost:5173/login
+  - main [ref=e26]:
+    - generic [ref=e28]:
+      - generic [ref=e29]:
+        - link "Volver al inicio" [ref=e31] [cursor=pointer]:
+          - /url: /
+        - heading "Hazte Socio de COOPCASA" [level=1] [ref=e34]: Hazte Sociode COOPCASA
+        - paragraph [ref=e35]: Ser socio es ser dueño. Únete a una comunidad de más de 12,500 personas que ahorran, crecen y se apoyan mutuamente. El proceso es simple y te acompañamos en cada paso.
+        - button "Llenar formulario" [ref=e36] [cursor=pointer]
+      - img "Asesoría de afiliación en COOPCASA" [ref=e40]
+    - generic [ref=e42]:
+      - generic [ref=e43]:
+        - generic [ref=e44]: El proceso
+        - heading "Pasos para hacerte socio" [level=2] [ref=e45]
+      - generic [ref=e46]:
+        - generic [ref=e47]:
+          - generic [ref=e48]: "1"
+          - generic [ref=e52]: Paso 1
+          - heading "Llena el formulario de inscripción" [level=3] [ref=e53]
+          - paragraph [ref=e54]: Completa tus datos en línea. Nuestro personal de bienvenida te contactará para continuar.
+          - button "Llenar formulario" [ref=e55]
+        - generic [ref=e56]:
+          - generic [ref=e57]: "2"
+          - generic [ref=e61]: Paso 2
+          - heading "Abre una cuenta de ahorros" [level=3] [ref=e62]
+          - paragraph [ref=e63]: Tu primera cuenta de ahorros activa tu vida financiera dentro de la cooperativa.
+          - generic [ref=e64]: Desde RD$500
+        - generic [ref=e65]:
+          - generic [ref=e66]: "3"
+          - generic [ref=e71]: Paso 3
+          - heading "Abre un certificado de aportaciones" [level=3] [ref=e72]
+          - paragraph [ref=e73]: Con tu certificado de aportaciones de capital te conviertes oficialmente en socio dueño.
+          - generic [ref=e74]: Desde RD$500
+    - generic [ref=e76]:
+      - generic [ref=e77]:
+        - generic [ref=e78]: Beneficios
+        - heading "Lo que ganas al ser socio" [level=2] [ref=e79]
+      - generic [ref=e80]:
+        - heading "Tasas competitivas" [level=3] [ref=e85]
+        - heading "Alto rendimiento" [level=3] [ref=e91]
+        - heading "Participación en excedentes" [level=3] [ref=e97]
+        - heading "Financiamiento" [level=3] [ref=e103]
+        - heading "Educación financiera gratuita" [level=3] [ref=e109]
+    - generic [ref=e111]:
+      - generic [ref=e112]:
+        - generic [ref=e113]: Cooperativismo
+        - heading "¿Por qué ahorrar en COOPCASA?" [level=2] [ref=e114]
+        - paragraph [ref=e115]: "No somos un banco. Somos una cooperativa: aquí los excedentes vuelven a ti y a tu comunidad."
+      - generic [ref=e116]:
+        - generic [ref=e117]:
+          - heading "Qué es una cooperativa" [level=3] [ref=e122]
+          - paragraph [ref=e123]: Una asociación de personas, no de capitales. Aquí cada socio es dueño y decide.
+        - generic [ref=e124]:
+          - heading "Diferencia con los bancos" [level=3] [ref=e128]
+          - paragraph [ref=e129]: "Los excedentes no van a accionistas externos: regresan a ti y a la comunidad."
+        - generic [ref=e130]:
+          - heading "Rendimiento" [level=3] [ref=e135]
+          - paragraph [ref=e136]: Tus ahorros generan intereses competitivos, por encima del promedio del mercado.
+        - generic [ref=e137]:
+          - heading "Tasas justas" [level=3] [ref=e141]
+          - paragraph [ref=e142]: Financiamiento con tasas preferenciales y condiciones transparentes para socios.
+        - generic [ref=e143]:
+          - heading "Apoyo a la comunidad" [level=3] [ref=e147]
+          - paragraph [ref=e148]: Parte de los excedentes financia proyectos sociales en tu propia localidad.
+        - generic [ref=e149]:
+          - heading "Educación financiera" [level=3] [ref=e154]
+          - paragraph [ref=e155]: Talleres y asesorías gratuitas para que tomes mejores decisiones con tu dinero.
+        - generic [ref=e156]:
+          - heading "Beneficios exclusivos" [level=3] [ref=e160]
+          - paragraph [ref=e161]: Dividendos anuales, descuentos con aliados y productos pensados para socios.
+        - generic [ref=e162]:
+          - heading "Filosofía cooperativista" [level=3] [ref=e166]
+          - paragraph [ref=e167]: "Ayuda mutua, equidad y solidaridad: las personas antes que las ganancias."
+    - generic [ref=e170]:
+      - generic [ref=e171]:
+        - generic [ref=e172]: Requisitos
+        - heading "Todo lo que necesitas para empezar" [level=2] [ref=e173]
+      - generic [ref=e174]:
+        - generic [ref=e175]:
+          - heading "Cuenta de ahorro" [level=3] [ref=e179]
+          - paragraph [ref=e180]: Apertura desde RD$500.
+        - generic [ref=e181]:
+          - heading "Certificado de aportaciones" [level=3] [ref=e186]
+          - paragraph [ref=e187]: Desde RD$500.
+        - generic [ref=e188]:
+          - heading "Demostración de ingresos" [level=3] [ref=e193]
+          - paragraph [ref=e194]: Carta de trabajo o estados de cuenta.
+        - generic [ref=e195]:
+          - heading "Personas físicas y jurídicas" [level=3] [ref=e199]
+          - paragraph [ref=e200]: Aceptamos ambos tipos de socios.
+    - generic [ref=e203]:
+      - heading "¡Sé parte de nuestra familia!" [level=2] [ref=e204]
+      - paragraph [ref=e205]: Comienza hoy tu camino hacia la libertad financiera junto a una cooperativa que pone a las personas primero.
+      - button "Hazte Socio" [ref=e206] [cursor=pointer]
+  - contentinfo [ref=e209]:
+    - generic [ref=e210]:
+      - generic [ref=e211]:
+        - generic [ref=e212]:
+          - generic [ref=e213]:
+            - img "COOPCASA" [ref=e214]
+            - generic [ref=e215]: COOPCASA
+          - paragraph [ref=e216]: Cooperativa de ahorro y crédito comprometida con el bienestar financiero de su comunidad desde 2001.
+          - generic [ref=e217]:
+            - link "Facebook" [ref=e218] [cursor=pointer]:
+              - /url: https://facebook.com
+            - link "Instagram" [ref=e221] [cursor=pointer]:
+              - /url: https://instagram.com
+            - link "Twitter" [ref=e226] [cursor=pointer]:
+              - /url: https://twitter.com
+            - link "LinkedIn" [ref=e229] [cursor=pointer]:
+              - /url: https://linkedin.com
+        - generic [ref=e234]:
+          - paragraph [ref=e235]: Navegación
+          - generic [ref=e236]:
+            - link "Inicio" [ref=e237] [cursor=pointer]:
+              - /url: /
+            - link "Historia" [ref=e238] [cursor=pointer]:
+              - /url: /historia
+            - link "Misión, Visión y Valores" [ref=e239] [cursor=pointer]:
+              - /url: /mision-vision-valores
+            - link "Hazte Socio" [ref=e240] [cursor=pointer]:
+              - /url: /hazte-socio
+            - link "App Móvil" [ref=e241] [cursor=pointer]:
+              - /url: /app-movil
+            - link "Memorias Anuales" [ref=e242] [cursor=pointer]:
+              - /url: /memorias-anuales
+        - generic [ref=e243]:
+          - paragraph [ref=e244]: Servicios
+          - generic [ref=e245]:
+            - link "Cuentas de ahorro" [ref=e246] [cursor=pointer]:
+              - /url: /#servicios
+            - link "Préstamos" [ref=e247] [cursor=pointer]:
+              - /url: /#servicios
+            - link "Certificados financieros" [ref=e248] [cursor=pointer]:
+              - /url: /#servicios
+            - link "Aportaciones" [ref=e249] [cursor=pointer]:
+              - /url: /#servicios
+            - link "Seguros" [ref=e250] [cursor=pointer]:
+              - /url: /#servicios
+            - link "Cooperativismo" [ref=e251] [cursor=pointer]:
+              - /url: /#servicios
+        - generic [ref=e252]:
+          - paragraph [ref=e253]: Contacto
+          - generic [ref=e254]:
+            - generic [ref=e255]: Calle Duarte No. 3, Higuamo, San Pedro de Macorís, República Dominicana
+            - link "(809) 555-0100" [ref=e259] [cursor=pointer]:
+              - /url: tel:8095550100
+            - link "hola@coopcasa.do" [ref=e262] [cursor=pointer]:
+              - /url: mailto:hola@coopcasa.do
+            - link "Oficina Virtual" [ref=e266] [cursor=pointer]:
+              - /url: http://localhost:5173/login
+      - generic [ref=e270]:
+        - generic [ref=e271]: © 2026 COOPCASA. Todos los derechos reservados.
+        - generic [ref=e272]:
+          - link "Términos" [ref=e273] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacidad" [ref=e274] [cursor=pointer]:
+            - /url: "#"
+          - link "Transparencia" [ref=e275] [cursor=pointer]:
+            - /url: "#"
+  - generic [ref=e276]:
+    - generic: Habla con un representante
+    - link "Habla con un representante" [ref=e277] [cursor=pointer]:
+      - /url: https://wa.me/18095550100

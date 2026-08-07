@@ -23,13 +23,13 @@ import { formatStatValue } from '@shared/utils/formatNumber';
 
     <!-- Cifras como tipografía expresiva: sin cajas ni bordes, solo número + etiqueta
          separados por una línea divisoria. -->
-    <div data-story="scale" class="relative z-[1] grid grid-cols-2 lg:grid-cols-4">
+    <div data-story="scale" class="relative z-[1] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
       {
         stats.map((stat, index) => (
           <div
             class:list={[
               'flex flex-col items-center gap-1.5 border-white/10 px-4 py-5 text-center',
-              index > 0 && 'border-t sm:border-t-0 sm:border-l',
+              index > 0 && 'border-t sm:border-t-0 lg:border-l',
             ]}
           >
             <div

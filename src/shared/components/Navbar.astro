@@ -45,7 +45,7 @@ const portalLoginUrl = `${import.meta.env.PUBLIC_PORTAL_URL ?? 'http://localhost
       </span>
     </a>
 
-    <nav class="hidden items-center gap-0.5 lg:flex">
+    <nav class="hidden items-center gap-0.5 xl:flex">
       <a
         href={homeLink.href}
         class="rounded-[10px] px-[13px] py-2 font-display text-[14.5px] font-semibold text-body-600 transition-all duration-200 hover:bg-brand-600/8 hover:text-brand-800"
@@ -94,7 +94,7 @@ const portalLoginUrl = `${import.meta.env.PUBLIC_PORTAL_URL ?? 'http://localhost
     </nav>
 
     <div class="flex items-center gap-2">
-      <div class="hidden lg:block">
+      <div class="hidden xl:block">
         <Button href={portalLoginUrl} size="sm" icon="loginArrow">
           {loginButtonLabel}
         </Button>
@@ -103,7 +103,7 @@ const portalLoginUrl = `${import.meta.env.PUBLIC_PORTAL_URL ?? 'http://localhost
         type="button"
         data-modal-open={MOBILE_NAV_MODAL_ID}
         aria-label="Abrir menú"
-        class="flex h-11 w-11 items-center justify-center rounded-xl border border-ink-900/10 text-ink-900 lg:hidden"
+        class="flex h-11 w-11 items-center justify-center rounded-xl border border-ink-900/10 text-ink-900 xl:hidden"
       >
         <Icon name="menu" size={20} />
       </button>

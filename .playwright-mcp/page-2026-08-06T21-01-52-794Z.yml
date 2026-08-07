@@ -1,0 +1,261 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - link "COOPCASA COOPCASA" [ref=e4] [cursor=pointer]:
+      - /url: /
+      - img "COOPCASA" [ref=e5]
+      - generic [ref=e6]: COOPCASA
+    - navigation [ref=e7]:
+      - link "Inicio" [ref=e8] [cursor=pointer]:
+        - /url: /
+      - button "Conócenos" [ref=e10]
+      - button "Productos y Servicios" [ref=e14]
+      - link "Hazte Socio" [ref=e17] [cursor=pointer]:
+        - /url: /hazte-socio
+      - link "App Móvil" [ref=e18] [cursor=pointer]:
+        - /url: /app-movil
+      - link "Contacto" [ref=e19] [cursor=pointer]:
+        - /url: /#contacto
+    - link "Iniciar Sesión" [ref=e22] [cursor=pointer]:
+      - /url: http://localhost:5173/login
+  - main [ref=e26]:
+    - generic [ref=e27]:
+      - generic [ref=e28]:
+        - generic [ref=e29]:
+          - generic [ref=e30]: Cooperativa financiera · desde 2001
+          - heading "Tu dinero crece donde la comunidad te respalda." [level=1] [ref=e32]: Tu dinero crecedonde la comunidadte respalda.
+          - paragraph [ref=e33]: Ahorra, invierte y accede a préstamos con tasas justas. En COOPCASA cada socio es dueño, y cada peso que ahorras impulsa a tu comunidad.
+          - generic [ref=e34]:
+            - button "Hazte socio hoy" [ref=e35] [cursor=pointer]
+            - link "Conocer servicios" [ref=e38] [cursor=pointer]:
+              - /url: /#servicios
+          - generic [ref=e45]:
+            - generic [ref=e46]: +12,500 socios
+            - generic [ref=e47]: confían su futuro financiero
+        - generic [ref=e48]:
+          - img "Familia sonriente en su hogar, representando a los socios de COOPCASA" [ref=e50]
+          - generic [ref=e51]:
+            - generic [ref=e52]: Mi ahorro programado
+            - generic [ref=e53]: RD$ 248,750
+            - generic [ref=e54]: +8.4% este año
+          - generic [ref=e57]: Rendimiento trimestral
+          - generic [ref=e70]:
+            - generic [ref=e71]: Ahorro asegurado
+            - generic [ref=e72]: Regulado y protegido
+      - generic [ref=e73]:
+        - generic [ref=e78]:
+          - generic [ref=e79]: Tasas justas
+          - generic [ref=e80]: Sin costos ocultos
+        - generic [ref=e85]:
+          - generic [ref=e86]: 100% digital
+          - generic [ref=e87]: Afíliate en minutos
+        - generic [ref=e92]:
+          - generic [ref=e93]: Dividendos
+          - generic [ref=e94]: Ganas por ser socio
+        - generic [ref=e99]:
+          - generic [ref=e100]: Soporte humano
+          - generic [ref=e101]: Atención cercana
+    - generic [ref=e103]:
+      - generic [ref=e104]:
+        - generic [ref=e105]: Productos y Servicios
+        - heading "Todo lo que necesitas para crecer financieramente" [level=2] [ref=e106]: Todo lo que necesitaspara crecer financieramente
+        - paragraph [ref=e107]: Productos diseñados para socios reales, con condiciones transparentes y acompañamiento humano. Haz clic en cada servicio para ver el detalle.
+      - generic [ref=e108]:
+        - button [ref=e110]:
+          - heading "Cuentas de ahorro" [level=3] [ref=e118]
+          - paragraph [ref=e119]: Cuentas de ahorro programado y a la vista con rendimientos competitivos y sin costos ocultos.
+        - button [ref=e121]:
+          - heading "Préstamos" [level=3] [ref=e130]
+          - paragraph [ref=e131]: Créditos personales, hipotecarios y de consumo con tasas justas y aprobación ágil.
+        - button [ref=e133]:
+          - heading "Certificados financieros" [level=3] [ref=e142]
+          - paragraph [ref=e143]: Certificados de renta fija que hacen crecer tu capital con tasas garantizadas y total transparencia.
+        - button [ref=e145]:
+          - heading "Aportaciones" [level=3] [ref=e155]
+          - paragraph [ref=e156]: El certificado de aportaciones de capital que te convierte en dueño y te da derecho a excedentes.
+        - button [ref=e158]:
+          - heading "Seguros" [level=3] [ref=e166]
+          - paragraph [ref=e167]: Planes de seguro de vida, salud y de tus bienes con condiciones preferenciales para socios.
+        - button [ref=e169]:
+          - heading "Cooperativismo" [level=3] [ref=e177]
+          - paragraph [ref=e178]: Formación, dividendos y programas sociales que reinvierten en el bienestar de tu comunidad.
+    - generic [ref=e180]:
+      - generic [ref=e181]:
+        - heading "Números que generan confianza" [level=2] [ref=e182]
+        - paragraph [ref=e183]: Más de dos décadas construyendo bienestar financiero junto a nuestra comunidad.
+      - generic [ref=e184]:
+        - generic [ref=e185]:
+          - generic [ref=e191]: "+0"
+          - generic [ref=e192]: Socios activos
+        - generic [ref=e193]:
+          - generic [ref=e198]: "0"
+          - generic [ref=e199]: Años de experiencia
+        - generic [ref=e200]:
+          - generic [ref=e204]: "0"
+          - generic [ref=e205]: Sucursales
+        - generic [ref=e206]:
+          - generic [ref=e211]: RD$0.0B
+          - generic [ref=e212]: En activos gestionados
+    - generic [ref=e214]:
+      - generic [ref=e215]:
+        - img "Equipo de profesionales de COOPCASA reunidos alrededor de una mesa de trabajo" [ref=e217]
+        - generic [ref=e218]:
+          - generic [ref=e219]: "25"
+          - generic [ref=e220]: años impulsando el cooperativismo
+      - generic [ref=e221]:
+        - generic [ref=e222]: Conócenos
+        - heading "Una cooperativa hecha por y para su gente" [level=2] [ref=e223]: Una cooperativa hechapor y para su gente
+        - paragraph [ref=e224]: "Nacimos en 2001 con un grupo de familias que decidieron ahorrar juntas. Hoy somos una de las cooperativas de ahorro y crédito más sólidas de la región, pero seguimos rigiéndonos por el mismo principio: las personas antes que las ganancias."
+        - generic [ref=e225]:
+          - link "Nuestra historia" [ref=e226] [cursor=pointer]:
+            - /url: /historia
+          - link "Misión, Visión y Valores" [ref=e229] [cursor=pointer]:
+            - /url: /mision-vision-valores
+        - generic [ref=e230]:
+          - generic [ref=e231]: Misión
+          - generic [ref=e237]: Visión
+          - generic [ref=e243]: Valores
+          - generic [ref=e248]: Comunidad
+    - generic [ref=e254]:
+      - generic [ref=e255]:
+        - generic [ref=e256]: Nueva App Móvil
+        - heading "Tu cooperativa en el bolsillo" [level=2] [ref=e257]
+        - paragraph [ref=e258]: Todo tu dinero, siempre a un toque de distancia.
+        - paragraph [ref=e259]: Ahorra, transfiere y paga tus préstamos desde donde estés. Descubre todo lo que la App de COOPCASA puede hacer por ti.
+        - generic [ref=e260]:
+          - generic [ref=e261]: Transferencias al instante
+          - generic [ref=e267]: Ahorro programado automático
+          - generic [ref=e271]: Acceso seguro con huella o Face ID
+        - link "Conocer la App" [ref=e277] [cursor=pointer]:
+          - /url: /app-movil
+        - generic [ref=e280]:
+          - link "Descárgala en App Store" [ref=e281] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e284]:
+              - generic [ref=e285]: Descárgala en
+              - generic [ref=e286]: App Store
+          - link "Disponible en Google Play" [ref=e287] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e292]:
+              - generic [ref=e293]: Disponible en
+              - generic [ref=e294]: Google Play
+      - generic [ref=e298]:
+        - generic [ref=e299]: Hola, María
+        - generic [ref=e301]:
+          - generic [ref=e302]: Balance total
+          - generic [ref=e303]: RD$ 248,750
+        - generic [ref=e304]:
+          - generic [ref=e305]: Transferir
+          - generic [ref=e312]: Pagar
+          - generic [ref=e318]: Depositar
+        - generic [ref=e325]:
+          - generic [ref=e331]:
+            - generic [ref=e332]: Pago recibido
+            - generic [ref=e333]: Depósito de nómina
+          - generic [ref=e334]: +RD$18,500
+    - generic [ref=e337]:
+      - heading "Da el primer paso hacia tu bienestar financiero" [level=2] [ref=e338]: Da el primer paso haciatu bienestar financiero
+      - paragraph [ref=e339]: Hazte socio en minutos, descubre tus beneficios y gestiona tus finanzas desde la Oficina Virtual, disponible 24/7.
+      - generic [ref=e340]:
+        - button "Hazte socio" [ref=e341] [cursor=pointer]
+        - link "Oficina Virtual" [ref=e342] [cursor=pointer]:
+          - /url: http://localhost:5173/login
+    - generic [ref=e347]:
+      - generic [ref=e348]:
+        - generic [ref=e349]: Preguntas frecuentes
+        - heading "Resolvemos tus dudas" [level=2] [ref=e350]
+      - generic [ref=e351]:
+        - generic [ref=e353]:
+          - button "¿Cómo puedo hacerme socio de COOPCASA?" [ref=e354]
+          - region "¿Cómo puedo hacerme socio de COOPCASA?":
+            - paragraph [ref=e359]: Puedes afiliarte en línea en pocos minutos completando el formulario "Hazte socio" o visitando cualquiera de nuestras sucursales. Solo necesitas tu documento de identidad y una aportación inicial desde RD$500.
+        - generic [ref=e361]:
+          - button "¿Mis ahorros están protegidos?" [ref=e362]
+          - region "¿Mis ahorros están protegidos?":
+            - paragraph [ref=e367]: Sí. COOPCASA está regulada y supervisada por los organismos correspondientes, y contamos con fondos de garantía que protegen los ahorros de nuestros socios.
+        - generic [ref=e369]:
+          - button "¿Qué tasas ofrecen en los préstamos?" [ref=e370]
+          - region "¿Qué tasas ofrecen en los préstamos?":
+            - paragraph [ref=e375]: Nuestras tasas son de las más competitivas del sector cooperativo y varían según el tipo de crédito y tu historial como socio. Un asesor te dará una cotización personalizada sin compromiso.
+        - generic [ref=e377]:
+          - button "¿Puedo gestionar mi cuenta desde el celular?" [ref=e378]
+          - region "¿Puedo gestionar mi cuenta desde el celular?":
+            - paragraph [ref=e383]: Por supuesto. Nuestra Oficina Virtual está disponible 24/7 desde web y móvil, donde puedes transferir, pagar, solicitar créditos y ver tus rendimientos en tiempo real.
+        - generic [ref=e385]:
+          - button "¿Qué beneficios recibo como socio?" [ref=e386]
+          - region "¿Qué beneficios recibo como socio?":
+            - paragraph [ref=e391]: "Como socio eres copropietario de la cooperativa: recibes dividendos anuales, acceso a tasas preferenciales, programas de formación y descuentos en nuestra red de aliados."
+  - contentinfo [ref=e392]:
+    - generic [ref=e393]:
+      - generic [ref=e394]:
+        - generic [ref=e395]:
+          - generic [ref=e396]:
+            - img "COOPCASA" [ref=e397]
+            - generic [ref=e398]: COOPCASA
+          - paragraph [ref=e399]: Cooperativa de ahorro y crédito comprometida con el bienestar financiero de su comunidad desde 2001.
+          - generic [ref=e400]:
+            - link "Facebook" [ref=e401] [cursor=pointer]:
+              - /url: https://facebook.com
+            - link "Instagram" [ref=e404] [cursor=pointer]:
+              - /url: https://instagram.com
+            - link "Twitter" [ref=e409] [cursor=pointer]:
+              - /url: https://twitter.com
+            - link "LinkedIn" [ref=e412] [cursor=pointer]:
+              - /url: https://linkedin.com
+        - generic [ref=e417]:
+          - paragraph [ref=e418]: Navegación
+          - generic [ref=e419]:
+            - link "Inicio" [ref=e420] [cursor=pointer]:
+              - /url: /
+            - link "Historia" [ref=e421] [cursor=pointer]:
+              - /url: /historia
+            - link "Misión, Visión y Valores" [ref=e422] [cursor=pointer]:
+              - /url: /mision-vision-valores
+            - link "Hazte Socio" [ref=e423] [cursor=pointer]:
+              - /url: /hazte-socio
+            - link "App Móvil" [ref=e424] [cursor=pointer]:
+              - /url: /app-movil
+            - link "Memorias Anuales" [ref=e425] [cursor=pointer]:
+              - /url: /memorias-anuales
+        - generic [ref=e426]:
+          - paragraph [ref=e427]: Servicios
+          - generic [ref=e428]:
+            - link "Cuentas de ahorro" [ref=e429] [cursor=pointer]:
+              - /url: /#servicios
+            - link "Préstamos" [ref=e430] [cursor=pointer]:
+              - /url: /#servicios
+            - link "Certificados financieros" [ref=e431] [cursor=pointer]:
+              - /url: /#servicios
+            - link "Aportaciones" [ref=e432] [cursor=pointer]:
+              - /url: /#servicios
+            - link "Seguros" [ref=e433] [cursor=pointer]:
+              - /url: /#servicios
+            - link "Cooperativismo" [ref=e434] [cursor=pointer]:
+              - /url: /#servicios
+        - generic [ref=e435]:
+          - paragraph [ref=e436]: Contacto
+          - generic [ref=e437]:
+            - generic [ref=e438]: Calle Duarte No. 3, Higuamo, San Pedro de Macorís, República Dominicana
+            - link "(809) 555-0100" [ref=e442] [cursor=pointer]:
+              - /url: tel:8095550100
+            - link "hola@coopcasa.do" [ref=e445] [cursor=pointer]:
+              - /url: mailto:hola@coopcasa.do
+            - link "Oficina Virtual" [ref=e449] [cursor=pointer]:
+              - /url: http://localhost:5173/login
+      - generic [ref=e453]:
+        - generic [ref=e454]: © 2026 COOPCASA. Todos los derechos reservados.
+        - generic [ref=e455]:
+          - link "Términos" [ref=e456] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacidad" [ref=e457] [cursor=pointer]:
+            - /url: "#"
+          - link "Transparencia" [ref=e458] [cursor=pointer]:
+            - /url: "#"
+  - generic [ref=e459]:
+    - generic: Habla con un representante
+    - link "Habla con un representante" [ref=e460] [cursor=pointer]:
+      - /url: https://wa.me/18095550100
+  - generic [ref=e465]:
+    - button [ref=e466]
+    - button [ref=e472]
+    - button [ref=e476]
+    - button [ref=e484]

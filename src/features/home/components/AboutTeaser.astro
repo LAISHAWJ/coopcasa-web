@@ -19,7 +19,7 @@ import { aboutTeaser, aboutTeaserPoints } from '@data/about';
         />
       </div>
       <div
-        class="absolute right-4 -bottom-6 max-w-[220px] rounded-2xl bg-white p-[22px] shadow-[0_18px_44px_rgba(13,31,20,0.16)] sm:right-0 sm:-right-6"
+        class="absolute right-4 -bottom-6 max-w-[220px] rounded-2xl bg-white p-[22px] shadow-[0_18px_44px_rgba(13,31,20,0.16)] sm:-right-6"
       >
         <div class="font-display text-[34px] leading-none font-extrabold text-brand-800">
           {aboutTeaser.yearsBadge.value}
@@ -48,7 +48,7 @@ import { aboutTeaser, aboutTeaserPoints } from '@data/about';
         <Button href="/historia" icon="arrowRight">{aboutTeaser.historyCtaLabel}</Button>
         <Button href="/mision-vision-valores" variant="outline">{aboutTeaser.mvvCtaLabel}</Button>
       </div>
-      <div class="grid grid-cols-2 gap-3.5">
+      <div class="grid grid-cols-1 gap-3.5 min-[380px]:grid-cols-2">
         {
           aboutTeaserPoints.map((point) => (
             <div class="flex items-center gap-3 rounded-2xl border border-ink-900/8 bg-white px-4 py-3.5">

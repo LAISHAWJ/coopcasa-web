@@ -155,7 +155,7 @@ const heroBenefitDelay = (index: number) =>
   </div>
 
   <div
-    class="relative z-[1] mx-auto mt-10 grid max-w-[1220px] grid-cols-2 gap-4 lg:mt-16 lg:grid-cols-4 lg:gap-[18px]"
+    class="relative z-[1] mx-auto mt-10 grid max-w-[1220px] grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4 lg:gap-[18px]"
   >
     {
       quickBenefits.map((benefit, index) => (
@@ -171,7 +171,7 @@ const heroBenefitDelay = (index: number) =>
           >
             <Icon name={benefit.icon} size={22} color={benefit.iconColor} />
           </div>
-          <div>
+          <div class="min-w-0">
             <div class="font-display text-[15px] font-bold text-ink-900">{benefit.title}</div>
             <div class="text-[12.5px] leading-tight text-body-200">{benefit.description}</div>
           </div>
