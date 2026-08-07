@@ -15,6 +15,11 @@
  * `data-modal-payload="terms"` o `"privacy"` para elegir la pestaña inicial. */
 export const LEGAL_MODAL_ID = 'legal-info';
 
+/** Claves válidas de pestaña del modal legal (ver `data-modal-payload` /
+ * `modalPayload`). Usarla en cualquier dato que alimente ese atributo evita
+ * typos silenciosos como `"privacyy"`. */
+export type LegalTabKey = 'terms' | 'privacy';
+
 /** Textos de la interfaz del modal (pestañas y botón de cierre). */
 export const legalModalContent = {
   tabs: {

@@ -83,6 +83,7 @@ const tabs: Array<{ key: 'terms' | 'privacy'; label: string; document: LegalDocu
   // LEGAL_MODAL_ID en el cliente.
   const anyPanel = document.querySelector<HTMLElement>('[data-legal-panel]');
   const modal = anyPanel?.closest<HTMLElement>('[data-modal]');
+  const scroller = anyPanel?.parentElement;
   const tabButtons = modal?.querySelectorAll<HTMLElement>('[data-legal-tab]');
   const panels = modal?.querySelectorAll<HTMLElement>('[data-legal-panel]');
 
@@ -93,7 +94,7 @@ const tabs: Array<{ key: 'terms' | 'privacy'; label: string; document: LegalDocu
     tabButtons?.forEach((button) => {
       button.dataset.active = String(button.dataset.legalTab === key);
     });
-    if (modal) modal.scrollTop = 0;
+    if (scroller) scroller.scrollTop = 0;
   }
 
   modal?.addEventListener('modal:open', ((event: CustomEvent<string | undefined>) => {

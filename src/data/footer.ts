@@ -1,6 +1,7 @@
 import type { NavLink } from '@shared/types/nav';
 import { services } from './services';
 import { LEGAL_MODAL_ID } from './legal';
+import type { LegalTabKey } from './legal';
 
 /** Footer → texto descriptivo bajo el logo. */
 export const footerBrandDescription =
@@ -38,7 +39,7 @@ export const footerServiceLinks: string[] = services.map((service) => service.ti
  * sigue siendo un enlace normal hasta que exista esa página. */
 export interface LegalLink extends NavLink {
   modalId?: string;
-  modalPayload?: string;
+  modalPayload?: LegalTabKey;
 }
 
 export const legalLinks: LegalLink[] = [
