@@ -127,7 +127,12 @@ const portalLoginUrl = `${import.meta.env.PUBLIC_PORTAL_URL ?? 'http://localhost
       <div class="flex gap-[22px] text-[13px] text-white/45">
         {
           legalLinks.map((link) => (
-            <a href={link.href} class="transition-colors duration-200 hover:text-white">
+            <a
+              href={link.href}
+              data-modal-open={link.modalId}
+              data-modal-payload={link.modalPayload}
+              class="transition-colors duration-200 hover:text-white"
+            >
               {link.label}
             </a>
           ))
