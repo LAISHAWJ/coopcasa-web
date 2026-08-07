@@ -4,6 +4,7 @@ import Navbar from '@shared/components/Navbar.astro';
 import Footer from '@shared/components/Footer.astro';
 import WhatsAppButton from '@shared/components/WhatsAppButton.astro';
 import JoinPanel from '@features/members/components/JoinPanel.astro';
+import LegalModal from '@shared/components/LegalModal.astro';
 import { siteConfig } from '@data/siteConfig';
 
 interface Props {
@@ -91,6 +92,7 @@ const organizationSchema = {
     {showChrome && <Footer />}
     {showChrome && <WhatsAppButton />}
     {showChrome && <JoinPanel />}
+    {showChrome && <LegalModal />}
   </body>
 </html>
 
