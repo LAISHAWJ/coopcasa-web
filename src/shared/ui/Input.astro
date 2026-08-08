@@ -3,7 +3,15 @@ import Label from './Label.astro';
 import Icon from './Icon.astro';
 import { fieldClasses, fieldErrorClasses } from './fieldStyles';
 
-type InputType = 'text' | 'email' | 'password' | 'tel' | 'number' | 'search' | 'url';
+type InputType =
+  | 'text'
+  | 'date'
+  | 'email'
+  | 'password'
+  | 'tel'
+  | 'number'
+  | 'search'
+  | 'url';
 
 interface Props {
   id: string;

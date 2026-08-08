@@ -3,8 +3,13 @@ import Input from '@shared/ui/Input.astro';
 import Select from '@shared/ui/Select.astro';
 import Checkbox from '@shared/ui/Checkbox.astro';
 import Button from '@shared/ui/Button.astro';
-import { referralSourceOptions } from '@data/members';
+import { referralSourceOptions, personTypeOptions } from '@data/members';
 import { joinPanelContent, memberFormFields } from '@data/membersPage';
+
+// Site key del captcha: es PÚBLICA por diseño (el secreto vive solo en el servidor). Si no
+// está configurada, el widget no se renderiza y el backend rechaza el envío — salvo que el
+// backend tenga el captcha deshabilitado, que es solo para QA local.
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 ---
 
 <form data-member-form novalidate class="flex flex-col gap-[18px]">
@@ -15,20 +20,103 @@ import { joinPanelContent, memberFormFields } from '@data/membersPage';
   >
   </p>
 
-  <Input
-    id="member-fullName"
-    name="fullName"
-    label={memberFormFields.fullName.label}
+  <Select
+    id="member-personTypeId"
+    name="personTypeId"
+    label={memberFormFields.personType.label}
     required
-    placeholder={memberFormFields.fullName.placeholder}
+    options={personTypeOptions}
+    placeholder="Elegir una opción"
   />
-  <Input
-    id="member-cedula"
-    name="cedula"
-    label={memberFormFields.cedula.label}
-    required
-    placeholder={memberFormFields.cedula.placeholder}
-  />
+
+  {/* Bloque de Persona Jurídica. Oculto hasta que se elija "Una empresa": el script de abajo
+      alterna el atributo hidden y el required de sus campos.
+
+      Van con `required` en el markup aunque arranquen ocultos: es lo que dibuja el asterisco
+      de obligatorio en la etiqueta. Sin él los tres campos se veían opcionales y la validación
+      los exigía igual, que es la peor combinación posible. El atributo `required` real lo
+      administra el script según el tipo elegido; el asterisco queda oculto junto con el bloque. */}
+  <div data-person-type-block="2" hidden>
+    <div class="flex flex-col gap-[18px]">
+      <Input
+        id="member-companyName"
+        name="companyName"
+        label={memberFormFields.companyName.label}
+        required
+        placeholder={memberFormFields.companyName.placeholder}
+      />
+      <Input
+        id="member-rnc"
+        name="rnc"
+        label={memberFormFields.rnc.label}
+        required
+        placeholder={memberFormFields.rnc.placeholder}
+      />
+      <Input
+        id="member-economicActivity"
+        name="economicActivity"
+        label={memberFormFields.economicActivity.label}
+        required
+        placeholder={memberFormFields.economicActivity.placeholder}
+      />
+    </div>
+  </div>
+
+  {/* Nombre y apellido: del solicitante en Persona Física, del contacto en Jurídica. El
+      encabezado del grupo solo aparece en Jurídica, donde hace falta la distinción. */}
+  <div>
+    <span
+      data-person-type-block="2"
+      hidden
+      class="mb-[7px] block font-display text-[13px] font-semibold text-body-600"
+    >
+      {memberFormFields.contactGroupLabel}
+    </span>
+    <div class="flex flex-col gap-[18px]">
+      <Input
+        id="member-firstName"
+        name="firstName"
+        label={memberFormFields.firstName.label}
+        required
+        placeholder={memberFormFields.firstName.placeholder}
+      />
+      <Input
+        id="member-lastName"
+        name="lastName"
+        label={memberFormFields.lastName.label}
+        required
+        placeholder={memberFormFields.lastName.placeholder}
+      />
+    </div>
+  </div>
+
+  {/* Bloque de Persona Física. Visible por defecto: es el caso mayoritario. */}
+  <div data-person-type-block="1">
+    <div class="flex flex-col gap-[18px]">
+      <Input
+        id="member-cedula"
+        name="cedula"
+        label={memberFormFields.cedula.label}
+        required
+        placeholder={memberFormFields.cedula.placeholder}
+      />
+      <Input
+        id="member-birthDate"
+        name="birthDate"
+        label={memberFormFields.birthDate.label}
+        required
+        type="date"
+      />
+      <Input
+        id="member-occupation"
+        name="occupation"
+        label={memberFormFields.occupation.label}
+        required
+        placeholder={memberFormFields.occupation.placeholder}
+      />
+    </div>
+  </div>
+
   <Input
     id="member-phone"
     name="phone"
@@ -85,6 +173,21 @@ import { joinPanelContent, memberFormFields } from '@data/membersPage';
     options={referralSourceOptions}
   />
 
+  {/* Honeypot: fuera de la pantalla, sin tabulación y sin autocompletado. Una persona no lo ve
+      ni lo llena; un bot que rellena todo por nombre sí. `aria-hidden` lo esconde también de
+      los lectores de pantalla, para que no sea una trampa para quien navega sin ver. */}
+  <div class="absolute left-[-9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+    <label for="member-website">No completar</label>
+    <input
+      id="member-website"
+      name="website"
+      type="text"
+      tabindex="-1"
+      autocomplete="off"
+      value=""
+    />
+  </div>
+
   <Checkbox id="member-acceptedTerms" name="acceptedTerms" required align="start">
     {joinPanelContent.termsPrefix}
     <a href="#" class="font-semibold text-brand-800">{joinPanelContent.termsLink}</a>
@@ -92,10 +195,32 @@ import { joinPanelContent, memberFormFields } from '@data/membersPage';
     <a href="#" class="font-semibold text-brand-800">{joinPanelContent.privacyLink}</a>.
   </Checkbox>
 
+  {
+    turnstileSiteKey && (
+      <div
+        class="cf-turnstile"
+        data-sitekey={turnstileSiteKey}
+        data-theme="light"
+        data-response-field-name="captchaToken"
+      />
+    )
+  }
+
   <Button type="submit" size="xl" icon="arrowRight" data-submit-button>
     <span data-submit-label>{joinPanelContent.submitLabel}</span>
   </Button>
 </form>
+
+{
+  turnstileSiteKey && (
+    <script
+      is:inline
+      async
+      defer
+      src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+    />
+  )
+}
 
 <script>
   import {
@@ -108,19 +233,52 @@ import { joinPanelContent, memberFormFields } from '@data/membersPage';
     clearFieldErrors,
     focusFirstInvalidField,
   } from '@shared/utils/formFieldState';
-  import type { MemberRequest } from '@features/members/types/member';
+  import type { MemberRequest, MemberPersonType } from '@features/members/types/member';
   import { joinPanelContent } from '@data/membersPage';
+  import { termsVersion } from '@data/members';
+
+  const LEGAL_ENTITY = '2';
 
   document.querySelectorAll<HTMLFormElement>('[data-member-form]').forEach((form) => {
     const submitButton = form.querySelector<HTMLButtonElement>('[data-submit-button]');
     const submitLabel = form.querySelector('[data-submit-label]');
     const formError = form.querySelector<HTMLElement>('[data-form-error]');
+    const personTypeSelect = form.querySelector<HTMLSelectElement>('[name="personTypeId"]');
     const originalLabel = submitLabel?.textContent ?? joinPanelContent.submitLabel;
 
     const setLoading = (loading: boolean) => {
       if (submitButton) submitButton.disabled = loading;
-      if (submitLabel) submitLabel.textContent = loading ? joinPanelContent.loadingLabel : originalLabel;
+      if (submitLabel)
+        submitLabel.textContent = loading ? joinPanelContent.loadingLabel : originalLabel;
     };
+
+    /**
+     * Muestra el bloque del tipo elegido y oculta el otro. Los campos ocultos pierden el
+     * `required` para que la validación nativa del navegador no bloquee el submit por un input
+     * que nadie puede ver (el form es `novalidate`, pero el atributo igual afecta a `:invalid`
+     * y a los lectores de pantalla).
+     */
+    const applyPersonType = (personTypeId: string) => {
+      form.querySelectorAll<HTMLElement>('[data-person-type-block]').forEach((block) => {
+        const matches = block.dataset.personTypeBlock === personTypeId;
+        block.hidden = !matches;
+
+        block.querySelectorAll<HTMLInputElement>('input').forEach((input) => {
+          // La referencia de dirección es el único campo opcional de estos bloques; no lo hay
+          // hoy, pero se deja explícito para que agregar uno no lo vuelva obligatorio sin querer.
+          if (input.dataset.optional === 'true') return;
+          input.required = matches;
+        });
+      });
+    };
+
+    // Sin selección aún: se muestra el bloque de Persona Física, que es el caso mayoritario y
+    // el que el markup deja visible por defecto.
+    applyPersonType(personTypeSelect?.value || '1');
+    personTypeSelect?.addEventListener('change', () => {
+      clearFieldErrors(form);
+      applyPersonType(personTypeSelect.value || '1');
+    });
 
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
@@ -128,9 +286,24 @@ import { joinPanelContent, memberFormFields } from '@data/membersPage';
       formError?.classList.add('hidden');
 
       const formData = new FormData(form);
+      const personTypeId = String(formData.get('personTypeId') ?? '');
+      const isLegalEntity = personTypeId === LEGAL_ENTITY;
+
+      // El documento del socio es la cédula en Persona Física y el RNC de la empresa en
+      // Jurídica; el backend recibe un solo campo y deriva cuál validar del tipo de persona.
+      const documentNumber = String(
+        (isLegalEntity ? formData.get('rnc') : formData.get('cedula')) ?? '',
+      );
+
       const values = {
-        fullName: formData.get('fullName'),
-        cedula: formData.get('cedula'),
+        personTypeId,
+        documentNumber,
+        firstName: formData.get('firstName'),
+        lastName: formData.get('lastName'),
+        birthDate: formData.get('birthDate'),
+        occupation: formData.get('occupation'),
+        companyName: formData.get('companyName'),
+        economicActivity: formData.get('economicActivity'),
         phone: formData.get('phone'),
         email: formData.get('email'),
         addressStreet: formData.get('addressStreet'),
@@ -142,22 +315,43 @@ import { joinPanelContent, memberFormFields } from '@data/membersPage';
       const errors = validateMemberForm(values);
       if (!isMemberFormValid(errors)) {
         for (const [field, message] of Object.entries(errors)) {
-          if (message) setFieldError(form, field, message);
+          if (!message) continue;
+          // `documentNumber` no es el nombre de ningún input: el error se pinta sobre el campo
+          // visible según el tipo de solicitante.
+          const target =
+            field === 'documentNumber' ? (isLegalEntity ? 'rnc' : 'cedula') : field;
+          setFieldError(form, target, message);
         }
         focusFirstInvalidField(form);
         return;
       }
 
+      const asOptional = (value: FormDataEntryValue | null) =>
+        String(value ?? '').trim() || undefined;
+
       const payload: MemberRequest = {
-        fullName: String(values.fullName ?? ''),
-        cedula: String(values.cedula ?? ''),
+        personTypeId: Number(personTypeId) as MemberPersonType,
+        firstName: String(values.firstName ?? ''),
+        lastName: String(values.lastName ?? ''),
+        documentNumber,
+        birthDate: isLegalEntity ? undefined : asOptional(values.birthDate),
+        occupation: isLegalEntity ? undefined : asOptional(values.occupation),
+        companyName: isLegalEntity ? asOptional(values.companyName) : undefined,
+        economicActivity: isLegalEntity ? asOptional(values.economicActivity) : undefined,
         phone: String(values.phone ?? ''),
         email: String(values.email ?? ''),
         addressStreet: String(values.addressStreet ?? ''),
-        addressReference: String(formData.get('addressReference') ?? '') || undefined,
+        addressReference: asOptional(formData.get('addressReference')),
         addressCity: String(values.addressCity ?? ''),
         referralSource: String(values.referralSource ?? ''),
         acceptedTerms: true,
+        termsVersion,
+        // Idempotencia: si el envío se reintenta por un corte de red o un doble clic, el
+        // servidor reconoce el mismo identificador y no crea una segunda solicitud.
+        submissionId: crypto.randomUUID(),
+        // Lo inyecta el widget de Turnstile como campo del formulario.
+        captchaToken: String(formData.get('captchaToken') ?? ''),
+        website: String(formData.get('website') ?? ''),
       };
 
       setLoading(true);
@@ -165,14 +359,31 @@ import { joinPanelContent, memberFormFields } from '@data/membersPage';
       setLoading(false);
 
       if (!result.success) {
-        if (formError) {
-          formError.textContent = result.message ?? joinPanelContent.genericErrorMessage;
+        if (result.fieldErrors) {
+          for (const [field, message] of Object.entries(result.fieldErrors)) {
+            if (!message) continue;
+            const target =
+              field === 'documentNumber' ? (isLegalEntity ? 'rnc' : 'cedula') : field;
+            setFieldError(form, target, message);
+          }
+          focusFirstInvalidField(form);
+        }
+
+        if (result.message && formError) {
+          formError.textContent = result.message;
+          formError.classList.remove('hidden');
+        } else if (!result.fieldErrors && formError) {
+          formError.textContent = joinPanelContent.genericErrorMessage;
           formError.classList.remove('hidden');
         }
         return;
       }
 
       form.reset();
+      applyPersonType('1');
+      // El token de Turnstile es de un solo uso: sin resetear el widget, un segundo envío en la
+      // misma visita llega con un token ya consumido y el servidor lo rechaza.
+      window.turnstile?.reset();
       form.dispatchEvent(new CustomEvent('member-form:submitted', { bubbles: true }));
     });
   });

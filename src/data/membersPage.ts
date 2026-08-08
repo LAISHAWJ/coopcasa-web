@@ -54,8 +54,21 @@ export const joinPanelContent = {
 
 /** Campos del formulario de afiliación (features/members/components/MemberForm.astro). */
 export const memberFormFields = {
-  fullName: { label: 'Nombre completo', placeholder: 'Por ejemplo, Juan Pérez' },
+  personType: { label: '¿Quién se afilia?' },
+  firstName: { label: 'Nombre', placeholder: 'Por ejemplo, Juan' },
+  lastName: { label: 'Apellido', placeholder: 'Por ejemplo, Pérez' },
   cedula: { label: 'Cédula', placeholder: 'XXX-XXXXXXX-X' },
+  birthDate: { label: 'Fecha de nacimiento' },
+  occupation: { label: 'Ocupación', placeholder: 'Por ejemplo, Contable' },
+  // Persona Jurídica
+  companyName: { label: 'Razón social', placeholder: 'Nombre registrado de la empresa' },
+  rnc: { label: 'RNC', placeholder: 'X-XX-XXXXX-X' },
+  economicActivity: {
+    label: 'Actividad económica',
+    placeholder: 'Por ejemplo, Comercio al detalle',
+  },
+  contactGroupLabel: 'Persona de contacto',
+  // Comunes
   phone: { label: 'Teléfono de casa o celular', placeholder: 'Por ejemplo, 809-123-4567' },
   email: { label: 'Email', placeholder: 'Por ejemplo, nombre@ejemplo.com' },
   addressGroupLabel: 'Dirección de residencia',
@@ -71,11 +84,23 @@ export const memberFormFields = {
 /**
  * Mensajes de error de validación del formulario de afiliación
  * (features/members/validation/memberValidation.ts).
+ *
+ * El dígito verificador de la cédula y del RNC lo valida el backend, no el navegador: cuando
+ * lo rechaza, el mensaje que llega del servidor reemplaza a estos por campo.
  */
 export const memberValidationMessages = {
-  fullNameRequired: 'Ingresa tu nombre completo.',
+  personTypeRequired: 'Selecciona quién se afilia.',
+  firstNameRequired: 'Ingresa tu nombre.',
+  lastNameRequired: 'Ingresa tu apellido.',
   cedulaRequired: 'Ingresa tu número de cédula.',
   cedulaInvalid: 'Formato esperado: XXX-XXXXXXX-X.',
+  birthDateRequired: 'Ingresa tu fecha de nacimiento.',
+  birthDateInvalid: 'Debes tener al menos 18 años para afiliarte.',
+  occupationRequired: 'Ingresa tu ocupación.',
+  companyNameRequired: 'Ingresa la razón social.',
+  rncRequired: 'Ingresa el RNC de la empresa.',
+  rncInvalid: 'Formato esperado: X-XX-XXXXX-X.',
+  economicActivityRequired: 'Ingresa la actividad económica.',
   phoneRequired: 'Ingresa un teléfono de contacto.',
   phoneInvalid: 'Formato esperado: 809-123-4567.',
   emailRequired: 'Ingresa tu correo electrónico.',
