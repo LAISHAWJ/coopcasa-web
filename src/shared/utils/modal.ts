@@ -28,13 +28,15 @@ export function closeModal(id: string): void {
   const modal = document.querySelector<HTMLElement>(`[data-modal="${id}"]`);
   if (!modal) return;
   modal.dataset.state = 'closed';
-  document.body.style.overflow = '';
+  if (!document.querySelector('[data-modal][data-state="open"]')) {
+    document.body.style.overflow = '';
+  }
 }
 
-function closeAllOpenModals(): void {
-  document.querySelectorAll<HTMLElement>('[data-modal][data-state="open"]').forEach((modal) => {
-    if (modal.dataset.modal) closeModal(modal.dataset.modal);
-  });
+function closeTopmostOpenModal(): void {
+  const open = document.querySelectorAll<HTMLElement>('[data-modal][data-state="open"]');
+  const top = open[open.length - 1];
+  if (top?.dataset.modal) closeModal(top.dataset.modal);
 }
 
 export function registerModalTriggers(): void {
@@ -65,6 +67,6 @@ export function registerModalTriggers(): void {
   });
 
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') closeAllOpenModals();
+    if (event.key === 'Escape') closeTopmostOpenModal();
   });
 }

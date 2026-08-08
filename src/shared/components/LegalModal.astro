@@ -1,0 +1,109 @@
+---
+// src/shared/components/LegalModal.astro
+import Modal from '@shared/ui/Modal.astro';
+import Icon from '@shared/ui/Icon.astro';
+import { LEGAL_MODAL_ID, legalModalContent, legalDocuments } from '@data/legal';
+import type { LegalDocument } from '@data/legal';
+
+const tabs: Array<{ key: 'terms' | 'privacy'; label: string; document: LegalDocument }> = [
+  { key: 'terms', label: legalModalContent.tabs.terms, document: legalDocuments.terms },
+  { key: 'privacy', label: legalModalContent.tabs.privacy, document: legalDocuments.privacy },
+];
+---
+
+<Modal id={LEGAL_MODAL_ID}>
+  <div
+    class="relative overflow-hidden rounded-t-[26px] bg-[linear-gradient(135deg,#0d1f14,#14361b)] px-6 pt-8 pb-6 sm:px-9"
+  >
+    <div
+      class="pointer-events-none absolute -top-[60px] -right-[30px] h-[220px] w-[220px] rounded-full bg-[radial-gradient(circle,rgba(43,168,44,0.4),transparent_65%)]"
+    >
+    </div>
+    <button
+      type="button"
+      data-modal-close={LEGAL_MODAL_ID}
+      aria-label="Cerrar"
+      class="absolute top-[22px] right-[22px] flex h-[38px] w-[38px] items-center justify-center rounded-[11px] border border-white/18 bg-white/10 text-white transition-colors hover:bg-white/22"
+    >
+      <Icon name="close" size={18} />
+    </button>
+    <div class="relative z-[1] flex flex-wrap gap-2.5 pr-12">
+      {
+        tabs.map((tab) => (
+          <button
+            type="button"
+            data-legal-tab={tab.key}
+            class="rounded-full border border-white/25 bg-white/10 px-4 py-[7px] text-[13px] font-semibold text-white/75 transition-colors data-[active=true]:border-white data-[active=true]:bg-white data-[active=true]:text-ink-900"
+          >
+            {tab.label}
+          </button>
+        ))
+      }
+    </div>
+  </div>
+
+  {
+    tabs.map((tab) => (
+      <div data-legal-panel={tab.key} class="hidden px-6 pt-7 pb-8 sm:px-9">
+        <h3 class="mb-2.5 text-xl font-extrabold tracking-tight text-ink-900 sm:text-[22px]">
+          {tab.document.title}
+        </h3>
+        <p class="mb-6 text-sm leading-relaxed text-body-400">{tab.document.intro}</p>
+        <div class="flex flex-col gap-5">
+          {tab.document.sections.map((section) => (
+            <div>
+              <h4 class="mb-1.5 font-display text-[14px] font-bold text-ink-900">
+                {section.heading}
+              </h4>
+              <div class="flex flex-col gap-2">
+                {section.paragraphs.map((paragraph) => (
+                  <p class="text-[13.5px] leading-relaxed text-body-500">{paragraph}</p>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))
+  }
+
+  <div class="flex justify-end border-t border-ink-900/8 px-6 py-4 sm:px-9">
+    <button
+      type="button"
+      data-modal-close={LEGAL_MODAL_ID}
+      class="rounded-[13px] bg-[linear-gradient(135deg,#22a024,#2fb531)] px-6 py-[11px] font-display text-[14px] font-bold text-white shadow-[0_10px_26px_rgba(43,168,44,0.34)]"
+    >
+      {legalModalContent.closeLabel}
+    </button>
+  </div>
+</Modal>
+
+<script>
+  // Encuentra el modal a partir de uno de sus propios paneles: evita hardcodear
+  // LEGAL_MODAL_ID en el cliente.
+  const anyPanel = document.querySelector<HTMLElement>('[data-legal-panel]');
+  const modal = anyPanel?.closest<HTMLElement>('[data-modal]');
+  const scroller = anyPanel?.parentElement;
+  const tabButtons = modal?.querySelectorAll<HTMLElement>('[data-legal-tab]');
+  const panels = modal?.querySelectorAll<HTMLElement>('[data-legal-panel]');
+
+  function showLegalPanel(key: string): void {
+    panels?.forEach((panel) => {
+      panel.classList.toggle('hidden', panel.dataset.legalPanel !== key);
+    });
+    tabButtons?.forEach((button) => {
+      button.dataset.active = String(button.dataset.legalTab === key);
+    });
+    if (scroller) scroller.scrollTop = 0;
+  }
+
+  modal?.addEventListener('modal:open', ((event: CustomEvent<string | undefined>) => {
+    showLegalPanel(event.detail === 'privacy' ? 'privacy' : 'terms');
+  }) as EventListener);
+
+  tabButtons?.forEach((button) => {
+    button.addEventListener('click', () => {
+      if (button.dataset.legalTab) showLegalPanel(button.dataset.legalTab);
+    });
+  });
+</script>

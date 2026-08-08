@@ -1,5 +1,7 @@
 import type { NavLink } from '@shared/types/nav';
 import { services } from './services';
+import { LEGAL_MODAL_ID } from './legal';
+import type { LegalTabKey } from './legal';
 
 /** Footer → texto descriptivo bajo el logo. */
 export const footerBrandDescription =
@@ -32,11 +34,18 @@ export const footerNavLinks: NavLink[] = [
  */
 export const footerServiceLinks: string[] = services.map((service) => service.title);
 
-/** Footer → enlaces legales en la barra inferior. */
-export const legalLinks: NavLink[] = [
-  // Reemplazar "#" por las rutas reales cuando existan las páginas legales.
-  { label: 'Términos', href: '#' },
-  { label: 'Privacidad', href: '#' },
+/** Footer → enlaces legales en la barra inferior. Los de Términos/Privacidad
+ * abren `LegalModal` (src/shared/components/LegalModal.astro); "Transparencia"
+ * sigue siendo un enlace normal hasta que exista esa página. */
+export interface LegalLink extends NavLink {
+  modalId?: string;
+  modalPayload?: LegalTabKey;
+}
+
+export const legalLinks: LegalLink[] = [
+  { label: 'Términos', href: '#', modalId: LEGAL_MODAL_ID, modalPayload: 'terms' },
+  { label: 'Privacidad', href: '#', modalId: LEGAL_MODAL_ID, modalPayload: 'privacy' },
+  // Reemplazar "#" por la ruta real cuando exista la página de Transparencia.
   { label: 'Transparencia', href: '#' },
 ];
 

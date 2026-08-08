@@ -5,6 +5,7 @@ import Checkbox from '@shared/ui/Checkbox.astro';
 import Button from '@shared/ui/Button.astro';
 import { referralSourceOptions, personTypeOptions } from '@data/members';
 import { joinPanelContent, memberFormFields } from '@data/membersPage';
+import { LEGAL_MODAL_ID } from '@data/legal';
 
 // Site key del captcha: es PÚBLICA por diseño (el secreto vive solo en el servidor). Si no
 // está configurada, el widget no se renderiza y el backend rechaza el envío — salvo que el
@@ -190,9 +191,23 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 
   <Checkbox id="member-acceptedTerms" name="acceptedTerms" required align="start">
     {joinPanelContent.termsPrefix}
-    <a href="#" class="font-semibold text-brand-800">{joinPanelContent.termsLink}</a>
+    <a
+      href="#"
+      data-modal-open={LEGAL_MODAL_ID}
+      data-modal-payload="terms"
+      class="font-semibold text-brand-800 hover:underline"
+    >
+      {joinPanelContent.termsLink}
+    </a>
     {joinPanelContent.termsMiddle}
-    <a href="#" class="font-semibold text-brand-800">{joinPanelContent.privacyLink}</a>.
+    <a
+      href="#"
+      data-modal-open={LEGAL_MODAL_ID}
+      data-modal-payload="privacy"
+      class="font-semibold text-brand-800 hover:underline"
+    >
+      {joinPanelContent.privacyLink}
+    </a>.
   </Checkbox>
 
   {
