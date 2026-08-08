@@ -3,6 +3,8 @@
 interface ImportMetaEnv {
   readonly PUBLIC_API_MEMBERS_URL?: string;
   readonly PUBLIC_PORTAL_URL?: string;
+  /** Dirección completa del login real del Portal. Si está, gana sobre `PUBLIC_PORTAL_URL` + /login. */
+  readonly PUBLIC_PORTAL_LOGIN_URL?: string;
   /** Site key de Cloudflare Turnstile. Es pública por diseño; el secreto vive en el backend. */
   readonly PUBLIC_TURNSTILE_SITE_KEY?: string;
 }

@@ -1,0 +1,39 @@
+# OJO: package-lock.json NO se ignora — la etapa de build usa `npm ci` y lo necesita.
+**/.git
+**/.gitignore
+**/node_modules
+**/npm-debug.log
+**/yarn-error.log
+**/pnpm-debug.log
+
+# secretos y config local: los valores de producción entran como build-args
+**/.env
+**/.env.local
+**/.env.*.local
+
+# artefactos de build locales (se regeneran dentro de la imagen)
+**/dist
+**/.astro
+**/*.tsbuildinfo
+
+# tooling y editores
+**/.vscode
+**/.idea
+**/.claude
+**/.playwright-mcp
+**/.DS_Store
+**/Thumbs.db
+**/*.tmp
+**/*.temp
+
+# docs y meta del repo (no afectan al sitio compilado)
+**/README.md
+**/CLAUDE.md
+**/AGENTS.md
+**/DOCKER_DEPLOYMENT.md
+**/docker-compose.yml
+**/docker-compose.*.yml
+**/Dockerfile
+**/.dockerignore
+**/.github
+**/prototipo-html

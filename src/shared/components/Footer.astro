@@ -4,6 +4,7 @@ import logo from '@assets/images/coopcasa-logo.png';
 import Icon from '@shared/ui/Icon.astro';
 import Button from '@shared/ui/Button.astro';
 import { siteConfig } from '@data/siteConfig';
+import { portalLoginUrl } from '@shared/config/portal';
 import {
   footerNavLinks,
   footerServiceLinks,
@@ -13,10 +14,6 @@ import {
   footerColumnLabels,
   footerVirtualOfficeLabel,
 } from '@data/footer';
-
-// URL del Portal de la Oficina Virtual (proyecto neocoop_member-portail,
-// React) — ver .env.example. El login de ejemplo en Astro ya no se usa.
-const portalLoginUrl = `${import.meta.env.PUBLIC_PORTAL_URL ?? 'http://localhost:5173'}/login`;
 ---
 
 <footer id="contacto" class="scroll-mt-[104px] bg-ink-900 px-5 pt-[72px] pb-8 text-white lg:px-8">

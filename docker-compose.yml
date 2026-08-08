@@ -1,0 +1,39 @@
+# =========================================================================================
+# Compose para build y prueba LOCAL de la imagen.
+# En Coolify no hace falta: allá se usa el Dockerfile directo (Build Pack = Dockerfile) y
+# las variables PUBLIC_* se marcan como "Build Variable".
+# =========================================================================================
+services:
+  coopcasa-landing:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Se resuelven en build: cambiarlas obliga a reconstruir la imagen.
+        PUBLIC_API_MEMBERS_URL: ${PUBLIC_API_MEMBERS_URL:-https://api.coopcasa.do/api/public/membership-leads}
+        PUBLIC_TURNSTILE_SITE_KEY: ${PUBLIC_TURNSTILE_SITE_KEY:-}
+        PUBLIC_PORTAL_URL: ${PUBLIC_PORTAL_URL:-http://localhost:5173}
+        # Vacía = el login se deriva de PUBLIC_PORTAL_URL + /login.
+        PUBLIC_PORTAL_LOGIN_URL: ${PUBLIC_PORTAL_LOGIN_URL:-}
+    image: coopcasa-landing:latest
+    container_name: coopcasa-landing
+    restart: unless-stopped
+    ports:
+      - '${APP_PORT:-3000}:3000'
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://127.0.0.1:3000/health']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - coopcasa-network
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '10m'
+        max-file: '3'
+
+networks:
+  coopcasa-network:
+    driver: bridge
